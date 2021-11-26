@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<body class="body">
+
+<img id="backbtn" style="width:50px; height:35px;" src="Images/back.png">
+<h1 style="text-align: center;">Purchase</h1> <span></span>
+<hr class="hrcolor">
+<h1 style="text-align: center;" id="amountaccount">Amount</h1>
+<hr class="hrcolor">
+
+
+  <div class="card">
+    <img src="Images/cofee.jpg" alt="Avatar" style="width:100%">
+    <div class="container">
+      <h4 style="text-align: center;"><b>Coffee</b></h4>
+      <p style="text-align: center;">15 CC</p>
+      <p style="text-align: center;">Enjoy a good coffee </p>
+      <button class="btn" id="redeembtn">Claim </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="Images/pepsi.jpeg" alt="Avatar" style="width:100%">
+    <div class="container">
+      <h4 style="text-align: center;"><b>Soda</b></h4>
+      <p style="text-align: center;">55 CC</p>
+      <p style="text-align: center;"> An optional 0.5L drink for the recycling you have made</p>
+      <button class="btn" id="sodabtn">Claim </button>
+    </div>
+  </div>
+
+  
+    <div class="card">
+      <img src="Images/foodbox.jpg" alt="Avatar" style="width:100%">
+      <div class="container">
+        <h4 style="text-align: center;"><b>Mystery food box</b></h4>
+        <p style="text-align: center;">150 CC</p>
+        <p style="text-align: center;"> A box filled with surprising food</p>
+        <button class="btn" id="foodbtn">Claim </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Images/msf.jpeg" alt="Avatar" style="width:100%">
+      <div class="container">
+        <h4 style="text-align: center;"><b>Donate to MSF</b></h4>
+        <p style="text-align: center;">Optional CC</p>
+        <p style="text-align: center;"> Donate your CC to a good cause</p>
+        <button class="btn" id="donatebtn">Donate for charity </button>
+        <br>
+      </div>
+      <input type="number" pattern="\d*" id="donateInput" style="position:relative;left: 3%; border-radius:5px; width: 290px; height:25px
+      ;margin-top: 5px;"
+        placeholder="Write the amount you want to donate" min="0"> </input>
+        <!--copying and pasting minus in it-->
+    </div>
+
+    <!--Copuon overlay -->
+
+    <!--Cofee-->
+
+    
+    <div id="overlaycouponcoffee">
+      <div style="color:black;" class="cardoverlay" 
+      style="width: 310px; height: 300px; position: relative; left: 5%;">
+        <img src="Images/cofee.jpg"style="width:100%">
+        <img id="aproveImg" src="Images/activated.png"style="width:90px; height: 90px; position:absolute; top:10%; object-fit:cover;
+        object-position:50% 50%; display:none;">
+        <div style="color:black;" >
+          <h4 style="text-align: center;"><b>Coffee</b></h4>
+          <p style="text-align: center;">15 CC</p>
+          <p id="textforseller" style="text-align: center;">Show this to casher and let them activate your coupon</p>
+          <button id="activate">Activate </button>
+          <div id="countdown"></div>
+          <img id="backbtnoverlay" style="width:40px; height:35px; position:relative; left:5%; top:35%" src="Images/back.png">
+  
+          
+        </div>
+      </div>
+    </div>
+    <!--Soda-->
+
+    <div id="overlaycouponsoda">
+      <div style="color:black;" class="cardoverlay" 
+      style="width: 310px; height: 300px; position: relative; left: 5%;">
+        <img src="Images/pepsi.jpeg"style="width:100%">
+        <img id="aproveImgSoda" src="Images/activated.png"style="width:90px; height: 90px; position:absolute; top:10%; object-fit:cover;
+        object-position:50% 50%; display:none;">
+        <div style="color:black;" >
+          <h4 style="text-align: center;"><b>Soda</b></h4>
+          <p style="text-align: center;">55 CC</p>
+          <p id="textforsellersoda" style="text-align: center;">Show this to casher and let them activate your coupon</p>
+          <button id="sodaActivation">Activate </button>
+          <div id="countdown2"></div>
+          <img id="backbtnoverlaysoda" style="width:40px; height:35px; position:relative; left:5%; top:35%" src="Images/back.png">
+  
+          
+        </div>
+      </div>
+    </div>
+
+      <!--food-->
+
+      <div id="overlaycouponfood">
+        <div style="color:black;" class="cardoverlay" 
+        style="width: 310px; height: 300px; position: relative; left: 5%;">
+          <img src="Images/foodbox.jpg"style="width:100%">
+          <img id="aproveImgfood" src="Images/activated.png"style="width:90px; height: 90px; position:absolute; top:10%; object-fit:cover;
+          object-position:50% 50%; display:none;">
+          <div style="color:black;" >
+            <h4 style="text-align: center;"><b>Mystery food box</b></h4>
+            <p style="text-align: center;">150 CC</p>
+            <p id="textforsellerfood" style="text-align: center;">Show this to casher and let them activate your coupon</p>
+            <button id="activatefood">Activate </button>
+            <div id="countdown3"></div>
+            <img id="backbtnoverlayfood" style="width:40px; height:35px; position:relative; left:5%; top:35%" src="Images/back.png">
+    
+            
+          </div>
+        </div>
+      </div>
+
+
+</body>
+
+<script src="js/redeem.js"> </script>
+
+<style>
+
+
+/*needed*/
+#overlaycouponfood{
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+
+}
+#overlaycouponsoda{
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlaycouponcoffee {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; /* 5px rounded corners */
+  width: 310px; 
+  height: 320px; 
+  position: relative; 
+  left: 10%; 
+  margin-top: 40px
+ 
+  
+}
+
+.cardoverlay{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; /* 5px rounded corners */
+  background-color:white;
+
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  width:100%;
+   height:120px;
+   object-fit:cover;
+   object-position:50% 50%;
+}
+
+body {
+  font-family:  Verdana, Geneva, Tahoma, sans-serif;
+  -youbkit-touch-callout: none; /* iOS Safari */
+      -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+      -moz-user-select: none;       /* Firefox */
+      -ms-user-select: none;        /* IE 10+ and Edge */
+      user-select: none;
+      -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+background-color: whitesmoke;
+}
+
+.btn{
+  color: white; 
+  width: 140px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #52b459;
+  border: rgb(116, 16, 16);
+  position: relative; 
+  left: 25%;
+}
+
+
+#activate{
+  color: white; 
+  width: 140px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #52b459;
+  border: rgb(116, 16, 16);
+  position: relative; 
+  left: 35%;
+}
+
+#sodaActivation{
+  color: white; 
+  width: 140px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #52b459;
+  border: rgb(116, 16, 16);
+  position: relative; 
+  left: 35%;
+}
+
+#activatefood{
+  color: white; 
+  width: 140px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #52b459;
+  border: rgb(116, 16, 16);
+  position: relative; 
+  left: 35%;
+}
+
+/*needed*/
+
+
+/* Add rounded corners to the top left and the top right corner of the image 
+class="container">
+
+class="coupon
+
+class="btn" use it
+
+<button class="btn" id="redeembtn">Claim </button>
+
+
+
+*/
+
+</style>
+
+
+</html>

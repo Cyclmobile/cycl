@@ -1,0 +1,554 @@
+.body {
+  font-family:  Verdana, Geneva, Tahoma, sans-serif;
+
+    -youbkit-touch-callout: none; /* iOS Safari */
+      -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+      -moz-user-select: none;       /* Firefox */
+      -ms-user-select: none;        /* IE 10+ and Edge */
+      user-select: none;
+      -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+  /*hide google info on map*/
+  a[href^="http://maps.google.com/maps"]{display:none !important}
+  a[href^="https://maps.google.com/maps"]{display:none !important}
+  .gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+   }
+   .gmnoprint div {background:none !important;}
+   /*^hide google info on map*/
+
+
+    /*station style*/
+    #map{
+      z-index: 0;
+    }
+    .locationmapimg{
+      position : absolute;
+      display : inline;
+      top : 100px;
+      left : 100px;
+      z-index : 1;
+      background-color: white;
+      border-radius: 50px;
+      -ms-transform: rotate(20deg); /* IE 9 */
+      transform: rotate(35deg);
+      width: 35px;
+      height: 35px;
+      top:90%;
+      left: 85%;
+
+    }
+
+   .ready{
+    color:#52b459; 
+    position: fixed; 
+    top: 65%;
+    display: none;
+    left: 20%;
+
+  }
+  .lds-ellipsis{
+    position:relative; 
+    left: 37%; 
+    top:37%;
+    display:none;
+
+  }
+  /* overlay for soundclass*/
+  #overlaystation {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:#52b459; /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  
+}
+
+/* button overlay at soundetection*/
+#homebtn{
+color: white; 
+position:fixed; top:73%; 
+left:24%;
+  width: 180px;
+  height: 40px;
+  border-radius: 25px;
+  font-size: medium;
+  background-color: green;
+  border: none;
+
+  
+}
+
+
+#recycle{
+  position: fixed; left: 
+  35%; top: 12%;
+  
+
+}
+
+/*station style*/
+
+/*sideNav*/
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #52b459;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    border-radius: 8px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f0f0f0;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .closesidenav{
+
+    font-size:30px;cursor:pointer; 
+    color: #52b459;
+    width: 15px;
+    height: 5px;
+    
+  }
+
+  /*sideNav*/
+  
+  /* Style the active link (or home/logo) */
+  .active {
+    background-color: white;
+    color: white;
+  }
+  
+  .loginbtn {
+    border-radius: 12px;
+    background-color: #52b459;
+    border: 0px;
+    position: fixed; /* or absolute */
+   top: 60%;
+   left: 26%;
+  }
+  
+  .rgstr{
+    background-color: white;
+    color: #52b459;
+    align-content: center;
+    position: fixed;
+    background-color: white;
+    border: 0px;
+    top: 70%;
+    left:32%;
+  
+  }
+  
+  .mbmr{
+  color: #52b459;
+  position: fixed;
+  left:20%;
+  top:80%;
+  background-color: white;
+  border: 0px;
+  
+  }
+  .logo{
+  position: fixed;
+  left: 35%;
+  
+  }
+  .scannerbtn{
+    
+    background-color:#52b459;
+    color:white;
+    border:0px;
+    width: 200px;
+    height:30px;
+    border-radius:5px;
+    margin:3px;
+    box-shadow: 0px 6px 5px #ccc;
+  }
+  
+  .inputemail{
+    position:fixed;
+    left:33%;
+    top:35%;
+    border-top:hidden;
+    border-right:hidden;
+    border-left:hidden;
+  
+  }
+  .inputpassword{
+  position:fixed;
+  left:33%;
+  top:45%;
+  border-top:hidden;
+  border-right:hidden;
+  border-left:hidden;
+  
+  
+  }
+  
+  .hrcolor {
+      background-color: #008CBA;
+  }
+  
+  .html{
+    background: white;
+  }
+  
+  
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #52b459;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+  
+  /*under er for displayen for pantestedet og for kartet
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    width: 100%;
+   height: 91%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #overlay {
+  position: bottom;
+  display: none;
+  width: 100%;
+  height: 45%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+  }
+  
+  #text{
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  }
+  
+  /* The Modal (background) */
+  .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+  }
+  
+  /* Modal Content */
+  .modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  border-radius: 2%;
+  }
+  
+  /* The Close Button */
+  .close {
+  position: relative;
+  color: #52b459;
+  right: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+  }
+  
+  @keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+  }
+  
+  .video{
+    margin-top: 20px;
+    position: relative;
+    top: 140px;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 350px;
+    left: 50%;
+  }
+  /*scanner animation*/
+  .scan-code {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 210px;
+    height: 180px;
+    z-index: 1;
+    left: 50%;
+    top:50%
+  }
+  
+  .scan-code__angle:before,
+  .scan-code__angle:after {
+    content: "";
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: #52b459;
+    border-width: 0px;
+    z-index: 1;
+ 
+  }
+  
+  .scan-code__angle:before {
+    border-left-width: 6px;
+    left: 0;
+    
+  }
+  
+  .scan-code__angle:after {
+    border-right-width: 6px;
+    right: 0;
+
+
+  }
+  
+  .scan-code__angle--top:before,
+  .scan-code__angle--top:after {
+    top: 0;
+    border-top-width: 6px;
+
+
+  }
+  
+  .scan-code__angle--bottom:before,
+  .scan-code__angle--bottom:after {
+    bottom: 0;
+    border-bottom-width: 6px;
+  }
+  
+  .scan-code__angle--top:before {
+    border-top-left-radius: 4px;
+  }
+  
+  .scan-code__angle--top:after {
+    border-top-right-radius: 4px;
+  }
+  
+  .scan-code__angle--bottom:before {
+    border-bottom-left-radius: 4px;
+  }
+  
+  .scan-code__angle--bottom:after {
+    border-bottom-right-radius: 4px;
+  }
+  
+  body {
+    height: 100%;
+  }
+  
+  @-webkit-keyframes beam {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes beam {
+    50% {
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes scanning {
+    50% {
+      -webkit-transform: translateY(75px);
+              transform: translateY(75px);
+    }
+  }
+  @keyframes scanning {
+    50% {
+      -webkit-transform: translateY(75px);
+              transform:
+    }
+  }
+
+  /*progress steps scanner.html */
+
+  .container {
+  width: 100%;
+}
+
+.progressbar {
+  margin-top: 20px;
+  counter-reset: step;
+}
+.progressbar li {
+  list-style: none;
+  display: inline-block;
+  width: 30.33%;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height : 30px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  background-color: #fff;
+}
+.progressbar li:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index : -1;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.activeprgrs {
+  color: green;
+}
+.progressbar li.activeprgrs:before {
+  border-color: #52b459;
+} 
+.progressbar li.activeprgrs + li:after {
+  background-color: #52b459;
+}
