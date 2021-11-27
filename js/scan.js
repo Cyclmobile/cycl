@@ -6,16 +6,46 @@
       const codeReader = new ZXing.BrowserMultiFormatReader()
       console.log('ZXing code reader initialized')
       codeReader.listVideoInputDevices()
-  
+      this.document.getElementById("submitbarcodebtn").addEventListener("click",function(){
+        var inputBarcode= document.getElementById('rezlt').value;
+
+        var colacola=[12345678, "1231231313", "5012345678900","5000112597318","5000112636864",
+          "5000112642773","5000112636871","5000112597363","5000112597349","5000112597370","5000112597356",
+          "5000112634136","5000112633801","5449000141521","5000112620115","42357445","42357469","5060517889937",
+          "5060517887704","5060337502238","5060166693732","5060639122325","5060639122295","5060335636287","5060517885267",
+          "5060517882822","54492653","5449000265104","5060466517202","5449000265098","7090000248161",
+          "5000112636932","5000112626476","5000112626476","7026595400325","5000112636925","5000112636833",
+          "7090000248093","5000112637380","5449000273536","5449000273543","7090000248062","5000112636918",
+          "7090000248208","5000112637595","5000112636857","5000112636826","5000112636901","5000112640755",
+          "5000112636895","7026595400387","90370953","90382475","5000112630244","5449000279828","5060466516304",
+          "5060608740130","5060466516335","5000112633795","5000112634129","5000112650723"];
+
+          if(colacola.includes(inputBarcode)){
+            alert("next page")
+          }else{
+
+            alert ("This bottle cant be recycled")
+          }
+        console.log(colacola.includes(inputBarcode)); //if true then proceed otherwise stay or prevent submitting
+          
+
+      });
       codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-  
+
+        
   
         if (result) {
       
           const auth= firebase.auth();
-          console.log(result)
+          document.getElementById('rezlt').value=result;
+          this.document.getElementById("submitbarcodebtn").addEventListener("click",function(){
+
+           console.log("working");
+
+          });
+
   
-          var colacola=["12345678", "1231231313", "5012345678900","5000112597318","5000112636864",
+          var colacola=[12345678, "1231231313", "5012345678900","5000112597318","5000112636864",
           "5000112642773","5000112636871","5000112597363","5000112597349","5000112597370","5000112597356",
           "5000112634136","5000112633801","5449000141521","5000112620115","42357445","42357469","5060517889937",
           "5060517887704","5060337502238","5060166693732","5060639122325","5060639122295","5060335636287","5060517885267",
@@ -55,7 +85,7 @@
 "7350042718153","7340131600674","7340131601657","7340131601565","7340131600919","7044610875316","7032069731437"
 ,"7040518520310","7040518520334","7040518520914","7040518520389","7040518507403","7040518525063",
 "7040518510434","7040518551178","7040518527111","7040518527128","7040518520327","7040518520303",
-"7040518551161","7040518551192","5741000135525"]
+"7040518551161","7040518551192"]
 
           for (let i=0; i < colacola.length; i++){
 
@@ -74,7 +104,8 @@
     emailToFirebase.update({email});
     
     setTimeout(function(){
-      window.location.href="soundclas.html"
+   
+     window.location.href="soundclas.html"
      }, 500);
     
     
@@ -199,7 +230,7 @@ document.getElementById('rezlt').textContent = err
     // })
   
     backbtn.addEventListener("click", () =>{
-      window.location.href="index.html";
+      window.location.href="home.html";
     });
    
   
@@ -208,15 +239,15 @@ document.getElementById('rezlt').textContent = err
   
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-  apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
-  authDomain: "cycl-e6998.firebaseapp.com",
-  databaseURL: "https://cycl-e6998.firebaseio.com",
-  projectId: "cycl-e6998",
-  storageBucket: "cycl-e6998.appspot.com",
-  messagingSenderId: "16228296144",
-  appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
-  measurementId: "G-3BVVW1GDNC"
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

@@ -1,12 +1,12 @@
 const firebaseConfig = {
-	apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
-	authDomain: "cycl-e6998.firebaseapp.com",
-	databaseURL: "https://cycl-e6998.firebaseio.com",
-	projectId: "cycl-e6998",
-	storageBucket: "cycl-e6998.appspot.com",
-	messagingSenderId: "16228296144",
-	appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
-	measurementId: "G-3BVVW1GDNC"
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -20,8 +20,8 @@ const firebaseConfig = {
 	document.getElementById("mySidenav").style.width = "0";
   }
   var locations = [
-	['Grønland', 55.41356142566462,10.425690530193904, 1],
-	['Telia', 59.930541583058584,10.777919325638633, 2],
+	['Telia', 59.93067532797181,10.800927328315474, 1],
+	['Grønland', 59.93058763289664,10.800830763760457, 2],
 	['C.berner', 59.926434272313195,10.776520445492853, 3],
 	['Title D', 3.19125,101.710052, 4]
 ];
@@ -39,6 +39,7 @@ const firebaseConfig = {
 		 }
 
 		 //checking if is full
+		 //include it on the click
 		 function checkbag(){
 
 
@@ -145,6 +146,7 @@ const firebaseConfig = {
 				 streetViewControl: false,
 				 disableDefaultUI: true,
 				 styles:styleArray,
+				 clickableIcons: false,
 				 
 
 			 });
@@ -190,15 +192,78 @@ for (i = 0; i < locations.length; i++) {
 					navigator.geolocation.getCurrentPosition(
 						function(position) {
 							var latLngA = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-							var latLngB = new google.maps.LatLng(59.931246340347876,10.778647553553178);
+							var latLngB = new google.maps.LatLng(559.93067532797181,10.800927328315474);
 							var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB);
 							
 							
 							
 											//change the kilometers to display the box
-							if (distance > 50) {
+							if (distance > 400) {
+					alert("You are far from the current station");
+					loader.style.display="none"
+					span.onclick = function() {
+					modal.style.display = "none";
+					return;
+					}
+	
+					}else {
+
+						var bagcount = firebase.database().ref("place/").child("bag");
+						bagcount.transaction(function(bagcountr) {
+						   return bagcountr + 1;
+						});
+			
+						var bagcounter= firebase.database().ref().child('place').child("bag");
+						bagcounter.transaction(function(bagcountr) {
+			
+							var bagcapicity=document.getElementById("bagQauntity");
+							var fullbag=500;
+							var percent= Math.round( (bagcountr/fullbag)* 100);
+			
+							bagcapicity.innerHTML=percent + "% full" ;
+			
+			
+			
+						if (bagcountr >= 500 ) {
+							var scnrbtn=document.getElementById("scannbtn");
+							scnrbtn.disabled=true;
+							scnrbtn.textContent="this station is full";
+							alert("The bag is full. Please contact employee or use another station");
+							span.onclick = function() {
+								modal.style.display = "none";
+								return;
+							}
+						}else {
+							return  bagcountr;
+						}
+					});
+
+						
+					modal.style.display="block";}
+					loader.style.display="none"
+						});
 					
-					alert("Your distance is far from the current station");
+					
+					return;
+				case locations[1]:
+					document.getElementById("returnstation").innerHTML="1002"
+					document.getElementById("place").innerHTML="backstub"
+					document.getElementById("adress").innerHTML="Grønland torg 1"
+					var loader= document.getElementById("loaderspinn")
+					loader.style.display="block"
+
+					navigator.geolocation.getCurrentPosition(
+						function(position) {
+							var latLngA = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+							var latLngB = new google.maps.LatLng(59.93058763289664,10.800830763760457);
+							var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB);
+							
+							
+							
+											//change the kilometers to display the box
+							if (distance > 4000) {
+					
+					alert("You are far from the current station");
 					loader.style.display="none"
 					span.onclick = function() {
 					modal.style.display = "none";
@@ -212,17 +277,7 @@ for (i = 0; i < locations.length; i++) {
 					modal.style.display="block";}
 					loader.style.display="none"
 						});
-					
-					
-					return;
-				case locations[1]:
-					document.getElementById("returnstation").innerHTML="1002"
-					document.getElementById("place").innerHTML="backstub"
-					document.getElementById("adress").innerHTML="Grønland torg 1"
-					modal.style.display = "block";
-					
-					
-					checkbag()
+
 					return;
 				case locations[2]:
 					alert("3")

@@ -1,14 +1,14 @@
 (function(){
 
   const firebaseConfig = {
-    apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
-    authDomain: "cycl-e6998.firebaseapp.com",
-    databaseURL: "https://cycl-e6998.firebaseio.com",
-    projectId: "cycl-e6998",
-    storageBucket: "cycl-e6998.appspot.com",
-    messagingSenderId: "16228296144",
-    appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
-    measurementId: "G-3BVVW1GDNC"
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -105,7 +105,7 @@
 
 
 
-      window.location.href=("index.html")
+      window.location.href=("home.html")
 
 
       console.log(FirebaseUser);
