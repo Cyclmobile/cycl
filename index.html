@@ -1,133 +1,235 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<script></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-	 <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href= "styles.css" rel="stylesheet">
 <title>Cycl</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
-<body class="body">
-	<!-- Simulate a smartphone / tablet look -->
-	<div id="sidenav" class="mobile-container">
-		<img src="Images/hovedlogo.png" style="width:30px; position: relative; left: 50%;">
-		<div id="mySidenav" class="sidenav" >
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">   Profile</a>
-			<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;"> Purchase</a>
-			<a href="#"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
-			<a href="mailto: dinimm45@gmail.com"><img src="Images/email.png" style="width: 20px; height: 21px;"> Contact us</a>
-			<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>
-			<a id="hidesignin"href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;"> Sign in</a>
-			<div id="hidesignoff">
-				<a id="logoff" href="index.html"><img src="Images/logout.png" style="width: 20px; height: 21px;"> Sign out</a>
-				<!--legg til en sign in knapp når bruker er avloget-->
-			</div>
-		  </div>
-		  <span class="closesidenav" onclick="openNav()">&#9776; </span>
-		<!-- Simulate a smartphone / tablet look -->
-	</div>
-<!-- End smartphone / tablet look -->
+body, html {
+  height: 100%;
+  line-height: 1.8;
+  background-color: green;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("imagesweb/greenbtl.png");
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+.center {
+  margin: auto;
+  width: 70%;
+  padding: 5px;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top" style="position: relative; ">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide" style="position: relative;left: 20%;"> <img src="imagesweb/32.png"></a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small" style="position: relative;right: 20%;">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#work" class="w3-bar-item w3-button"><i ></i> WORK</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i ></i> CONTACT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+<!-- Header with full-height image -->
+<div class="container" style=" position: relative;text-align: center;color: white;"></div>
+<img src="imagesweb/greenbtl.png" style="width: 100%;">
+<div class="centered" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+ <img src="imagesweb/store-apple.png" style=" width: 200px;" >
+ <img src="imagesweb/android.png" style=" width: 200px;" >
+ 
+
+</div>
+</div>
+
+<div class="center">
+
+<!-- About Section -->
+<div class="w3-container" style="padding:18px 16px" id="about">
+  <h2 class="w3-center" style="color: white;">Easy steps to save the planet and get rewarded</h2>
+  <p class="w3-center w3-large" style="color: white;">How it works</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px ;color: white;">
+    <div class="w3-quarter">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="48" height="48"
+viewBox="0 0 172 172"
+style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M43,0c-7.90503,0 -14.33333,6.4283 -14.33333,14.33333v143.33333c0,7.90503 6.4283,14.33333 14.33333,14.33333h86c7.90503,0 14.33333,-6.42831 14.33333,-14.33333v-143.33333c0,-7.90503 -6.42831,-14.33333 -14.33333,-14.33333zM43,14.33333h86v121.83333h-86zM82.41667,21.5c-1.98063,0 -3.58333,1.6027 -3.58333,3.58333c0,1.98063 1.6027,3.58333 3.58333,3.58333h7.16667c1.98063,0 3.58333,-1.6027 3.58333,-3.58333c0,-1.98063 -1.6027,-3.58333 -3.58333,-3.58333zM118.25,21.5c-1.97902,0 -3.58333,1.60431 -3.58333,3.58333c0,1.97902 1.60431,3.58333 3.58333,3.58333c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0,-1.97902 -1.60431,-3.58333 -3.58333,-3.58333zM53.75,43c-1.98063,0 -3.58333,1.6027 -3.58333,3.58333v21.5c0,1.98063 1.6027,3.58333 3.58333,3.58333h21.5c1.98063,0 3.58333,-1.6027 3.58333,-3.58333v-21.5c0,-1.98063 -1.6027,-3.58333 -3.58333,-3.58333zM96.75,43c-1.98063,0 -3.58333,1.6027 -3.58333,3.58333v21.5c0,1.98063 1.6027,3.58333 3.58333,3.58333h21.5c1.98063,0 3.58333,-1.6027 3.58333,-3.58333v-21.5c0,-1.98063 -1.6027,-3.58333 -3.58333,-3.58333zM53.75,86c-1.98063,0 -3.58333,1.6027 -3.58333,3.58333v21.5c0,1.98063 1.6027,3.58333 3.58333,3.58333h21.5c1.98063,0 3.58333,-1.6027 3.58333,-3.58333v-21.5c0,-1.98063 -1.6027,-3.58333 -3.58333,-3.58333zM96.75,86c-1.98063,0 -3.58333,1.6027 -3.58333,3.58333v21.5c0,1.98063 1.6027,3.58333 3.58333,3.58333h21.5c1.98063,0 3.58333,-1.6027 3.58333,-3.58333v-21.5c0,-1.98063 -1.6027,-3.58333 -3.58333,-3.58333zM75.25,150.5h21.5c1.98063,0 3.58333,1.6027 3.58333,3.58333c0,1.98063 -1.6027,3.58333 -3.58333,3.58333h-21.5c-1.98063,0 -3.58333,-1.6027 -3.58333,-3.58333c0,-1.98063 1.6027,-3.58333 3.58333,-3.58333z"></path></g></g></svg>
+      <p class="w3-large">DOWNLOAD THE APP</p>
+      <p>Download the app on iphone or android</p>
+    </div>
+    <div class="w3-quarter">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="48" height="48"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M86,0c-31.61312,0 -57.33333,25.72021 -57.33333,57.33333c0,9.49373 2.36556,18.90699 6.87272,27.25293l47.3252,85.56609c0.62996,1.14078 1.83366,1.84765 3.13542,1.84765c1.30176,0 2.50562,-0.70687 3.13542,-1.84765l47.33919,-85.59408c4.49316,-8.31445 6.85872,-17.7312 6.85872,-27.22493c0,-31.61312 -25.72021,-57.33333 -57.33333,-57.33333zM86,7.16667c27.65885,0 50.16667,22.50431 50.16667,50.16667c0,8.30745 -2.07162,16.54492 -5.97689,23.78157l-44.18978,79.89714l-44.16178,-79.86914c-3.91927,-7.26815 -6.00488,-15.50212 -6.00488,-23.80957c0,-27.66235 22.50781,-50.16667 50.16667,-50.16667zM86,17.91667c-21.73096,0 -39.41667,17.68221 -39.41667,39.41667c0,21.73446 17.68571,39.41667 39.41667,39.41667c21.73096,0 39.41667,-17.68221 39.41667,-39.41667c0,-21.73446 -17.68571,-39.41667 -39.41667,-39.41667zM86,25.08333c17.78369,0 32.25,14.46631 32.25,32.25c0,17.78369 -14.46631,32.25 -32.25,32.25c-17.78369,0 -32.25,-14.46631 -32.25,-32.25c0,-17.78369 14.46631,-32.25 32.25,-32.25zM86,32.25c-13.82943,0 -25.08333,11.25391 -25.08333,25.08333c0,1.32275 0.72786,2.54053 1.88965,3.16341c0.5319,0.28345 1.11279,0.41992 1.69368,0.41992c0.69287,0 1.38574,-0.20296 1.98763,-0.60189l10.75,-7.16667c1.64469,-1.0988 2.09261,-3.32088 0.99382,-4.96908c-1.1058,-1.65519 -3.33838,-2.08211 -4.96908,-0.99381l-3.31738,2.22559c2.92546,-5.9139 9.02132,-9.99414 16.05501,-9.99414c5.96289,0 11.51986,2.96045 14.86524,7.90853c1.11279,1.64469 3.33138,2.06112 4.96907,0.95182c1.6377,-1.10579 2.07861,-3.33138 0.96582,-4.96907c-4.67513,-6.92521 -12.45769,-11.05794 -20.80013,-11.05794zM107.33203,53.75c-0.63601,0.03062 -1.26676,0.23621 -1.81966,0.60189l-10.75,7.16667c-1.64469,1.0988 -2.09261,3.32088 -0.99382,4.96908c1.0988,1.65169 3.33138,2.08211 4.96908,0.99381l3.31738,-2.21159c-2.92545,5.9139 -9.02132,9.98014 -16.05501,9.98014c-5.96289,0 -11.51986,-2.96045 -14.86523,-7.90853c-1.11279,-1.64469 -3.33138,-2.05762 -4.96907,-0.95182c-1.6377,1.10579 -2.07861,3.33138 -0.96582,4.96907c4.67513,6.92521 12.45769,11.05794 20.80013,11.05794c13.82943,0 25.08333,-11.25391 25.08333,-25.08333c0,-1.32275 -0.72786,-2.54053 -1.88965,-3.16341c-0.58439,-0.30969 -1.22564,-0.45054 -1.86166,-0.41992z"></path></g></g></svg>      <p class="w3-large">FIND THE NEAREST CYCL STATION</p>
+      <p>Find the nearest Cycl recycling station on using the app</p>
+    </div>
+    <div class="w3-quarter">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="48" height="48"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M14.33333,28.66667v114.66667h14.33333v-114.66667zM35.83333,28.66667v114.66667h28.66667v-114.66667zM71.66667,28.66667v114.66667h14.33333v-114.66667zM93.16667,28.66667v114.66667h21.5v-114.66667zM121.83333,28.66667v114.66667h14.33333v-114.66667zM143.33333,28.66667v114.66667h14.33333v-114.66667z"></path></g></g></svg>      <p class="w3-large">SCAN THE BARCODE ON YOUR BOTTLE</p>
+      <p>Scan the barcode on your bottle</p>
+    </div>
+    <div class="w3-quarter">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="50" height="50"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M86,6.88c-7.55869,0 -13.76,6.20131 -13.76,13.76c0,7.55869 6.20131,13.76 13.76,13.76c7.55869,0 13.76,-6.20131 13.76,-13.76c0,-7.55869 -6.20131,-13.76 -13.76,-13.76zM86,13.76c3.84046,0 6.88,3.03954 6.88,6.88c0,3.84046 -3.03954,6.88 -6.88,6.88c-3.84046,0 -6.88,-3.03954 -6.88,-6.88c0,-3.84046 3.03954,-6.88 6.88,-6.88zM56.24937,25.65219c-2.20851,0.0001 -4.41647,0.83254 -6.08047,2.49938c-0.64843,0.64833 -1.01121,1.52869 -1.00781,2.44562c-1.59014,3.21858 -1.6552,7.05685 1.00781,9.71531l18.6311,19.54485v42.29453c-2.27804,0.72961 -4.28439,1.61768 -5.97297,2.74797c-2.14185,1.43371 -4.0307,3.52089 -4.29328,6.26187c-0.03773,0.21063 -0.05572,0.42431 -0.05375,0.63828v5.50265c-0.79123,-0.37166 -1.57494,-0.7458 -2.45906,-1.06156c-4.87955,-1.7427 -11.19944,-2.7211 -18.18094,-2.7211c-6.98149,0 -13.30138,0.97839 -18.18094,2.7211c-2.43978,0.87135 -4.53777,1.9185 -6.22828,3.34594c-1.45441,1.22807 -2.64767,2.94454 -2.96969,4.9786c-0.09542,0.32277 -0.14296,0.6578 -0.14109,0.99437v27.52c0,2.48876 1.42021,4.54542 3.11078,5.97297c1.69057,1.42755 3.78848,2.47465 6.22828,3.34594c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c2.28964,-0.81766 4.26572,-1.80087 5.89906,-3.09734c1.63334,1.29647 3.60942,2.27968 5.89906,3.09734c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c2.28964,-0.81766 4.26572,-1.80087 5.89906,-3.09734c1.63334,1.29647 3.60942,2.27968 5.89906,3.09734c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c2.4398,-0.87129 4.53771,-1.91839 6.22828,-3.34594c1.69057,-1.42755 3.11078,-3.4842 3.11078,-5.97297v-13.51813c-0.00052,-0.06276 -0.00276,-0.12549 -0.00672,-0.18812c0.00016,-0.0187 0.00672,-0.03501 0.00672,-0.05375c0,-0.03289 -0.01294,-0.06133 -0.01344,-0.09406c-0.00003,-0.00229 0.00003,-0.00443 0,-0.00672c-0.01169,-0.11955 -0.02963,-0.23841 -0.05375,-0.35609c-0.16626,-2.27629 -1.46164,-4.18033 -3.0436,-5.5161c-1.69051,-1.42743 -3.7885,-2.47459 -6.22828,-3.34594c-4.87955,-1.7427 -11.19944,-2.7211 -18.18094,-2.7211c-6.98149,0 -13.30138,0.97839 -18.18094,2.7211c-0.88412,0.31576 -1.66783,0.6899 -2.45906,1.06156v-19.26265c0.00156,-0.21173 -0.01644,-0.42314 -0.05375,-0.63156c-0.0021,-0.01793 -0.00434,-0.03585 -0.00672,-0.05375c-0.27973,-2.71877 -2.15682,-4.78959 -4.28656,-6.21484c-1.68856,-1.13001 -3.69533,-2.01831 -5.97297,-2.74797v-42.29453l18.63781,-19.53813v-0.00672c2.65623,-2.66022 2.59146,-6.49975 1.00109,-9.71531c0.00339,-0.91365 -0.35678,-1.79112 -1.00109,-2.43891h-0.00672c-3.33078,-3.32559 -8.83453,-3.3321 -12.16094,0l0.43672,-0.36953l-18.84609,13.49125h-10.52156l-18.83937,-13.49125l0.43,0.36281c-1.66515,-1.66515 -3.87195,-2.49947 -6.08047,-2.49938zM56.24937,32.49188c0.43327,-0.00042 0.86541,0.17337 1.2161,0.52406c0.13319,0.13247 0.277,0.25382 0.43,0.36281l19.73297,14.13625c0.58369,0.41876 1.28382,0.64431 2.00219,0.645h12.73875c0.71837,-0.00069 1.4185,-0.22624 2.00219,-0.645l19.73969,-14.12953c0.15326,-0.11114 0.29708,-0.23473 0.43,-0.36953c0.69682,-0.69801 1.72409,-0.69465 2.42547,0.00672c0.00224,0 0.00448,0 0.00672,0c0,0.00224 0,0.00448 0,0.00672c0.69224,0.69673 0.69288,1.72603 -0.00672,2.42547c-0.01811,0.01772 -0.03603,0.03564 -0.05375,0.05375l-19.64562,20.59969c-0.60839,0.63974 -0.94757,1.48888 -0.94735,2.37172v44.72c0,1.9437 -1.4963,3.44 -3.44,3.44c-1.9437,0 -3.44,-1.4963 -3.44,-3.44v-24.08c0.00122,-0.11437 -0.00326,-0.22873 -0.01344,-0.34265c-0.00992,-0.11494 -0.02562,-0.2293 -0.04703,-0.34266c-0.02123,-0.11326 -0.04814,-0.22538 -0.08063,-0.33594c-0.064,-0.21845 -0.14952,-0.43001 -0.25531,-0.63156c-0.10788,-0.20501 -0.23618,-0.39859 -0.38297,-0.57781c-0.07203,-0.08655 -0.14827,-0.16952 -0.22844,-0.24859c-0.08109,-0.08263 -0.16631,-0.16112 -0.25531,-0.23515c-0.17739,-0.14407 -0.3687,-0.27011 -0.57109,-0.37625c-0.10269,-0.05458 -0.20809,-0.10391 -0.31578,-0.14781c-0.10554,-0.0434 -0.21317,-0.08152 -0.3225,-0.11422c-0.11056,-0.03248 -0.22268,-0.05939 -0.33594,-0.08063c-0.11347,-0.01916 -0.22784,-0.03261 -0.34266,-0.04031c-0.45818,-0.03972 -0.91967,0.01283 -1.35719,0.15453c-0.10718,0.03511 -0.21257,0.07547 -0.31578,0.12094c-0.10554,0.0463 -0.2087,0.09788 -0.30906,0.15453c-0.50262,0.2847 -0.92546,0.69136 -1.22953,1.1825c-0.12079,0.19328 -0.22206,0.39809 -0.30235,0.61141c-0.0803,0.21533 -0.13882,0.43816 -0.17469,0.66515c-0.01691,0.11359 -0.02812,0.22795 -0.0336,0.34266c-0.00507,0.08052 -0.00732,0.1612 -0.00672,0.24187v24.08c0,1.9437 -1.4963,3.44 -3.44,3.44c-1.9437,0 -3.44,-1.4963 -3.44,-3.44v-44.72c0.00022,-0.88284 -0.33895,-1.73198 -0.94735,-2.37172l-19.6389,-20.59969c-0.0199,-0.02041 -0.04006,-0.04056 -0.06047,-0.06047c-0.69801,-0.69682 -0.70138,-1.73081 0,-2.43219c0.34841,-0.349 0.78282,-0.52364 1.21609,-0.52406zM70.54015,108.88406c1.85746,2.78178 5.01656,4.63594 8.57985,4.63594c2.67276,0 5.03834,-1.17517 6.88,-2.8689c1.84166,1.69373 4.20724,2.8689 6.88,2.8689c3.56329,0 6.72238,-1.85415 8.57985,-4.63594c1.61274,0.55991 3.02123,1.15644 3.88344,1.73344c1.29383,0.86584 1.29672,1.32179 1.29672,1.1825c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189c0,0.13794 0.00378,-0.31693 1.29672,-1.1825c0.86171,-0.57681 2.27054,-1.17346 3.88344,-1.73344zM65.36,120.05735c0.79122,0.37165 1.57493,0.74583 2.45906,1.06156c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c0.88413,-0.31573 1.66784,-0.68991 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189zM37.84,120.4c6.31752,0 12.034,0.94808 15.86969,2.31797c1.91784,0.68495 3.35192,1.49278 4.09844,2.12313c0.74651,0.63034 0.67187,0.83287 0.67187,0.7189c0,-0.11397 0.07465,0.08858 -0.67187,0.7189c-0.74652,0.63035 -2.1806,1.43818 -4.09844,2.12313c-3.83569,1.36989 -9.55216,2.31797 -15.86969,2.31797c-6.31752,0 -12.034,-0.94808 -15.86969,-2.31797c-1.91785,-0.68495 -3.35192,-1.49278 -4.09844,-2.12313c-0.74652,-0.63034 -0.67187,-0.83287 -0.67187,-0.7189c0,0.11397 -0.07464,-0.08856 0.67188,-0.7189c0.74652,-0.63035 2.18059,-1.43818 4.09844,-2.12313c3.83569,-1.36989 9.55216,-2.31797 15.86969,-2.31797zM17.2,133.81735c0.79123,0.37166 1.57494,0.7458 2.45906,1.06156c4.87956,1.7427 11.19944,2.7211 18.18094,2.7211c6.98149,0 13.30138,-0.97839 18.18094,-2.7211c0.88412,-0.31576 1.66783,-0.6899 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189zM65.36,133.81735c0.79122,0.37165 1.57493,0.74583 2.45906,1.06156c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c0.88413,-0.31573 1.66784,-0.68991 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189zM134.16,134.16c6.31752,0 12.034,0.94808 15.86969,2.31797c1.91784,0.68495 3.35192,1.49278 4.09844,2.12313c0.74651,0.63034 0.67187,0.83287 0.67187,0.7189c0,-0.11397 0.07465,0.08858 -0.67187,0.7189c-0.74652,0.63035 -2.1806,1.43818 -4.09844,2.12313c-3.83569,1.36989 -9.55216,2.31797 -15.86969,2.31797c-6.31752,0 -12.034,-0.94808 -15.86969,-2.31797c-1.91784,-0.68495 -3.35192,-1.49278 -4.09844,-2.12313c-0.74651,-0.63034 -0.67187,-0.83287 -0.67187,-0.7189c0,0.11397 -0.07465,-0.08858 0.67187,-0.7189c0.74652,-0.63035 2.1806,-1.43818 4.09844,-2.12313c3.83569,-1.36989 9.55216,-2.31797 15.86969,-2.31797zM17.2,147.57735c0.79122,0.37165 1.57493,0.74583 2.45906,1.06156c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c0.88413,-0.31573 1.66784,-0.68991 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189zM65.36,147.57735c0.79122,0.37165 1.57493,0.74583 2.45906,1.06156c4.8796,1.74258 11.19952,2.7211 18.18094,2.7211c6.98142,0 13.30133,-0.97851 18.18094,-2.7211c0.88413,-0.31573 1.66784,-0.68991 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189zM113.52,147.57735c0.79123,0.37166 1.57494,0.7458 2.45906,1.06156c4.87955,1.7427 11.19944,2.7211 18.18094,2.7211c6.98149,0 13.30138,-0.97839 18.18094,-2.7211c0.88412,-0.31576 1.66783,-0.6899 2.45906,-1.06156v5.50265c0,-0.11345 0.07458,0.08858 -0.67187,0.7189c-0.74646,0.63032 -2.18062,1.43824 -4.09844,2.12313c-3.83564,1.36976 -9.55206,2.31797 -15.86969,2.31797c-6.31762,0 -12.03405,-0.94821 -15.86969,-2.31797c-1.91782,-0.68488 -3.35198,-1.4928 -4.09844,-2.12313c-0.74646,-0.63032 -0.67187,-0.83235 -0.67187,-0.7189z"></path></g></g></svg>      <p class="w3-large" style="color: white;">Recycle</p>
+      <p>Recycle your bottle and get rewarded</p>
+    </div>
+  </div>
+</div>
+
+<!-- Promo Section - "We know design" -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>Plastic pollution a big problem in our planet.</h3>
+      <h5>Every day approximately 8 million pieces of plastic pollution find their way into our oceans. 12 million tonnes of plastic are poured into the ocean every year. Scientists have recently discovered microplastics embedded deep in the Arctic ice. Plastics consistently make up 80% of all marine debris studied.</h5>
+      <p> <h3>Some facts: </h3>
+        <br>
+
+        *Half of all plastics ever manufactured have been made in the last 15 years.
+        <br>
+
+        *Production increased exponentially, from 2.3 million tons in 1950 to 448 million tons by 2015. Production is expected to double by 2050.
+        <br>
+        *Every year, about 8 million tons of plastic waste escapes into the oceans from coastal nations. That’s the equivalent of setting five garbage bags full of trash on every foot of coastline around the world.
+        <br>
+        *Plastics often contain additives making them stronger, more flexible, and durable. But many of these additives can extend the life of products if they become litter, with some estimates ranging to at least 400 years to break down.</p>
+    </div>
+    <div class="w3-col m6">
+      <img class="w3-image w3-round-large" src="imagesweb/plsticwaste.jpeg" alt="Buildings" width="600" height="100">
+    </div>
+  </div>
 </div>
 
 
-<div id="map"></div>
-<img id="updtbtn" class="locationmapimg" src="Images/updatelction.png">
-	 <!-- Trigger/Open The Modal -->
-	<!-- <button id="myBtn">Open Modal</button>-->
-	<div id="loaderspinn" class="loader"></div>
-
-	 <!-- The Modal -->
-	 <div id="myModal" class="modal">
-
-	   <!-- Modal content -->
-	   <div class="modal-content">
 
 
-	     <div class="returnstationcontent">
 
-	       <span class="close">&times;</span>
-	       <div class="itemstation"><h2 id="returnstation" style="color: #52b459;">Station 1002</h2> </div>
-		   <div class="itemstation"> <div class="itemsicons"><img src="Images/store.png" style="width:29px; height:39px;"></div><p id="place" style="color: black;">Deli De Luca</p></div>
-		   <div class="itemstation"><div class="itemsicons"><img src="Images/placemark.png" style="width:29px; height:39px;"></div><p id="adress" style="color: black;">Karl Johansgata </p></div>
-		   <div class="itemstation"><div class="itemsicons"><img src="Images/recyclebin.png" style="width:29px; height:39px;"></div><p id="bagQauntity" style="color: black;">100%</p> </div>
-		   <div class="itemstation"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
-		   <img src="Images/station.jpeg" style="width:140px; height:170px; position: absolute;right: 65%; top: 30%;">
-		   <hr></hr>
-		</div> 
-
-	<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN_faR-aBh8QCN6JNZ7BPxh2mXYTN4RwY&libraries=geometry&callback=initMap"></script>
-	 <script src="js/index.js"></script>
-	 <script> src="js/firebase.js"</script>
-	 <script>src="js/login.js"</script>
-	 <script>src="js/member.js"</script>
-	 <script>src="js/redeem.js"</script>
-	 <script>src="js/soundclas.js"</script>
+<!-- Work Section -->
+<div class="w3-container" style="padding:128px 16px" id="work">
+  <h3 class="w3-center">Let's make your business greener</h3>
 
 
-	 <style>
-	.returnstationcontent{
-		display: grid;
-      grid-template-columns: 1fr;
-      align-content: flex-start;
-      gap: 1px;
-      padding: 3px;
-	
+  <p class="w3-center w3-large">Increase your customers range, safe bottles from our planet and increase your earnings.
+    We are always open to welcome new partners in the fight against bottle pollution. We can help you reduce your climate footprint and increase earnings - to the delight of both you, your customers and the planet!
+  </p>
 
-	}
-	.itemstation{
-		text-align: center;
-		 float: left;
-		 display: table-cell;
-		 z-index: 1;
+  <img src="imagesweb/cofeeshop.jpg" style="width: 600px; height: 450px;">
 
-	}
+  
+    </div>
+  </div>
+</div>
 
-	.itemsicons{
-		float:left; /* add this */
-		position: relative;
-		left:34%;
-		width:23px; 
-		height:25px;
-		padding-right: 35px;
-		padding-bottom: 20px;
-		z-index: 1;
+<!-- Modal for full size imagesweb on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
 
-		
-	}
 
-	.loader {
-	display: none;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  border: 6px solid white; /* Light grey */
-  border-top: 6px solid #52b459; /* Blue */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-  z-index: 1;
-}
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Oslo, NO</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +47 46210474</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: contact.cycl@gmail.com</p>
+    <br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">Cycl</a></p>
+</footer>
+
+</div>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
 }
 
 
-	 </style>
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
 
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
 
 </body>
 </html>
