@@ -14,22 +14,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar (sit on top) -->
-<div class="w3-top" style= "position: relative; ;">
-    <div class="w3-bar w3-white w3-card" id="myNavbar">
-      <a href="#home" class="w3-bar-item w3-button w3-wide" style="position: relative;left: 20%;"> <img src="imagesweb/32.png"></a>
-      <!-- Right-sided navbar links -->
-      <div class="w3-right w3-hide-small" style="position: relative;right: 20%;">
-        <a style="" href="#about" class="w3-bar-item w3-button">ABOUT</a>
-        <a href="#work" class="w3-bar-item w3-button"><i ></i> WORK</a>
-        <a href="#contact" class="w3-bar-item w3-button"><i ></i> CONTACT</a>
-      </div>
-      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-        <i class="fa fa-bars"></i>
-      </a>
+
+ <!-- Navbar (sit on top) -->
+<div class="w3-top" style="position: relative; ">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide" style="position: relative;left: 20%;"> <img src="imagesweb/32.png"></a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small" style="position: relative;right: 20%;">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#work" class="w3-bar-item w3-button"><i ></i> WORK</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i ></i> CONTACT</a>
     </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
   </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
 
   <div class="container" style=" position: relative;text-align: center;color: transparent;">
   <img src="imagesweb/greenbtl.png" style="width: 100%;">
@@ -70,12 +82,72 @@
     
     </div>
 
-    <h2 style="text-align: center;   font-family: 'Playfair Display', serif;" >DO YOU KNOW THAT</h2>
+    <!--Features-->
+<div class="container1 cont">
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col-9">
+      <h3 style="color: #52b459;">Visste du at</h3>
+      <p> The manufacturing process of plastic bottles releases tons of carbon dioxide into the atmosphere each year. 
+        The surrounding oxygen becomes contaminated, making it harder to breathe and, 
+        in some regions, even making the residents sick.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container1">
+  <div class="row">
+    <div class="col">
+      <i class="fas fa-headset fa-5x" style="color:#ff961e;"></i>
+      
+    </div>
+    <div class="col-9">
+      <h3>24/7 Support</h3>
+      <p> Responsive web design (RWD) is a web development approach that creates dynamic changes to the appearance of a website, depending on the screen size and orientation of the device being used to view it. RWD is one approach to the problem of designing
+        for the multitude of devices available to customers, ranging from tiny phones to huge desktop monitors.
+
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container1">
+  <div class="row">
+    <div class="col">
+      <i class="far fa-money-bill-alt fa-5x" style="color:#ff961e;"></i>
+      
+    </div>
+    <div class="col-9">
+      <h3>Value</h3>
+      <p> Responsive web design (RWD) is a web development approach that creates dynamic changes to the appearance of a website, depending on the screen size and orientation of the device being used to view it. RWD is one approach to the problem of designing
+        for the multitude of devices available to customers, ranging from tiny phones to huge desktop monitors.
+
+      </p>
+    </div>
+  </div>
+</div>
+<div >
 
     <div class="containerimg" style="background-color: #52b459;">
-    <h1> The manufacturing process of plastic bottles releases tons of carbon dioxide into the atmosphere each year. 
-            The surrounding oxygen becomes contaminated, making it harder to breathe and, 
-            in some regions, even making the residents sick.</h1>
+    <h1> Lets increase recycling</h1>
+
+    <div class="container1">
+      <div class="row">
+        <div class="col">
+          <i class="far fa-money-bill-alt fa-5x" style="color:#ff961e;"></i>
+          
+        </div>
+        <div class="col-9">
+          <p> Responsive web design (RWD) is a web development approach that creates dynamic changes to the appearance of a website, depending on the screen size and orientation of the device being used to view it. RWD is one approach to the problem of designing
+            for the multitude of devices available to customers, ranging from tiny phones to huge desktop monitors.
+    
+          </p>
+        </div>
+      </div>
+    </div>
 
       </div>
 
@@ -83,12 +155,13 @@
     
         <div class="center">
         <h1>Make your business bottle free zone</h1>
-        </div>
+        
         <img style="width: 100%; height: 50%;" src="imagesweb/cofeeshop.jpg">
         <h4 class="center" style="font-family: 'Playfair Display', serif">Increase your customers range, safe bottles from our planet and increase your earnings.
             We are always open to welcome new partners in the fight against bottle pollution. We can help you reduce your climate footprint and increase earnings - to the delight of both you, your customers and the planet!
           
         </h4>
+      </div>
 
         <!-- Contact Section -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px; background-color: white;" id="contact">
@@ -112,6 +185,44 @@
       </form>
     </div>
   </div>
+
+  <!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">Cycl</a></p>
+</footer>
+
+
+<script>
+  // Modal Image Gallery
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
+  }
+  
+  
+  // Toggle between showing and hiding the sidebar when clicking the menu icon
+  var mySidebar = document.getElementById("mySidebar");
+  
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+    } else {
+      mySidebar.style.display = 'block';
+    }
+  }
+  
+  // Close the sidebar with the close button
+  function w3_close() {
+      mySidebar.style.display = "none";
+  }
+  </script>
     
 </body>
 </html>
@@ -123,7 +234,7 @@
   color: white;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 400px;
+  top: 110px;
   font-family: 'Playfair Display', serif;
   width: 100%;
   margin-bottom: 150px;
@@ -174,9 +285,8 @@
     opacity: 0.6;
 }
 .center{
-    display: flex;
-    margin-top: 13%;
-    margin-left: 20px;
+   
+   
 }
 .center h1{
     font-size: 80px;
@@ -251,5 +361,83 @@
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display', serif;}
+
+
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4caf50;
+}
+
+
+.basic {
+  border-width: 2px;
+  border-style: solid;
+  margin-left: 20px;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+
+
+input[type=submit] {
+  background-color: #3d444f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #000000;
+}
+
+.container1 {
+  font-family: 'Playfair Display', serif;
+   margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: #52b459;
+  padding: 20px;
+}
+
+.cont{
+  margin-top:30px;
+}
 
 </style>
