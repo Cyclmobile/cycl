@@ -22,13 +22,9 @@
 <input type="submit"/>
 <input type="file" accept="image/*" capture="camera" id="capture">
  -->
-  
 <body class="body">
 
   <img src="Images/back.png" id="backbtn" style="width:40px; height:35px;">
- 
-
- 
 
     <div class="container">
       <ul class="progressbar">
@@ -37,22 +33,21 @@
         <li>Recycled</li>
       </ul>
 
-      <video class="video" id="video" playsinline style="border: 2px solid white; "autoplay playsInline muted></video>
+      <hr style="border-top: 3px solid #bbb ;margin-left: -20px;max-width: 100%;margin-right: -300px;">
+
+      <video class="video" id="video" style="border: 2px solid #52b459; "autoplay playsInline muted></video>
       <div class="scan-code">
         <span class="scan-code__angle scan-code__angle--top"></span>
         <span class="scan-code__angle scan-code__angle--bottom"></span>
       </div>
     </div>
-    <div style="position: relative;bottom: 15%; margin-top: 150px;">
-    <img style="position: relative; left: 30%;" src="Images/bottlescan.png"/>
-    <img style="position: relative; left: 35%;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
-    <label id="rezlt" style="width: 350px;" >Result:</label>
-    <input id="rez" placeholder="barcode"></input>
+    <div style="position: relative;bottom: 15%; margin-top: 35px;">
+    <img style="position: relative; left: 30%; margin-bottom: 15px; margin-top: 15px;" src="Images/bottlescan.png"/>
+    <img style="position: relative; left: 35%; margin-bottom: 15px ; margin-top: 15px;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
+    <input id="rezlt" placeholder="barcode"></input>
+    <button id="submitbarcodebtn" style="background-color: #52b459; border-radius: 10px; border: 0px;">submit</button>
     </div>
 
-
-
- <!-- <button id="submitbarcodebtn" style="background-color: green;">submit</button>--> 
 <!--The library in the button has to stay upgraded to work-->
 <script type="text/javascript" src="https://unpkg.com/@zxing/library@dev"></script>
 <script src="js/scan.js"></script>
