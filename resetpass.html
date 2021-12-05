@@ -1,0 +1,40 @@
+<!DOCUMENT html>
+<html>
+<head>
+<title>cycl login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name='viewport'
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0,
+     user-scalable=0' >
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+
+<br></br>
+<img class="logo" style="margin-bottom: 15px;" src="Images/hovedlogo.png">
+
+<div>
+<br>
+<br>
+    <!--<h6 style="color: #52b459; width:305px; height:20px; position:fixed;left:20%;top:30%; margin-top: 30px;">Write your email address to get new password </h6>-->
+<img style="width:25px; height:20px; position:fixed;left:24%;top:35%; margin-top: 30px;"src="Images/email.png">
+<button class="loginbtn" style="width:200px; height: 30px; color:white; margin-top: 30px;"id="resetbtn">Reset password</button>
+
+
+
+<input class="inputemail" id="emailreset" placeholder="Email" type="text" width="200px" style="margin-top: 30px; outline: none;;"></input>
+
+<a style="text-decoration:none; color: #52b459;" href="login.html">< Back</a>
+<br></br> </div>
+
+
+
+<!--Med koden under vil den koble seg til javascript filen firebaseauth.js.
+alt jeg skriver der vil kunne samkjøres med html elementene som er her.-->
+  <script src="js/resetpass.js"></script>
+</body>
+<html>
