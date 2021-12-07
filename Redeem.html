@@ -55,16 +55,21 @@
       <img src="Images/msf.jpeg" alt="Avatar" style="width:100%">
       <div class="container">
         <h4 style="text-align: center;"><b>Donate to MSF</b></h4>
-        <p style="text-align: center;">Optional CC</p>
         <p style="text-align: center;"> Donate your CC to a good cause</p>
         <button class="btn" id="donatebtn">Donate for charity </button>
         <br>
       </div>
-      <input type="number" pattern="\d*" id="donateInput" style="position:relative;left: 3%; border-radius:5px; width: 290px; height:25px
-      ;margin-top: 5px;"
-        placeholder="Write the amount you want to donate" min="0"> </input>
+      <br>
+      <input type="number" pattern="\d*" id="donateInput" style=" text-align: center;
+      font-size:25px; position:relative;left: 3%; border-radius:5px; width: 210px; height:25px;
+      border:none;
+      ;"
+        placeholder="Donation amount" min="0">
         <!--copying and pasting minus in it-->
     </div>
+
+    <br>
+    <br>
 
     <!--Copuon overlay -->
 
@@ -139,6 +144,10 @@
 <style>
 
 
+
+
+
+
 /*needed*/
 #overlaycouponfood{
   position: fixed; /* Sit on top of the page content */
@@ -186,10 +195,10 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 10px; /* 5px rounded corners */
-  width: 310px; 
+  width: 240px; 
   height: 320px; 
   position: relative; 
-  left: 10%; 
+  left: 15%; 
   margin-top: 40px
  
   
@@ -232,7 +241,7 @@ background-color: whitesmoke;
   background-color: #52b459;
   border: rgb(116, 16, 16);
   position: relative; 
-  left: 25%;
+  left: 22%;
 }
 
 
@@ -267,6 +276,13 @@ background-color: whitesmoke;
   border: rgb(116, 16, 16);
   position: relative; 
   left: 35%;
+}
+
+@media screen and (max-width: 500px) {
+
+.cardoverlay {
+  width: 70%;
+}
 }
 
 /*needed*/
