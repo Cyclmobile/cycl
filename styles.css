@@ -156,14 +156,6 @@ left:24%;
     color: white;
   }
   
-  .loginbtn {
-    border-radius: 12px;
-    background-color: #52b459;
-    border: 0px;
-    position: fixed; /* or absolute */
-   top: 60%;
-   left: 26%;
-  }
   
   .rgstr{
     background-color: white;
@@ -177,15 +169,101 @@ left:24%;
   
   }
   
-  .mbmr{
-  color: #52b459;
-  position: fixed;
-  left:20%;
-  top:80%;
-  background-color: white;
-  border: 0px;
+  .login-page {
+    width: 100%;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 10px;
+
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+  border-radius: 10px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.form .register-form {
+  display: none;
+}
+.logincointainer {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.logincointainer:before, .logincointainer:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.logincointainer .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.logincointainer .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.logincointainer .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.logincointainer .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.logincointainer .info span .fa {
+  color: #EF3B3A;
+}
   
-  }
   .logo{
   position: fixed;
   left: 35%;
@@ -203,25 +281,6 @@ left:24%;
     box-shadow: 0px 6px 5px #ccc;
   }
   
-  .inputemail{
-    position:fixed;
-    left:33%;
-    top:35%;
-    border-top:hidden;
-    border-right:hidden;
-    border-left:hidden;
-  
-  }
-  .inputpassword{
-  position:fixed;
-  left:33%;
-  top:45%;
-  border-top:hidden;
-  border-right:hidden;
-  border-left:hidden;
-  
-  
-  }
   
   .hrcolor {
       background-color: #008CBA;
@@ -240,7 +299,7 @@ left:24%;
   }
   .lds-ellipsis div {
     position: absolute;
-    top: 33px;
+    bottom: 210px;
     width: 13px;
     height: 13px;
     border-radius: 50%;

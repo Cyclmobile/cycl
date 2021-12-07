@@ -13,26 +13,40 @@
  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="body">
-
-<br></br>
-<img class="logo" style="margin-bottom: 15px;" src="Images/hovedlogo.png">
-
-
-<img style="width:25px; height:20px; position:fixed;left:24%;top:35%; margin-top: 30px;"src="Images/email.png">
-
-<input class="inputemail" id="email" placeholder="Email" type="text" width="200px" style="margin-top: 30px; outline: none;;"></input>
-<br></br>
-<img style="width:25px; height:20px; position:fixed;left:24%;top:45%; margin-top: 40px;" src="Images/lock.png">
-<input class="inputpassword" id="passwrd" placeholder="password" type="password" style="margin-top: 40px; outline: none;;"></input>
-<br></br>
-<button class="loginbtn" style="width:200px; height: 30px; color:white; margin-top: 30px;"id="login">Login</button>
-<br></br>
-<h5 id="loginmessage" class="mbmr" style="color:red;position:fixed;left:24%;top:55%; margin-bottom: 30px;"></h5>
-<br></br>
-<button class="rgstr" id="forgotpass"><h5>Forgot you're password?</h5></button>
-<br></br>
-<button class="mbmr" id="signup"><h5>Not a member? Click here to get registered now!</h5></button>
-<br></br>
+  <img class="logo" style="margin-bottom: 15px;" src="Images/hovedlogo.png">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="login-page">
+      <div class="form">
+        <form class="register-form">
+          <input type="text" placeholder="name"/>
+          <input type="password" placeholder="password"/>
+          <input type="text" placeholder="email address"/>
+          <button>create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+          <p class="message">Forgot your password? <a href="resetpass.html">Sign In</a></p>
+        </form>
+        <form class="login-form">
+          <input id="email"  type="text" placeholder="email"/>
+          <input id="passwrd" type="password" placeholder="password"/>
+          <button id="login">login</button>
+          <p class="message" id="loginmessage" class="mbmr" style="color:red;"></p>
+          <p style="color: #000000;" class="message">Not registered ? <a href="member.html">Create an account</a></p>
+          <p class="message" style="color: #000000;">Forgot your password ? <a href="resetpass.html">Get new password</a></p>
+  
+        </form>
+      </div>
+     
+    </div>
 
 
 
