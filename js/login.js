@@ -46,18 +46,8 @@
       }
     
     });
-    //add singup event
-    btnsignup.addEventListener("click", e=>{
-      //get email and pass
-      //TODO CHECK 5 REAL EMAIL
-      window.location.href=("member.html");
     
-    
-    });
-    
-    resetbutton.addEventListener("click",function() {
-      window.location.href=("resetpass.html");
-    });
+  
     //realtile listener
     //we can check if we are logged in from here aswell
     //if user is loged in forward to the map.
