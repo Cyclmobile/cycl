@@ -14,7 +14,6 @@
   firebase.initializeApp(firebaseConfig);
   //get email and pass
   var name=document.getElementById("txtname");
-  var txtphone=document.getElementById("phonenmbr");
   var txtemail=document.getElementById("email");
   var phone=document.getElementById("phonenmbr");
   var txtpassword=document.getElementById("passwrd");
@@ -55,7 +54,8 @@
      //sign in
    firebase.auth().createUserWithEmailAndPassword(email , password)
    .then(function(firebaseUser) {
-
+    if (email=="" || password=="" ) {
+      alert("please fill all the fields")}
     if (password.length < 6){
       alert("The password must be 6 characters long or more.")
     }
