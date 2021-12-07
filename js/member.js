@@ -44,16 +44,17 @@
   btnsignup.addEventListener("click", e=>{
     //get email and pass
     //TODO CHECK 5 REAL EMAIL
+    const membername=name.value;
       const email=txtemail.value;
       const password=txtpassword.value;
       const auth= firebase.auth();
-      const registermessage=document.getElementById("registererror");
+      const errortxt=document.getElementById("errormsg");
       //
-      if (email=="") {
-        alert("please fill all the fields")}
-      if (password.length < 6){
-        alert("The password must be 6 characters long or more.")
-      }
+      if (membername=="") {
+        errortxt.innerHTML="please write your name"
+      return}
+      else{ 
+     
 
 
      //sign in
@@ -63,11 +64,12 @@
 
    })
   .catch(function(error) {
-    console.log(error)
-    alert(error)
+    console.log(error);
+    errortxt.innerHTML=error;
    
        // Error Handling
   });
+}
 
   });
 
