@@ -13,25 +13,26 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       //get email and pass
-      var txtemail=document.getElementById("emailreset");
-      var email=txtemail.value;
       var resetbutton=document.getElementById("resetbtn");
      
     
       
       resetbutton.addEventListener("click",function() {
-          if(email==""){alert("please write your email adress")}
-          else{ 
-        var auth = firebase.auth();
-var emailAddress = email;
-auth.sendPasswordResetEmail(emailAddress)
-.then(function() {  
-})
-.catch(function(error) {
-// An error happened.
-});
-alert("Email sent")
-}
+        var txtemail=document.getElementById("emailreset");
+        var emailtext=txtemail.value
+        
+          var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  
+          if (reg.test(emailtext) == false) 
+          {
+              alert('Invalid Email Address');
+              return false;
+          }
+
+        alert("Password reset is sent to your email")
+        firebase.auth().sendPasswordResetEmail(emailtext)
+  
+          return true;
       });
       //realtile listener
       //we can check if we are logged in from here aswell
