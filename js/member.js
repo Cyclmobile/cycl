@@ -49,21 +49,23 @@
       const auth= firebase.auth();
       const registermessage=document.getElementById("registererror");
       //
+      if (email=="") {
+        alert("please fill all the fields")}
+      if (password.length < 6){
+        alert("The password must be 6 characters long or more.")
+      }
 
 
      //sign in
    firebase.auth().createUserWithEmailAndPassword(email , password)
    .then(function(firebaseUser) {
-    if (email=="" || password=="" ) {
-      alert("please fill all the fields")}
-    if (password.length < 6){
-      alert("The password must be 6 characters long or more.")
-    }
        // Success 
 
    })
   .catch(function(error) {
-   alert("The email address is already in use by another account.")
+    console.log(error)
+    alert(error)
+   
        // Error Handling
   });
 
