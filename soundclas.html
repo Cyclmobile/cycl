@@ -12,22 +12,52 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
+<div class="container">
+  <ul class="progressbar">
+    <li class="activeprgrs">Scan</li>
+    <li class="activeprgrs">Return</li>
+    <li>Recycled</li>
+  </ul>
+</div>
 
 
 <body class="body">
-<!--scan the bottle stage 1-->
 
-<!--get position stage 2-->
+    <div id="overlaystation"> 
+      <div class="container">
+        <ul class="progressbar">
+          <li class="activeprgrs">Scan</li>
+          <li class="activeprgrs">Return</li>
+          <li class="activeprgrs">Recycled</li>
+        </ul>
+      </div>
 
-<!--i wanna know that the bottle is inside stage 3-->
+      <div class="completedclass">
+        <img src="Images/recycledone.png" alt="">
+        <h2 style="color: white;" > Recycling completed </h2>
+        <h2 style="color: white;" > You got 2 CC </h2>
+        <button style="  background-color: green; width: 180px;
+        height: 40px;
+        border-radius: 25px;
+        font-size: 20px; border: none;
+        color: white;" id="homebtn">Go back</button> 
+      </div>
+      
+    </div>
+    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 
-<!--camera detecting the station?-->
-<!--sound detection when the bottle is pantet-->
-<!--GPS postion, barcode, and sound recognisation-->
-<!--dont leave until you get the sound-->
-<!--the sound is any type of bottle sound from fall activity, this is triggered only after scanning the right bottle-->
-<!-- vibration might be also a method-->
+    <div class="loadingsoundclass">
+    <img src="Images/station.jpeg" style="width: 50%; top: 50%;">
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
 
+
+    </div>
 
 
 
@@ -41,23 +71,10 @@
 
 
 <!--<h1> Please drop your bottle inside the deposit point. Keep your phone in close distance to the point</h1>-->
-
-<img src="Images/station.jpeg" style="width:190px; position:fixed; left: 25%; top:35%">
-<div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-<h1 id="text1" style="color:#52b459; position: fixed; left: 27%; top: 65%;"> Loading... </h1>
-<p id="text3" style="color:#52b459; position: fixed; left: 15%; top: 75%;"> * You cant speak on the phone while recycling </hp>
-<h1 id="text2" class="ready"> Station ready</h1>
 <!--back btn-->
 
 
-<div id="overlaystation"> <button id="homebtn">Go back</button> 
-  <img id="recycle" src="Images/recycledone.png" alt="">
 
-  <!--<img id="recycle" src="Images/checkc.png" alt="" style="color: white; position:fixed; top:25%; left:40%; border-radius:5px">-->
-  
-  <h2 style="color: white; position:fixed; top:40%; left:15%;" > Recycling completed </h2>
-  <h2 style="color: white; position:fixed; top:50%; left:30%;" > You got 2 CC </h2>
-</div>
 
 
 <script type="text/javascript">
@@ -78,13 +95,13 @@
     });
 
     function load(){
-      document.getElementById("loading").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
-      document.getElementById("loading").style.display="none";
       document.getElementById("text1").style.display="none";
       document.getElementById("text3").style.display="none";
+      document.getElementById("loading").style.display="none";
+
     }
 
     function overlay(){
