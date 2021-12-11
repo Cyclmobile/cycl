@@ -41,18 +41,19 @@
 
     }
 
-   .ready{
-    color:#52b459; 
-    position: fixed; 
-    top: 65%;
-    display: none;
-    left: 20%;
+    .loadingsoundclass{
 
-  }
+      text-align: center;
+    margin: 0 auto;
+      padding: 0 20px 0 20px;
+      max-width: 900px;
+  
+    }
+
+  
   .lds-ellipsis{
-    position:relative; 
-    left: 37%; 
-    top:37%;
+    top: 25%;
+    left: 40%;
     display:none;
 
   }

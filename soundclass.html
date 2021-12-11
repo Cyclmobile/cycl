@@ -20,10 +20,8 @@
   </ul>
 </div>
 
+
 <body class="body">
-
-  <section class="features">
-
 
     <div id="overlaystation"> 
       <div class="container">
@@ -43,16 +41,22 @@
         font-size: 20px; border: none;
         color: white;" id="homebtn">Go back</button> 
       </div>
-    
-    
-      <!--<img id="recycle" src="Images/checkc.png" alt="" style="color: white; position:fixed; top:25%; left:40%; border-radius:5px">-->
-      
-      
-    
+    </div>
+    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+    <div class="loadingsoundclass">
+    <img src="Images/station.jpeg" style="width: 50%; top: 50%;">
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
+
+
     </div>
 
-  </section>
-<!--scan the bottle stage 1-->
 
 
 <img src="Images/back.png" id="backbtn" style="width:40px; height:35px;">
@@ -65,12 +69,6 @@
 
 
 <!--<h1> Please drop your bottle inside the deposit point. Keep your phone in close distance to the point</h1>-->
-<div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-
-<img src="Images/station.jpeg" style="width:190px; position:fixed; left: 25%; top:35%">
-<h1 id="text1" style="color:#52b459; position: fixed; left: 27%; top: 65%;"> Loading... </h1>
-<p id="text3" style="color:#52b459; position: fixed; left: 15%; top: 75%;"> * You cant speak on the phone while recycling </hp>
-<h1 id="text2" class="ready"> Station ready</h1>
 <!--back btn-->
 
 
@@ -95,12 +93,13 @@
     });
 
     function load(){
-      document.getElementById("loading").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
       document.getElementById("text1").style.display="none";
       document.getElementById("text3").style.display="none";
+      document.getElementById("loading").style.display="none";
+
     }
 
     function overlay(){
@@ -184,7 +183,7 @@ firebase.initializeApp(firebaseConfig);
                 hidetxt();
 
                  switch (classPrediction) {
-                   case 'bottle: 0.01':
+                   case 'bottle: 0.20':
                    case 'bottle: 0.86':
                    case 'bottle: 0.87':
                    case 'bottle: 0.88':
