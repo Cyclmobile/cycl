@@ -10,6 +10,15 @@
     measurementId: "G-VPV104NQQW"
   };
 
+  function loadRedeem(){
+    var loader=document.getElementById("loadprchpg")
+    loader.style.display="none"
+  }
+
+  loadRedeem()
+
+
+
   firebase.initializeApp(firebaseConfig);
 
 
