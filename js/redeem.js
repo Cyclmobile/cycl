@@ -150,7 +150,7 @@ var downloadTimer = setInterval(function(){
 
 
     function refreshResults () {
-      document.getElementById('amountaccount').innerHTML= 'You have : ' + amountcounter + " CC";
+      document.getElementById('amountaccount').innerHTML=  amountcounter + " CC";
       if (amountcounter == 70) {
         //alert("you have 70")
         console.log(amountcounter);
