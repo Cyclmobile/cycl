@@ -58,8 +58,9 @@
   }
   /* overlay for soundclass*/
   #overlaystation {
+  display: contents;
   position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
+  display: block; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
@@ -67,35 +68,21 @@
   right: 0;
   bottom: 0;
   background-color:#52b459; /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
   
 }
 
-/* button overlay at soundetection*/
-#homebtn{
-color: white; 
-position:fixed; top:73%; 
-left:24%;
-  width: 180px;
-  height: 40px;
-  border-radius: 25px;
-  font-size: medium;
-  background-color: green;
-  border: none;
-
-  
-}
-
-
-#recycle{
-  position: fixed; left: 
-  35%; top: 12%;
-  
-
-}
 
 /*station style*/
+
+.completedclass {
+  text-align: center;
+  margin: 0 auto;
+    padding: 0 20px 0 20px;
+    max-width: 900px;
+    
+}
 
 /*sideNav*/
 
