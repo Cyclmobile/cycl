@@ -33,25 +33,27 @@
         <li>Recycled</li>
       </ul>
 
-      <hr style="border-top: 3px solid #bbb ;margin-left: -20px;max-width: 100%;margin-right: -300px;">
-
-      <video class="video" id="video" style="border: 2px solid #52b459; "autoplay playsInline muted></video>
-      <div class="scan-code">
-        <span class="scan-code__angle scan-code__angle--top"></span>
-        <span class="scan-code__angle scan-code__angle--bottom"></span>
-      </div>
-    </div>
-    <div style="position: relative;bottom: 15%; margin-top: 45px;">
-    <img style="position: relative; left: 30%; margin-bottom: 15px; margin-top: 25px;" src="Images/bottlescan.png"/>
-    <img style="position: relative; left: 35%; margin-bottom: 15px ; margin-top: 25px;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
-
-    <div style=" display: flex;">
-      <input style="position: relative; left:5%; margin-right: 25px;" id="rezlt" placeholder="barcode" width="100px"></input>     
+      <div class="completedclass">
+        <video id="video" style="border: 2px solid #52b459; width: 270px;
+        height: 350px; "autoplay playsInline muted></video>
+        <div class="scan-code">
+          <span class="scan-code__angle scan-code__angle--top"></span>
+          <span class="scan-code__angle scan-code__angle--bottom"></span>
+        </div>
+        <img  src="Images/bottlescan.png"/>
+    <img  src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
+    <input id="rezlt" placeholder="barcode" width="100px"></input>     
     <button id="submitbarcodebtn" style="background-color: #52b459; border-radius: 10px; border: 0px; width: 100px;">submit</button>
     
+
+
+      </div>
+
+      <hr style="border-top: 3px solid grey;margin-left: -20px;max-width: 100%;margin-right: -300px; width: 100%;">
+
+     
     </div>
    
-    </div>
 
 <!--The library in the button has to stay upgraded to work-->
 <script type="text/javascript" src="https://unpkg.com/@zxing/library@dev"></script>
