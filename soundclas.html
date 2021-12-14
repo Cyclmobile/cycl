@@ -12,55 +12,24 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<div class="container">
-  <ul class="progressbar">
-    <li class="activeprgrs">Scan</li>
-    <li class="activeprgrs">Return</li>
-    <li>Recycled</li>
-  </ul>
-</div>
 
 
 <body class="body">
+<!--scan the bottle stage 1-->
 
-    <div id="overlaystation"> 
-      <div class="container">
-        <ul class="progressbar">
-          <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs">Return</li>
-          <li class="activeprgrs">Recycled</li>
-        </ul>
-      </div>
+<!--get position stage 2-->
 
-      <div class="completedclass">
-        <img src="Images/recycledone.png" alt="">
-        <h2 style="color: white;" > Recycling completed </h2>
-        <h2 style="color: white;" > You got 2 CC </h2>
-        <button style="  background-color: green; width: 180px;
-        height: 40px;
-        border-radius: 25px;
-        font-size: 20px; border: none;
-        color: white;" id="homebtn">Go back</button> 
-      </div>
-      
-    </div>
-    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+<!--i wanna know that the bottle is inside stage 3-->
 
-    <div class="loadingsoundclass">
-    <img src="Images/station.jpeg" style="width: 50%; top: 50%;">
-    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
-      <br>
-      <br>
-      <br>
-      <br>
-      <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
-      <button id="backbtn" style="  background-color: green; width: 180px;
-      height: 40px;
-      border-radius: 25px;
-      font-size: 20px; border: none;
-      color: white;" id="homebtn">Cancel</button>   
-    </div>
+<!--camera detecting the station?-->
+<!--sound detection when the bottle is pantet-->
+<!--GPS postion, barcode, and sound recognisation-->
+<!--dont leave until you get the sound-->
+<!--the sound is any type of bottle sound from fall activity, this is triggered only after scanning the right bottle-->
+<!-- vibration might be also a method-->
+
+
+
 
 
 <div hidden id="label-container"></div>
@@ -72,11 +41,24 @@
 
 
 <!--<h1> Please drop your bottle inside the deposit point. Keep your phone in close distance to the point</h1>-->
+<div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+<img src="Images/station.jpeg" style="width:190px; position:fixed; left: 33%; top:35%">
+<h1 id="text1" style="color:#52b459; position: fixed; left: 40%; top: 65%;"> Loading... </h1>
+<h1 id="text2" class="ready"> Recycle your bottle</h1>
 <!--back btn-->
 
 
+<div id="overlaystation"> <button id="homebtn" >Go back</button> 
+  <img id="recycle" src="recycle.png" alt="">
 
+<h2 style="color: white; position: fixed; left: 25%; top: 35%;" > Bottle recycling is completed </h2>
+<h2 style="color: white; position: fixed; left: 40%; top: 45%;" > You got 2 CC </h2>
+</div>
 
+<style>
+  
+</style>
 
 <script type="text/javascript">
 /*Buy items and validate
@@ -89,20 +71,13 @@
 
     // more documentation available at
     // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
-    var backbtn=document.getElementById("backbtn");
-
-    backbtn.addEventListener("click",function(){
-      window.location.href="home.html"
-    });
 
     function load(){
+      document.getElementById("loading").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
       document.getElementById("text1").style.display="none";
-      document.getElementById("text3").style.display="none";
-      document.getElementById("loading").style.display="none";
-
     }
 
     function overlay(){
@@ -186,7 +161,7 @@ firebase.initializeApp(firebaseConfig);
                 hidetxt();
 
                  switch (classPrediction) {
-                   case 'bottle: 0.20':
+                   case 'bottle: 0.01':
                    case 'bottle: 0.86':
                    case 'bottle: 0.87':
                    case 'bottle: 0.88':
@@ -197,7 +172,7 @@ firebase.initializeApp(firebaseConfig);
                    case 'bottle: 0.93':
                    case 'bottle: 0.94':
                    case 'bottle: 0.95':
-                   case 'bottle: 0.02':
+                   case 'bottle: 0.96':
                    case 'bottle: 0.97':
                    case 'bottle: 0.98':
                    case 'bottle: 0.99':
