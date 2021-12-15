@@ -12,26 +12,57 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
+<div class="container">
+  <ul class="progressbar">
+    <li class="activeprgrs">Scan</li>
+    <li class="activeprgrs">Return</li>
+    <li>Recycled</li>
+  </ul>
+</div>
 
 
 <body class="body">
-<!--scan the bottle stage 1-->
 
-<!--get position stage 2-->
+    <div id="overlaystation"> 
+      <div class="container">
+        <ul class="progressbar">
+          <li class="activeprgrs">Scan</li>
+          <li class="activeprgrs">Return</li>
+          <li class="activeprgrs">Recycled</li>
+        </ul>
+      </div>
 
-<!--i wanna know that the bottle is inside stage 3-->
+      <div class="completedclass">
+        <img src="Images/recycledone.png" alt="">
+        <h2 style="color: white;" > Recycling completed </h2>
+        <h2 style="color: white;" > You got 2 CC </h2>
+        <button style="  background-color: green; width: 180px;
+        height: 40px;
+        border-radius: 25px;
+        font-size: 20px; border: none;
+        color: white;" id="homebtn">Go back</button> 
+      </div>
+      
+    </div>
+    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 
-<!--camera detecting the station?-->
-<!--sound detection when the bottle is pantet-->
-<!--GPS postion, barcode, and sound recognisation-->
-<!--dont leave until you get the sound-->
-<!--the sound is any type of bottle sound from fall activity, this is triggered only after scanning the right bottle-->
-<!-- vibration might be also a method-->
+    <div class="loadingsoundclass">
+    <img src="Images/station.jpeg" style="width: 50%; top: 50%;">
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
+      <button id="backbtn" style="  background-color: green; width: 180px;
+      height: 40px;
+      border-radius: 25px;
+      font-size: 20px; border: none;
+      color: white;" id="homebtn">Cancel</button>   
+    </div>
 
 
-
-
-<img src="Images/back.png" id="backbtn" style="width:40px; height:35px;">
 <div hidden id="label-container"></div>
 <h3  id="bottleshow"></h3>
 
@@ -41,23 +72,10 @@
 
 
 <!--<h1> Please drop your bottle inside the deposit point. Keep your phone in close distance to the point</h1>-->
-
-<img src="Images/station.jpeg" style="width:190px; position:fixed; left: 25%; top:35%">
-<div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-<h1 id="text1" style="color:#52b459; position: fixed; left: 27%; top: 65%;"> Loading... </h1>
-<p id="text3" style="color:#52b459; position: fixed; left: 15%; top: 75%;"> * You cant speak on the phone while recycling </hp>
-<h1 id="text2" class="ready"> Station ready</h1>
 <!--back btn-->
 
 
-<div id="overlaystation"> <button id="homebtn">Go back</button> 
-  <img id="recycle" src="Images/recycledone.png" alt="">
 
-  <!--<img id="recycle" src="Images/checkc.png" alt="" style="color: white; position:fixed; top:25%; left:40%; border-radius:5px">-->
-  
-  <h2 style="color: white; position:fixed; top:40%; left:15%;" > Recycling completed </h2>
-  <h2 style="color: white; position:fixed; top:50%; left:30%;" > You got 2 CC </h2>
-</div>
 
 
 <script type="text/javascript">
@@ -74,17 +92,17 @@
     var backbtn=document.getElementById("backbtn");
 
     backbtn.addEventListener("click",function(){
-      window.location.href="index.html"
+      window.location.href="home.html"
     });
 
     function load(){
-      document.getElementById("loading").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
-      document.getElementById("loading").style.display="none";
       document.getElementById("text1").style.display="none";
       document.getElementById("text3").style.display="none";
+      document.getElementById("loading").style.display="none";
+
     }
 
     function overlay(){
@@ -100,16 +118,16 @@
   
 
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
-  authDomain: "cycl-e6998.firebaseapp.com",
-  databaseURL: "https://cycl-e6998.firebaseio.com",
-  projectId: "cycl-e6998",
-  storageBucket: "cycl-e6998.appspot.com",
-  messagingSenderId: "16228296144",
-  appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
-  measurementId: "G-3BVVW1GDNC"
-};
+    const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+  };
 firebase.initializeApp(firebaseConfig);
 
 
@@ -179,7 +197,7 @@ firebase.initializeApp(firebaseConfig);
                    case 'bottle: 0.93':
                    case 'bottle: 0.94':
                    case 'bottle: 0.95':
-                   case 'bottle: 0.96':
+                   case 'bottle: 0.02':
                    case 'bottle: 0.97':
                    case 'bottle: 0.98':
                    case 'bottle: 0.99':
