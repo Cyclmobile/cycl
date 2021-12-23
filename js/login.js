@@ -21,6 +21,16 @@
     var btnlLogout=document.getElementById("logout");
     var database = firebase.database();
     
+
+    function keyDown(e) { 
+      var e = window.event || e;
+      var key = e.keyCode;
+      //space pressed
+       if (key == 32) { //space
+        e.preventDefault();
+       }
+             
+    }
     
     btnlogin.addEventListener("click", e=>{
       //get email and passwrd
