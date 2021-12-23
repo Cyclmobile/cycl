@@ -399,7 +399,11 @@ for (i = 0; i < locations.length; i++) {
 			  function(error) {
 				if (error.code == error.PERMISSION_DENIED)
 				alert("please enable your gps")
-				  console.log("you denied location services");
+				console.log("you denied location services");
+				var locationbtn=document.getElementById("updtbtn");
+				var locationisoff=document.getElementById("locationoffbtn");
+				locationisoff.style.display="block"
+				locationbtn.style.display="none"
 			  });
 		}
 		 
@@ -407,6 +411,9 @@ for (i = 0; i < locations.length; i++) {
 		
 		function getLocation() {    
 			if(navigator.geolocation) {
+				locationisoff.style.display="block"
+				locationbtn.style.display="none"
+
 				navigator.geolocation.getCurrentPosition(showPosition, positionError);
 		
 			} else {
@@ -417,7 +424,10 @@ for (i = 0; i < locations.length; i++) {
 		
 		function positionError() {
 			hideLoadingDiv()
+			locationbtn.style.display="none"
+			locationisoff.style.display="block"
 			showError('Geolocation is not enabled. Please enable to use this feature')
+			alert("Your gps location is disabled")
 		}
 		
 
