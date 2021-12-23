@@ -405,11 +405,26 @@ for (i = 0; i < locations.length; i++) {
 		 
 
 		
+		function getLocation() {    
+			if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition, positionError);
+		
+			} else {
+				hideLoadingDiv()
+				showError('Geolocation is not supported by this device')
+			}
+		}
+		
+		function positionError() {
+			hideLoadingDiv()
+			showError('Geolocation is not enabled. Please enable to use this feature')
+		}
 		
 
 		 var updtbtn = document.getElementById("updtbtn");
 		 updtbtn.addEventListener("click",function(){
 			checkgetLocation();
+			positionError()
 			
 
 		 })
