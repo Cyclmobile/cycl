@@ -25,6 +25,27 @@
     <div style="display: none;" id="label-container"></div>
     <h3  id="bottleshow"></h3>
 
+    <div id="overlaystation"> 
+        <div class="container">
+          <ul class="progressbar">
+            <li class="activeprgrs">Scan</li>
+            <li class="activeprgrs">Return</li>
+            <li class="activeprgrs">Recycled</li>
+          </ul>
+        </div>
+  
+        <div class="completedclass">
+          <img src="Images/recycledone.png" alt="">
+          <h2 style="color: white;" > Recycling completed </h2>
+          <h2 style="color: white;" > You got 2 CC </h2>
+          <button style="  background-color: green; width: 180px;
+          height: 40px;
+          border-radius: 25px;
+          font-size: 20px; border: none;
+          color: white;" id="homebtn">Go back</button> 
+        </div>
+        
+      </div>
       <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   
       <div class="loadingsoundclass">
@@ -77,10 +98,15 @@ video.setAttribute('playsinline', '');
     }
 
     function overlay(){
-      window.location.href="recycled.html"
+      document.getElementById("overlaystation").style.display="block";
     }
 
-  
+  function homebtn(){
+    document.getElementById("homebtn").addEventListener("click",function(){
+      window.location.href="home.html"
+    })
+  };
+  homebtn();
 
    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
    const firebaseConfig = {
@@ -208,6 +234,7 @@ amountcc.transaction(function(amount) {
                    case 'drop: 0.99':
                    case 'drop: 1.00':
                      amountcounter();
+                  overlay();
                   //alert("check")
                   overlay()
              
