@@ -15,8 +15,8 @@
     <div class="container">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs">proceed</li>
-          <li>done</li>
+          <li class="activeprgrs">Return</li>
+          <li>Recycled</li>
         </ul>
       </div>
     
@@ -25,37 +25,16 @@
     <div style="display: none;" id="label-container"></div>
     <h3  id="bottleshow"></h3>
 
-    <div id="overlaystation"> 
-        <div class="container">
-          <ul class="progressbar">
-            <li class="activeprgrs">Scan</li>
-            <li class="activeprgrs">proceed</li>
-            <li class="activeprgrs">done</li>
-          </ul>
-        </div>
-  
-        <div class="completedclass">
-          <img src="Images/recycledone.png" alt="">
-          <h2 style="color: white;" > Recycling completed </h2>
-          <h2 style="color: white;" > You got 2 CC </h2>
-          <button style="  background-color: green; width: 180px;
-          height: 40px;
-          border-radius: 25px;
-          font-size: 20px; border: none;
-          color: white;" id="homebtn">Go back</button> 
-        </div>
-        
-      </div>
       <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   
       <div class="loadingsoundclass">
       <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-      <p id="text3" style="color:#52b459;"> * </hp>
+      <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
         <br>
         <br>
         <br>
         <br>
-        <h1 id="text2" style="color:#52b459; display: none;"> camera ready</h1>
+        <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
         <button id="backbtn" style="  background-color: green; width: 180px;
         height: 40px;
         border-radius: 25px;
@@ -98,7 +77,7 @@ video.setAttribute('playsinline', '');
     }
 
     function overlay(){
-      window.location.href="recycled.html"
+      window.location.href="recycled"
     }
 
   function homebtn(){
@@ -235,11 +214,7 @@ amountcc.transaction(function(amount) {
                    case 'drop: 1.00':
                      amountcounter();
                   //alert("check")
-                  setTimeout(function(){
-                    overlay()
-
-                  },1000)
-                  
+                  overlay()
              
                     }
         }
