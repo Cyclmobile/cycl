@@ -15,8 +15,8 @@
     <div class="container">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs">Return</li>
-          <li>Recycled</li>
+          <li class="activeprgrs">proceed</li>
+          <li>done</li>
         </ul>
       </div>
     
@@ -29,8 +29,8 @@
         <div class="container">
           <ul class="progressbar">
             <li class="activeprgrs">Scan</li>
-            <li class="activeprgrs">Return</li>
-            <li class="activeprgrs">Recycled</li>
+            <li class="activeprgrs">proceed</li>
+            <li class="activeprgrs">done</li>
           </ul>
         </div>
   
@@ -50,12 +50,12 @@
   
       <div class="loadingsoundclass">
       <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-      <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <p id="text3" style="color:#52b459;"> * </hp>
         <br>
         <br>
         <br>
         <br>
-        <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
+        <h1 id="text2" style="color:#52b459; display: none;"> camera ready</h1>
         <button id="backbtn" style="  background-color: green; width: 180px;
         height: 40px;
         border-radius: 25px;
@@ -98,7 +98,7 @@ video.setAttribute('playsinline', '');
     }
 
     function overlay(){
-      document.getElementById("overlaystation").style.display="block";
+      window.location.href="recycled.html"
     }
 
   function homebtn(){
@@ -234,9 +234,12 @@ amountcc.transaction(function(amount) {
                    case 'drop: 0.99':
                    case 'drop: 1.00':
                      amountcounter();
-                  overlay();
                   //alert("check")
-                  overlay()
+                  setTimeout(function(){
+                    overlay()
+
+                  },1000)
+                  
              
                     }
         }
