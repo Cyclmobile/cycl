@@ -130,7 +130,7 @@ amountcc.transaction(function(amount) {
         const flip = false; // whether to flip the webcam
         const width = 269;
         const height = 270;
-        webcam = new tmImage.Webcam(width, height, flip); // width, height, flip
+        webcam = new tmImage.Webcam(width, height); // width, height, flip
         await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
         if (isIos) {
