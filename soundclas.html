@@ -23,7 +23,7 @@
     <div style="border: 2px solid #52b459; width: 270px;
     height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
     <div style="display: none;" id="label-container"></div>
-    <h3  id="bottleshow"></h3>
+    <h3 style="display:none;" id="bottleshow"></h3>
 
     <div id="overlaystation"> 
         <div class="container">
@@ -153,7 +153,7 @@ amountcc.transaction(function(amount) {
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const flip = false; // whether to flip the webcam
+        const flip = true; // whether to flip the webcam
         const width =  270;
         const height = 200;
         webcam = new tmImage.Webcam(width, height); // width, height, flip
