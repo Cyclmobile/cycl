@@ -59,7 +59,9 @@
     }
 
     .loadingsoundclass{
-
+      margin-bottom: 20px;
+      position: relative;
+      bottom: 40%;
       text-align: center;
     margin: 0 auto;
       padding: 0 20px 0 20px;
@@ -83,8 +85,10 @@
 
   
   .lds-ellipsis{
-    top: 25%;
+   
     left: 40%;
+    position: relative;
+    bottom: 25%;
     display:none;
 
   }
