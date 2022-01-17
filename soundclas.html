@@ -16,14 +16,23 @@
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
           <li class="activeprgrs">Return</li>
-          <li>image detected</li>
+          <li>Recycled</li>
         </ul>
       </div>
     
-    <div style="border: 2px solid #52b459; width: 270px;
-    height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
-    <div style="display: none;" id="label-container"></div>
-    <h3 style="display:none;" id="bottleshow"></h3>
+      <div style="border: 2px solid #52b459; width: 270px;
+      height: 350px; position: relative; left: 15%;">
+        <div id="circle" class="circle">
+          <div id="webcam-container"></div>
+        </div>
+        <p style="color: #52b459; position: relative; ">* Make sure that the camera covers only top of the station</p>
+  
+      
+    
+    </div>
+      <div style="display: none;" id="label-container"></div>
+    
+      <h3  id="bottleshow"></h3>
 
     <div id="overlaystation"> 
         <div class="container">
@@ -88,6 +97,7 @@ video.setAttribute('playsinline', '');
     });
 
     function load(){
+      document.getElementById("circle").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
@@ -153,11 +163,11 @@ amountcc.transaction(function(amount) {
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const flip = true; // whether to flip the webcam
-        const width =  270;
+        const flip = false; // whether to flip the webcam
+        const width = 270;
         const height = 200;
         webcam = new tmImage.Webcam(width, height); // width, height, flip
-        await webcam.setup( { ideal: 'environment' } ); // request access to the webcam
+        await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
         if (isIos) {
             document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
