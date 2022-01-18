@@ -21,12 +21,9 @@
       </div>
     
     <div style="border: 2px solid #52b459; width: 270px;
-    height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
+    height: 350px; position: relative; left: 15%;" id="webcam-container" ></div>
     <div style="display: none;" id="label-container"></div>
     <h3  id="bottleshow"></h3>
-
-    <img src="Images/holdingphn.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;" alt="">
-    <img src="Images/recyclehand.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;"  alt="">
 
     <div id="overlaystation"> 
         <div class="container">
@@ -156,10 +153,10 @@ amountcc.transaction(function(amount) {
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const flip = false; // whether to flip the webcam
-        const width = 270;
+        const flip = true; // whether to flip the webcam
+        const width = 250;
         const height = 200;
-        webcam = new tmImage.Webcam(width, height); // width, height, flip
+        webcam = new tmImage.Webcam(width, height, flip); // width, height, flip
         await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
         if (isIos) {
@@ -236,8 +233,11 @@ amountcc.transaction(function(amount) {
                    case 'drop: 0.98':
                    case 'drop: 0.99':
                    case 'drop: 1.00':
+                   case 'drop: 0.00':
                      amountcounter();
                   overlay();
+                  //alert("check")
+                  overlay()
              
                     }
         }
