@@ -24,23 +24,6 @@
     #map{
       z-index: 0;
     }
-
-    .circle{
-      display: none;
-      position:relative;
-      width:270px; height:200px;
-      margin:0 auto;
-      overflow:hidden;
-  }
-  .circle:after{
-      content:'';
-      position:absolute;
-      left:-450px; top:-475px;
-      border-radius:100%;
-      width:150px; height:150px;
-      border:500px solid #000000bb;
-  }
-
     .locationmapimg{
       position : absolute;
       display : inline;
@@ -59,9 +42,7 @@
     }
 
     .loadingsoundclass{
-      margin-bottom: 20px;
-      position: relative;
-      bottom: 40%;
+
       text-align: center;
     margin: 0 auto;
       padding: 0 20px 0 20px;
@@ -85,10 +66,8 @@
 
   
   .lds-ellipsis{
-   
+    top: 25%;
     left: 40%;
-    position: relative;
-    bottom: 25%;
     display:none;
 
   }

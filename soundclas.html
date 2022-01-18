@@ -20,20 +20,10 @@
         </ul>
       </div>
     
-      <div style="border: 2px solid #52b459; width: 270px;
-      height: 350px; position: relative; left: 15%;">
-        <div id="circle" class="circle">
-          <div id="webcam-container"></div>
-        </div>
-        <p style="color: #52b459; position: relative; ">* Make sure that the camera covers only top of the station</p>
-  
-      
-    
-    </div>
-    
-      <div style="display: none;" id="label-container"></div>
-    
-      <h3  id="bottleshow"></h3>
+    <div style="border: 2px solid #52b459; width: 270px;
+    height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
+    <div style="display: none;" id="label-container"></div>
+    <h3  id="bottleshow"></h3>
 
     <div id="overlaystation"> 
         <div class="container">
@@ -98,7 +88,6 @@ video.setAttribute('playsinline', '');
     });
 
     function load(){
-      document.getElementById("circle").style.display="block";
       document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
