@@ -5,7 +5,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
      <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-  <title>return</title>
+  <title>Image test using</title>
   <link rel="stylesheet" href="styles.css">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
         <div id="circle" class="circle">
           <div id="webcam-container"></div>
         </div>
-        <p id="text2" style="color: #52b459; position: relative;display: none; ">* Make sure the camera covers only top of the station</p>
+        <p  style="color: #52b459; position: relative; ">* Make sure that the camera covers only top of the station</p>
   
       
     
@@ -61,17 +61,17 @@
   
       <div class="loadingsoundclass">
       <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+      <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
         <br>
         <br>
         <br>
         <br>
         <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
-        <br>
         <button id="backbtn" style="  background-color: green; width: 180px;
         height: 40px;
         border-radius: 25px;
         font-size: 20px; border: none;
-        color: white; margin-top: 20px;" id="homebtn">Cancel</button>   
+        color: white;" id="homebtn">Cancel</button>   
       </div>
 
 
@@ -104,6 +104,7 @@ video.setAttribute('playsinline', '');
     }
     function hidetxt(){
       document.getElementById("text1").style.display="none";
+      document.getElementById("text3").style.display="none";
       document.getElementById("loading").style.display="none";
 
     }
