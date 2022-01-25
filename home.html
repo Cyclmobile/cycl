@@ -325,9 +325,10 @@ var options = {
 							alert("The bag is full. Please contact employee or use another station");
 							span.onclick = function() {
 								modal.style.display = "none";
-								return;
+								
 								
 							}
+							return;
 							
 						}else {
 							modal.style.display = "block";
@@ -347,6 +348,7 @@ var span = document.getElementsByClassName("close")[0];
 	  }else{
 
 alert ("You are too far from this current recycle station")
+		  return;
 //window.alert(marker.properties.message);
 }
 return;
