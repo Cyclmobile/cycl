@@ -1,129 +1,272 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<script></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-	 <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="utf-8">
+<title>Locate the user</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 <link href= "styles.css" rel="stylesheet">
-<title>Cycl</title>
+<style>
+body { margin: 0; padding: 0; z-index: 0; }
+#map { position: absolute; top: 10%; bottom: 0; width: 100%; height: 90%; }
+</style>
 </head>
+<body>
 
-<body class="body">
+<!--sidenavigation-->
+<div id="sidenav" class="mobile-container">
+	<img src="hovedlogo.png" style="width:30px; position: relative; left: 45%;">
+	<div id="mySidenav" class="sidenav" >
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a id="hideprofile" href="profile.html"> <img src="user.png" style="width: 20px; height: 21px;">   Profile</a>
+		<a id="redeem" href="Redeem.html"> <img src="shop.png" style="width: 20px; height: 21px;"> Purchase</a>
+		<a href="faq.html"><img src="faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
+		<!--<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>-->
+		<a id="hidesignin"href="login.html"><img src="login.png" style="width: 20px; height: 21px;"> Sign in</a>
+		<div id="hidesignoff">
+			<a id="logoff" href="home.html"><img src="logout.png" style="width: 20px; height: 21px;"> Sign out</a>
+			<!--legg til en sign in knapp når bruker er avloget-->
+		</div>
+	  </div>
+	  <span class="closesidenav" onclick="openNav()">&#9776; </span>
+	  <div id="map"></div>
 	<!-- Simulate a smartphone / tablet look -->
-	<div id="sidenav" class="mobile-container">
-		<img src="Images/hovedlogo.png" style="width:30px; position: relative; left: 45%;">
-		<div id="mySidenav" class="sidenav" >
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">   Profile</a>
-			<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;"> Purchase</a>
-			<a href="faq.html"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
-			<!--<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>-->
-			<a id="hidesignin"href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;"> Sign in</a>
-			<div id="hidesignoff">
-				<a id="logoff" href="home.html"><img src="Images/logout.png" style="width: 20px; height: 21px;"> Sign out</a>
-				<!--legg til en sign in knapp når bruker er avloget-->
-			</div>
-		  </div>
-		  <span class="closesidenav" onclick="openNav()">&#9776; </span>
-		<!-- Simulate a smartphone / tablet look -->
-	</div>
-<!-- End smartphone / tablet look -->
 </div>
+<!--sidenavigation-->
+
+<!--station overlay-->
+<div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
 
 
-<div id="map"></div>
+		<div class="returnstationcontent">
 
-<img id="updtbtn" class="locationmapimg" src="Images/updatelction.png">
-<img id="locationoffbtn" class="locationmapimg" src="Images/locationoff.png" 
-style="display: none;">
-	 <!-- Trigger/Open The Modal -->
-	<!-- <button id="myBtn">Open Modal</button>-->
-	<div id="loaderspinn" class="loader"></div>
+		  <span class="close">&times;</span>
+		  <div class="itemstation"><h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2> </div>
+		  <div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 150px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="store.png" style="width:29px; height:39px;">
+		<p id="place" style="color: black;">Deli De Luca</p></div></div>
 
-	 <!-- The Modal -->
-	 <div id="myModal" class="modal">
+		<div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 150px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="placemark.png" style="width:29px; height:39px;">
+		<p id="adress" style="color: black;">Karl Johansgata</p></div></div>
 
-	   <!-- Modal content -->
-	   <div class="modal-content">
+		<div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 120px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="recyclebin.png" style="width:29px; height:39px;">
+		<p id="bagQauntity" style="color: black;">100%</p></div></div>
 
+		  <div class="itemstation" style="position: relative;left: 30%; z-index: 1;"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
+		  <img src="station.jpeg" style="width:115px; height:170px; position: absolute;right: 65%; top: 30%; z-index: -1;">
+		  <hr></hr>
+	   </div> 
 
-	     <div class="returnstationcontent">
-
-	       <span class="close">&times;</span>
-	       <div class="itemstation"><h2 id="returnstation" style="color: #52b459;">Station 1002</h2> </div>
-		   <div class="itemstation"> <div class="itemsicons"><img src="Images/store.png" style="width:29px; height:39px;"></div><p id="place" style="color: black;">Deli De Luca</p></div>
-		   <div class="itemstation"><div class="itemsicons"><img src="Images/placemark.png" style="width:29px; height:39px;"></div><p id="adress" style="color: black;">Karl Johansgata </p></div>
-		   <div class="itemstation"><div class="itemsicons"><img src="Images/recyclebin.png" style="width:29px; height:39px;"></div><p id="bagQauntity" style="color: black;">100%</p> </div>
-		   <div class="itemstation"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
-		   <img src="Images/station.jpeg" style="width:140px; height:170px; position: absolute;right: 65%; top: 30%;">
-		   <hr></hr>
-		</div> 
-
-	<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN_faR-aBh8QCN6JNZ7BPxh2mXYTN4RwY&libraries=geometry&callback=initMap"></script>
-	 <script src="js/index.js"></script>
-	 <script> src="js/firebase.js"</script>
-	 <script>src="js/login.js"</script>
-	 <script>src="js/member.js"</script>
-	 <script>src="js/redeem.js"</script>
-	 <script>src="js/soundclas.js"</script>
+	 <!--station overlay-->
 
 
-	 <style>
 
-@media screen and (max-width: 100%) {
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/mapbox/streets-v11', // style URL
+center: [10.743482389383416,59.908113321340466], // starting position
+zoom: 16 // starting zoom
+});
+ 
+// Add geolocate control to the map.
+/*map.addControl(
+new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+// When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+showUserHeading: true
+})
+);*/
+// Initialize the geolocate control.
+var geolocate = new mapboxgl.GeolocateControl({
+positionOptions: {
+    enableHighAccuracy: true
+  },
+  // When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true
+});
 
-#map {
-  width: 70%;
+// Add the control to the map.
+map.addControl(geolocate);
+map.on('load', function() {
+  geolocate.trigger(); //<- Automatically activates geolocation
+});
+
+
+//markers
+
+const geojson = {
+'type': 'FeatureCollection',
+'features': [
+{
+'type': 'Feature',
+'properties': {
+'message': 'Your here',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.800186028081384,59.93037787027734]
+}
+},
+{
+'type': 'Feature',
+'properties': {
+'message': 'Bar',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.799808823702392,59.93047248965732]
+}
+},
+{
+'type': 'Feature',
+'properties': {
+'message': 'Baz',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.775725586708518,59.92644802399647]
 }
 }
-	
-	.returnstationcontent{
-		display: grid;
-      grid-template-columns: 1fr;
-      align-content: flex-start;
-      gap: 1px;
-      padding: 3px;
-	
+]
+};
 
-	}
-	.itemstation{
-		text-align: center;
-		 float: left;
-		 display: table-cell;
-		 z-index: 1;
+//if messeage ==102 show text as etc
 
-	}
+var modal = document.getElementById("myModal");
 
-	.itemsicons{
-		float:left; /* add this */
-		position: relative;
-		left:34%;
-		width:23px; 
-		height:25px;
-		padding-right: 35px;
-		padding-bottom: 20px;
-		z-index: 1;
+			 // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+				modal.style.display = "none";
+			  }
 
-		
-	}
+			   // When the user clicks anywhere outside of the modal, close it
+			   window.onclick = function(event) {
+				if (event.target == modal) {
+				  modal.style.display = "none";
+				}
+			  }
+ 
+ 
+// Add markers to the map.
+for (const marker of geojson.features) {
+// Create a DOM element for each marker.
+const el = document.createElement('div');
+const width = marker.properties.iconSize[0];
+const height = marker.properties.iconSize[1];
+el.className = 'marker';
+el.style.backgroundImage = `url('logo.png')`;
+el.style.width = `${width}px`;
+el.style.height = `${height}px`;
+el.style.backgroundSize = '100%';
+ 
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+ 
+new mapboxgl.Marker(el)
+.setLngLat(marker.geometry.coordinates)
+.addTo(map);
+
+
+geolocate.on('geolocate', function(e) {
+      var lon = e.coords.longitude;
+      var lat = e.coords.latitude
+      var position = [lon, lat];
+      //console.log(position);
+
+	  
+var from = position //lng, lat 
+var to = marker.geometry.coordinates //lng, lat
+var modal = document.getElementById("myModal");
+
+var options = {
+        units: 'miles'
+      };
+
+	  var distance = turf.distance(to, from, options);
+	  console.log(distance)
+
+		el.addEventListener('click', () => {
+			if (distance >= 0.016 )
+	  {
+		//alert("too far")
+		modal.style.display = "block";
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+		return;
+
+	  }else{
+window.alert(marker.properties.message);
+}
+return;
+});
+	  
+});
 }
 
+//Firebase & navigation
 
-	 </style>
+const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+  };
+
+  firebase.initializeApp(firebaseConfig);
 
 
+  function openNav() {
+	document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<style>
+	.marker {
+display: block;
+border: none;
+border-radius: 10%;
+cursor: pointer;
+padding: 0;
+}
+</style>
+ 
 </body>
-</html>
