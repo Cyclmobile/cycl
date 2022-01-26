@@ -345,7 +345,8 @@ var span = document.getElementsByClassName("close")[0];
 
 	  }else{
 //window.alert(marker.properties.message);
-alertMsg()
+const toFar=alert("You are too far from this current recycle station")
+clearTimeout(toFar);
 return;
 }
 });
@@ -353,10 +354,6 @@ return;
 });
 }
 
-function alertMsg(){
-	alert ("You are too far from this current recycle station");
-	return;
-}
 
   //check if signed in
 
