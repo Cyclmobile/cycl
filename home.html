@@ -272,9 +272,29 @@
 					//Marker button
 
 					el.addEventListener('click', () => {
-						if (distance <= 0.016) {
+						if (distance > 0.016) {
 
 
+							var showAlert = true;
+
+							if (showAlert == true) {
+								alert("too far");
+								//el.removeEventListener('click');
+								showAlert = false;
+								return;
+							}
+							//window.alert(marker.properties.message);
+
+
+							//function bagcounter
+
+							// Get the <span> element that closes the modal
+							//stop the alert to show to many times
+							
+							return;
+
+						} else {
+							
 							switch (marker.properties.message) {
 								case '1002':
 									modal.style.display = "block";
@@ -369,25 +389,8 @@
 									});
 								}
 							}
-
-
-
-							//function bagcounter
-
-							// Get the <span> element that closes the modal
-							//stop the alert to show to many times
 							var span = document.getElementsByClassName("close")[0];
-							return;
 
-						} else {
-							var showAlert = true;
-
-							if (showAlert == true) {
-								alert("too far");
-								//el.removeEventListener('click');
-								showAlert = false;
-							}
-							//window.alert(marker.properties.message);
 						}
 					});
 
