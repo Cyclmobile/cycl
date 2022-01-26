@@ -192,6 +192,7 @@
 						'type': 'Feature',
 						'properties': {
 							'message': '1003',
+							'DistanceMsg':'You are too far from the this station',
 							'iconSize': [50, 50]
 						},
 						'geometry': {
@@ -274,23 +275,7 @@
 					el.addEventListener('click', () => {
 						if (distance > 0.016) {
 
-
-							var showAlert = true;
-
-							if (showAlert == true) {
-								alert("too far");
-								//el.removeEventListener('click');
-								showAlert = false;
-								return;
-							}
-							//window.alert(marker.properties.message);
-
-
-							//function bagcounter
-
-							// Get the <span> element that closes the modal
-							//stop the alert to show to many times
-							
+							window.alert(marker.properties.DistanceMsg)
 							return;
 
 						} else {
