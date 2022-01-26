@@ -238,11 +238,24 @@ var options = {
 	  //Marker button
 
 		el.addEventListener('click', () => {
-			if (distance <= 0.016 )
+			if (distance > 0.116 )
 	  {
 
+		alert("You are far from the current station");
+					loader.style.display="none"
+					span.onclick = function() {
+					modal.style.display = "none";
+					return;
+					}
 
-		switch (marker.properties.message) {
+
+	  }else{
+
+//window.alert(marker.properties.message);
+
+
+
+switch (marker.properties.message) {
                    case '1002':
 		modal.style.display = "block";
 		document.getElementById("returnstation").innerHTML="1002"
@@ -342,22 +355,11 @@ var options = {
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 		return;
-
-	 }else{
-
-//window.alert(marker.properties.message);
-	if (distance > 0.016 )
-	  { 
-		alert ("You are too far from this current recycle station")
-		return;
-
-	  }
 }
 });
 	  
 });
 }
-
 
 
 
