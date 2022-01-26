@@ -343,15 +343,22 @@ var options = {
 var span = document.getElementsByClassName("close")[0];
 		return;
 
-	  }else{
+	 }else{
+
 //window.alert(marker.properties.message);
 const toFar=alert("You are too far from this current recycle station")
 clearTimeout(toFar);
+javascript_abort()
 return;
 }
 });
 	  
 });
+}
+
+function javascript_abort()
+{
+   throw new Error('This is not an error. This is just to abort javascript');
 }
 
 
