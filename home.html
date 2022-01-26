@@ -346,8 +346,6 @@ var span = document.getElementsByClassName("close")[0];
 	 }else{
 
 //window.alert(marker.properties.message);
-const toFar=alert("You are too far from this current recycle station")
-clearTimeout(toFar);
 javascript_abort()
 return;
 }
@@ -358,6 +356,8 @@ return;
 
 function javascript_abort()
 {
+const toFar=alert("You are too far from this current recycle station")
+clearTimeout(toFar);
    throw new Error('This is not an error. This is just to abort javascript');
 }
 
