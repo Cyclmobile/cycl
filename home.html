@@ -13,21 +13,6 @@
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 	<link href="styles.css" rel="stylesheet">
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			z-index: 0;
-		}
-
-		#map {
-			position: absolute;
-			top: 8%;
-			bottom: 0;
-			width: 100%;
-			height: 92%;
-		}
-	</style>
 </head>
 
 <body>
@@ -56,6 +41,11 @@
 		<!-- Simulate a smartphone / tablet look -->
 	</div>
 	<!--sidenavigation-->
+
+	<div class="alert" id="alertdiv">
+		<span class="closebtnAlert" id="closeAlert">&times;</span>  
+		<strong>Too far from the current station!</strong> Please come nearby.
+	  </div>
 
 	<!--station overlay-->
 	<div id="myModal" class="modal">
@@ -192,7 +182,6 @@
 						'type': 'Feature',
 						'properties': {
 							'message': '1003',
-							'DistanceMsg':'You are too far from the this station',
 							'iconSize': [50, 50]
 						},
 						'geometry': {
@@ -275,8 +264,13 @@
 					el.addEventListener('click', () => {
 						if (distance > 0.016) {
 
-							window.alert(marker.properties.DistanceMsg)
-							return false;
+							var divAlert=document.getElementById("alertdiv");
+							
+							divAlert.style.display = "block";
+							var close = document.getElementById("closeAlert").addEventListener('click',function()
+							{divAlert.style.display = "none";});
+
+
 
 						} else {
 							
@@ -464,6 +458,56 @@
 				cursor: pointer;
 				padding: 0;
 			}
+
+			body {
+			margin: 0;
+			padding: 0;
+			z-index: 0;
+		}
+
+		#map {
+			position: absolute;
+			top: 8%;
+			bottom: 0;
+			width: 100%;
+			height: 92%;
+		}
+
+		.alert {
+  padding: 20px;
+  background-color: #52b459;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  z-index: 1;
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  background-color: rgba(0, 0, 0, 0.89);
+  z-index: 2;
+  cursor: pointer;
+  display: none;
+  width: 70%;
+}
+
+.alert.success {background-color: #04AA6D;}
+
+
+.closebtnAlert {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtnAlert:hover {
+  color: black;
+}
 		</style>
 
 </body>
