@@ -32,7 +32,7 @@
           <p class="message">Forgot your password? <a href="resetpass.html">Sign In</a></p>
         </form>
         <form class="login-form">
-          <input id="email"  type="text" placeholder="email" onkeydown="keyDown(event)"/>
+          <input id="email"  type="text" placeholder="email" onkeypress="return event.charCode != 32"/>
           <input id="passwrd" type="password" placeholder="password"/>
           <button id="login">login</button>
           <p class="message" id="loginmessage" class="mbmr" style="color:red;"></p>
