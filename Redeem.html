@@ -57,7 +57,7 @@
           <br>
           <br>
           
-          <input type="number" pattern="\d*" id="donateInput" style=" text-align: center;
+          <input oninput="this.value = Math.abs(this.value)" type="number" pattern="\d*" id="donateInput" style=" text-align: center;
         font-size:20px;  border-radius:5px; width: 140px; height:25px;;
         ; border-color: #52b459;"placeholder="amount" min="0">
         </div>
