@@ -24,6 +24,7 @@
     height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
     <div style="display: none;" id="label-container"></div>
     <h3  id="bottleshow"></h3>
+    <p id="isReady">Please point the camera top of the hole</p>
 
     <img src="Images/holdingphn.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;" alt="">
     <img src="Images/recyclehand.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;"  alt="">
@@ -238,6 +239,19 @@ amountcc.transaction(function(amount) {
                    case 'drop: 1.00':
                      amountcounter();
                   overlay();
+             
+                    }
+
+                    switch (classPrediction) {
+                      case 'dropReady: 0.00':
+
+                   case 'dropReady: 0.96':
+                   case 'dropReady: 0.97':
+                   case 'dropReady: 0.98':
+                   case 'dropReady: 0.99':
+                   case 'dropReady: 1.00':
+                     console.log(classPrediction)
+                    document.getElementById('isReady').innerHTML='Let it go!'
              
                     }
         }
