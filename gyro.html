@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accelerometer Demo</title>
+
+        <style>
+        .indicatorDot{
+            width: 30px;
+            height: 30px;
+            background-color: #ffab56;
+            border-radius: 50%;
+            position:fixed;
+        }
+        </style>
+
+    <script></script>
+    </head>
+    <body style="background-color:lightblue;">
+        <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+        <div class="indicatorDot" style="left:30%; top:30%;"></div>
+
+
+        <script>
+            var px = 50; // Position x and y
+var py = 50;
+var vx = 0.0; // Velocity x and y
+var vy = 0.0;
+var updateRate = 1/60; // Sensor refresh rate
+
+function getAccel(){
+    DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+       // Add a listener to get smartphone orientation 
+           // in the alpha-beta-gamma axes (units in degrees)
+            window.addEventListener('deviceorientation',(event) => {
+                // Expose each orientation angle in a more readable way
+                rotation_degrees = event.alpha;
+                frontToBack_degrees = event.beta;
+                leftToRight_degrees = event.gamma;
+                
+                // Update velocity according to how tilted the phone is
+                // Since phones are narrower than they are long, double the increase to the x velocity
+                vx = vx + leftToRight_degrees * updateRate*2; 
+                vy = vy + frontToBack_degrees * updateRate;
+                
+
+                console.log(frontToBack_degrees)
+                if (frontToBack_degrees < 4){
+                    alert ('position correct!')
+                }
+                // Update position and clip it to bounds
+                
+            });
+        }
+    });
+
+    getAccel()
+}
+
+</script>
+    </body>
+</html>
