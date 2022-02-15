@@ -105,7 +105,7 @@
     
     setTimeout(function(){
    
-     window.location.href="soundclas.html"
+     window.location.href="droptuto.html"
      }, 500);
     
     
@@ -129,7 +129,7 @@
       
   
       setTimeout(function(){
-        window.location.href="soundclas.html"
+        window.location.href="droptuto.html"
        }, 500);
       
       return
@@ -155,7 +155,7 @@
       
   
       setTimeout(function(){
-        window.location.href="soundclas.html"
+        window.location.href="droptuto.html"
        }, 500);
       
       
@@ -177,7 +177,7 @@
       });
     
       setTimeout(function(){
-        window.location.href="soundclas.html"
+        window.location.href="droptuto.html"
        }, 500);
       
       
