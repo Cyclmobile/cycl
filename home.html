@@ -13,6 +13,9 @@
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 	<link href="styles.css" rel="stylesheet">
+	<link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+	<meta name="theme-color" content="white" />
+	<script src="js/main.js"></script>
 	<style>
 		#map {
 			position: absolute;
@@ -64,7 +67,7 @@
 				border-radius: 10%;
 				cursor: pointer;
 				padding: 0;
-				 z-index: 1; 
+				z-index: 1; 
 			}
 	</style>
 </head>
@@ -316,7 +319,7 @@
 					//Marker button
 
 					el.addEventListener('click', () => {
-						if (distance > 1.016) {
+						if (distance > 0.016) {
 
 							var divAlert=document.getElementById("alertdiv");
 							
