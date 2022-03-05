@@ -104,11 +104,6 @@
 		<strong>Too far from the current station!</strong> Please come nearby.
 	  </div>
 
-	  <div class="alert" id="alertfullbag">
-		<span class="closebtnAlert" id="closeAlertbag">&times;</span>  
-		<strong>The bag is full. Please contact employee or use another station</strong>
-	  </div>
-
 	<!--station overlay-->
 	<div id="myModal" class="modal">
 
@@ -324,7 +319,7 @@
 					//Marker button
 
 					el.addEventListener('click', () => {
-						if (distance > 0.1) {
+						if (distance > 0.016) {
 
 							var divAlert=document.getElementById("alertdiv");
 							
@@ -335,6 +330,7 @@
 
 
 						} else {
+							
 							switch (marker.properties.message) {
 								case '1002':
 									modal.style.display = "block";
@@ -358,7 +354,6 @@
 									document.getElementById("adress").innerHTML = "Økern"
 									bagcount()
 									break;
-									divAlert.style.display = "none";
 
 							}
 							//alert("too far") 
@@ -416,20 +411,13 @@
 											scnrbtn.disabled = true;
 											modal.style.display = "none";
 											scnrbtn.textContent = "this station is full";
-											var divAlert=document.getElementById("alertfullbag");
-							
-											divAlert.style.display = "block";
-											var close = document.getElementById("closeAlertbag").addEventListener('click',function()
-											{divAlert.style.display = "none";});
-											
+											alert("The bag is full. Please contact employee or use another station");
 											span.onclick = function () {
 												modal.style.display = "none";
 
 											}
-
 											return;
 										} else {
-											divAlert.style.display = "none";
 											modal.style.display = "block";
 											return bagcountr;
 										}
