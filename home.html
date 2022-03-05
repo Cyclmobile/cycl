@@ -104,6 +104,11 @@
 		<strong>Too far from the current station!</strong> Please come nearby.
 	  </div>
 
+	  <div class="alert" id="alertfullbag">
+		<span class="closebtnAlert" id="closeAlert">&times;</span>  
+		<strong>The bag is full. Please contact employee or use another station</strong>
+	  </div>
+
 	<!--station overlay-->
 	<div id="myModal" class="modal">
 
@@ -330,7 +335,7 @@
 
 
 						} else {
-							
+							divAlert.style.display = "none";
 							switch (marker.properties.message) {
 								case '1002':
 									modal.style.display = "block";
@@ -411,13 +416,20 @@
 											scnrbtn.disabled = true;
 											modal.style.display = "none";
 											scnrbtn.textContent = "this station is full";
-											alert("The bag is full. Please contact employee or use another station");
+											var divAlert=document.getElementById("alertfullbag");
+							
+											divAlert.style.display = "block";
+											var close = document.getElementById("closeAlert").addEventListener('click',function()
+											{divAlert.style.display = "none";});
+											
 											span.onclick = function () {
 												modal.style.display = "none";
 
 											}
+
 											return;
 										} else {
+											divAlert.style.display = "none";
 											modal.style.display = "block";
 											return bagcountr;
 										}
