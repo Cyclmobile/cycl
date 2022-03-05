@@ -105,7 +105,7 @@
 	  </div>
 
 	  <div class="alert" id="alertfullbag">
-		<span class="closebtnAlert" id="closeAlert">&times;</span>  
+		<span class="closebtnAlert" id="closeAlertbag">&times;</span>  
 		<strong>The bag is full. Please contact employee or use another station</strong>
 	  </div>
 
@@ -419,7 +419,7 @@
 											var divAlert=document.getElementById("alertfullbag");
 							
 											divAlert.style.display = "block";
-											var close = document.getElementById("closeAlert").addEventListener('click',function()
+											var close = document.getElementById("closeAlertbag").addEventListener('click',function()
 											{divAlert.style.display = "none";});
 											
 											span.onclick = function () {
