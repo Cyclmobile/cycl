@@ -105,7 +105,7 @@
 	  </div>
 	
 	<div class="alert" id="fullbagAlert">
-		<span class="closebtnAlert" id="closeAlert">&times;</span>  
+		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>  
 		<strong>Please contact employee or use another station</strong>.
 	  </div>
 
@@ -421,7 +421,7 @@
 											var bagfullAlert=document.getElementById("fullbagAlert");
 							
 							bagfullAlert.style.display = "block";
-							var close = document.getElementById("closeAlert").addEventListener('click',function()
+							var closeAlertBag = document.getElementById("closeFullbagAlert").addEventListener('click',function()
 							{bagfullAlert.style.display = "none";});
 											span.onclick = function () {
 												modal.style.display = "none";
