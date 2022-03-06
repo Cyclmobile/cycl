@@ -71,7 +71,7 @@ firebase.auth().onAuthStateChanged(FirebaseUser => {
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCoupon();
-        activate.textContent="Coupon activated"
+        activate.textContent="activated"
 
         var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -98,7 +98,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
          activatedCouponSoda();
-       activateSodaCoupon.textContent="Coupon activated"
+       activateSodaCoupon.textContent="Activated"
 
           var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -125,7 +125,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCouponFood();
-        activateFoodCoupon.textContent="Coupon activated";
+        activateFoodCoupon.textContent="Activated";
 
            var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -242,8 +242,8 @@ var downloadTimer = setInterval(function(){
     activate.addEventListener("click",function(){
       activate.disabled=true;
       setTimeout(() => {
-        document.getElementById('overlaycouponcoffee').style.display='none';
-      }, 10000);
+        window.location.href="redeem.html"
+            }, 10000);
       amountcounterdatabase()
     });
 
@@ -251,8 +251,8 @@ var downloadTimer = setInterval(function(){
       activateSodaCoupon.disabled=true;
       couponSoda()
       setTimeout(() => {
-        document.getElementById('overlaycouponsoda').style.display='none';
-      }, 10000);
+        window.location.href="redeem.html"
+            }, 10000);
       //amountcounterdatabase()
     });
 
@@ -260,8 +260,7 @@ var downloadTimer = setInterval(function(){
       activateFoodCoupon.disabled=true;
       couponfood();
       setTimeout(() => {
-        document.getElementById('overlaycouponfood').style.display='none';
-      }, 10000);
+        window.location.href="redeem.html" }, 10000);
     });
 
 
