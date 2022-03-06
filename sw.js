@@ -1,4 +1,4 @@
-let cacheName = "my-first-pwa";
+let cacheName = "Cycl";
 let filesToCache = ["/", "/home.html", "/css/style.css", "/js/home.js"];
 
 /* Start the service worker and cache all of the app's content */
