@@ -242,7 +242,7 @@ var downloadTimer = setInterval(function(){
     activate.addEventListener("click",function(){
       activate.disabled=true;
       setTimeout(() => {
-        window.location.href="redeem.html"
+        window.location.href="Redeem.html"
             }, 10000);
       amountcounterdatabase()
     });
@@ -251,7 +251,7 @@ var downloadTimer = setInterval(function(){
       activateSodaCoupon.disabled=true;
       couponSoda()
       setTimeout(() => {
-        window.location.href="redeem.html"
+        window.location.href="Redeem.html"
             }, 10000);
       //amountcounterdatabase()
     });
@@ -260,7 +260,7 @@ var downloadTimer = setInterval(function(){
       activateFoodCoupon.disabled=true;
       couponfood();
       setTimeout(() => {
-        window.location.href="redeem.html" }, 10000);
+        window.location.href="Redeem.html" }, 10000);
     });
 
 
