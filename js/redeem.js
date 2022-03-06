@@ -16,7 +16,9 @@
   }
 
   loadRedeem()
-	
+
+
+
   firebase.initializeApp(firebaseConfig);
 
 
@@ -25,11 +27,18 @@ firebase.auth().onAuthStateChanged(FirebaseUser => {
 
     var amountcounter = 0;
     var donated= 0;
+
+    inputDonate.on("input", function() {
+      if (/^0/.test(this.value)) {
+        this.value = this.value.replace(/^0/, "")
+      }
+    })
     
 
     function donation_cc(){
       inputDonate = parseInt(document.getElementById("donateInput").value)
       var inputDonateInt = parseInt(inputDonate);
+      
 
        //var inputDonate=parseInt(document.getElementById("donateInput").value);
 
@@ -69,7 +78,7 @@ firebase.auth().onAuthStateChanged(FirebaseUser => {
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCoupon();
-        activate.textContent="Coupon activated"
+        activate.textContent="activated"
 
         var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -96,7 +105,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
          activatedCouponSoda();
-       activateSodaCoupon.textContent="Coupon activated"
+       activateSodaCoupon.textContent="activated"
 
           var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -123,7 +132,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCouponFood();
-        activateFoodCoupon.textContent="Coupon activated";
+        activateFoodCoupon.textContent="activated";
 
            var timeleft = 10;
 var downloadTimer = setInterval(function(){
