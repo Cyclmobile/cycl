@@ -27,18 +27,11 @@ firebase.auth().onAuthStateChanged(FirebaseUser => {
 
     var amountcounter = 0;
     var donated= 0;
-
-    inputDonate.on("input", function() {
-      if (/^0/.test(this.value)) {
-        this.value = this.value.replace(/^0/, "")
-      }
-    })
     
 
     function donation_cc(){
       inputDonate = parseInt(document.getElementById("donateInput").value)
       var inputDonateInt = parseInt(inputDonate);
-      
 
        //var inputDonate=parseInt(document.getElementById("donateInput").value);
 
@@ -233,23 +226,23 @@ var downloadTimer = setInterval(function(){
     });
 
     backbtnoverlay.addEventListener("click",function(){
-      window.location.href="Redeem.html"
+      document.getElementById('overlaycouponcoffee').style.display='none';
       //hide overlay
     });
     sodaBackbtnOverlays.addEventListener("click",function(){
-      window.location.href="Redeem.html"
+      document.getElementById('overlaycouponsoda').style.display='none';
       //hide overlay
     });
 
     backbtnOverlayFood.addEventListener("click",function(){
-      window.location.href="Redeem.html"
+      document.getElementById('overlaycouponfood').style.display='none';
       //hide overlay
     });
 
     activate.addEventListener("click",function(){
       activate.disabled=true;
       setTimeout(() => {
-        window.location.href="Redeem.html"
+        document.getElementById('overlaycouponcoffee').style.display='none';
       }, 10000);
       amountcounterdatabase()
     });
@@ -258,7 +251,7 @@ var downloadTimer = setInterval(function(){
       activateSodaCoupon.disabled=true;
       couponSoda()
       setTimeout(() => {
-        window.location.href="Redeem.html"
+        document.getElementById('overlaycouponsoda').style.display='none';
       }, 10000);
       //amountcounterdatabase()
     });
@@ -267,7 +260,7 @@ var downloadTimer = setInterval(function(){
       activateFoodCoupon.disabled=true;
       couponfood();
       setTimeout(() => {
-        window.location.href="Redeem.html"
+        document.getElementById('overlaycouponfood').style.display='none';
       }, 10000);
     });
 
