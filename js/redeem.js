@@ -78,7 +78,7 @@ firebase.auth().onAuthStateChanged(FirebaseUser => {
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCoupon();
-        activate.textContent="activated"
+        activate.textContent="Coupon activated"
 
         var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -105,7 +105,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
          activatedCouponSoda();
-       activateSodaCoupon.textContent="activated"
+       activateSodaCoupon.textContent="Coupon activated"
 
           var timeleft = 10;
 var downloadTimer = setInterval(function(){
@@ -132,7 +132,7 @@ var downloadTimer = setInterval(function(){
         alert("you dont have enough Cycl Coins")
       }else {
         activatedCouponFood();
-        activateFoodCoupon.textContent="activated";
+        activateFoodCoupon.textContent="Coupon activated";
 
            var timeleft = 10;
 var downloadTimer = setInterval(function(){
