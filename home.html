@@ -188,6 +188,7 @@
 
 			mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
 			const map = new mapboxgl.Map({
+				flyTo: { duration: 0 },
 				container: 'map', // container ID
 				style: 'mapbox://styles/mapbox/streets-v11', // style URL
 				center: [10.743482389383416, 59.908113321340466], // starting position
