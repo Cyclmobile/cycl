@@ -26,30 +26,34 @@
 
   <img src="Images/back.png" id="backbtn" style="width:40px; height:35px; position: relative; top: 60px; z-index: 1;">
 
-    <div class="container">
+    <div class="container" style="position: absolute;">
       <ul class="progressbar">
         <li class="activeprgrs">Scan</li>
         <li>Return</li>
         <li>Recycled</li>
       </ul>
+      </div>
 
       <div class="completedclass">
-        <video id="video" style="border: 2px solid #52b459; width: 270px;
-        height: 350px; "autoplay playsInline muted></video>
+        <video id="video" autoplay playsInline muted></video>
         <div class="scan-code">
           <span class="scan-code__angle scan-code__angle--top"></span>
           <span class="scan-code__angle scan-code__angle--bottom"></span>
         </div>
-    <input id="rezlt" placeholder="barcode" width="100%"></input>     
-    <button id="submitbarcodebtn" style="background-color: #52b459; border-radius: 10px; border: 0px; width: 100%;">submit</button>
-      </div>
-      <img  src="Images/bottlescan.png"/>
-      <img  src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
+        <input style="left: 20%; position: absolute; top: 50%;" id="rezlt" placeholder="barcode" width="100%"></input>     
 
+        <button id="submitbarcodebtn" style="background-color: #52b459; border-radius: 10px; border: 0px; width: 100%;
+        position: absolute;
+        bottom: 50%;">submit</button>
+        <img style="left:35%; position: relative;" src="Images/bottlescan.png"/>
+        <img style="left:40%; position: relative;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
+  
+      </div>
+      
       <hr style="border-top: 3px solid grey; width: 100%;">
 
      
-    </div>
+    
    
 
 <!--The library in the button has to stay upgraded to work-->
