@@ -106,7 +106,7 @@
 	
 	<div class="alert" id="fullbagAlert">
 		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>  
-		<strong>This station is full</strong> Please contact employee or use another station.
+		<strong>This station is fyll</strong> Please contact employee or use another station.
 	  </div>
 
 	<!--station overlay-->
@@ -374,7 +374,7 @@
 										checkbag()
 										var bagcount = firebase.database().ref("place/").child("bag");
 										bagcount.transaction(function (bagcountr) {
-											return bagcountr + 1;
+											return bagcountr ++;
 										});
 										return;
 
@@ -415,10 +415,7 @@
 
 
 										if (bagcountr >= 500) {
-											var scnrbtn = document.getElementById("scannbtn");
-											scnrbtn.disabled = true;
 											modal.style.display = "none";
-											scnrbtn.textContent = "this station is full";
 											var bagfullAlert=document.getElementById("fullbagAlert");
 							
 							bagfullAlert.style.display = "block";
