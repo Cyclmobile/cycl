@@ -374,7 +374,8 @@
 										checkbag()
 										var bagcount = firebase.database().ref("place/").child("bag");
 										bagcount.transaction(function (bagcountr) {
-											return bagcountr ++;
+											return bagcountr + 1;
+											//return
 										});
 										return;
 
