@@ -106,7 +106,7 @@
 	
 	<div class="alert" id="fullbagAlert">
 		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>  
-		<strong>This station is fyll</strong> Please contact employee or use another station.
+		<strong>This station is full</strong> Please contact employee or use another station.
 	  </div>
 
 	<!--station overlay-->
@@ -188,7 +188,6 @@
 
 			mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
 			const map = new mapboxgl.Map({
-				flyTo: { duration: 0 },
 				container: 'map', // container ID
 				style: 'mapbox://styles/mapbox/streets-v11', // style URL
 				center: [10.743482389383416, 59.908113321340466], // starting position
@@ -375,7 +374,6 @@
 										var bagcount = firebase.database().ref("place/").child("bag");
 										bagcount.transaction(function (bagcountr) {
 											return bagcountr + 1;
-											//return
 										});
 										return;
 
@@ -416,7 +414,10 @@
 
 
 										if (bagcountr >= 500) {
+											var scnrbtn = document.getElementById("scannbtn");
+											scnrbtn.disabled = true;
 											modal.style.display = "none";
+											scnrbtn.textContent = "this station is full";
 											var bagfullAlert=document.getElementById("fullbagAlert");
 							
 							bagfullAlert.style.display = "block";
@@ -508,6 +509,18 @@
 
 
 
+
+
+
+
+
+
+		</script>
+
+
+</body>
+
+</html>
 
 
 
