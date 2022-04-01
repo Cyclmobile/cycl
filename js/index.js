@@ -56,9 +56,9 @@ const firebaseConfig = {
 
 
 			 if (bagcount >= 500 ) {
-				 var scnrbtn=document.getElementById("scannbtn");
-				 scnrbtn.disabled=true;
-				 scnrbtn.textContent="this station is full";
+				//  var scnrbtn=document.getElementById("scannbtn");
+				//  scnrbtn.disabled=true;
+				//  scnrbtn.textContent="this station is full";
 				 alert("The bag is full. Please contact employee or use another station");
 				 span.onclick = function() {
 					 modal.style.display = "none";
