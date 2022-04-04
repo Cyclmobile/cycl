@@ -144,11 +144,10 @@ for (const marker of geojson.features) {
     var distance = turf.distance(to, from, options);
     console.log(distance);
 
-    //Marker button
-    //i think the whole el is on listener
+    //Marker onclick
     //gives wrong output for bagcount
     el.addEventListener("click", () => {
-      if (distance > 1.036) {
+      if (distance < 1.036) {
         var divAlert = document.getElementById("alertdiv");
         //gi den 3 sec delay
         divAlert.style.display = "block";
