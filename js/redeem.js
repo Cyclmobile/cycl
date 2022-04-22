@@ -50,81 +50,42 @@ const tasks = [
   },
 ];
 
-
-firebase.auth().onAuthStateChanged(function(user) {
-  
-    console.log(user);
-    let uid = firebase.auth().currentUser.uid;
-    let newBalance=0;
-    var BalanceDb = firebase.database().ref().child(uid).child("users").child("amount");
-
-BalanceDb.on("value", function(snapshot) {
-  newBalance= snapshot.val();
-   console.log(snapshot.val());
-   document.getElementById("amountaccount").innerHTML = newBalance + " CC";
-   console.log(newBalance);
-}, function (error) {
-   console.log("Error: " + error.code);
-});
-
-    // function refreshResults() {
-    //   document.getElementById("amountaccount").innerHTML =
-    //   newBalance + " CC";
-    //   if (newBalance == 70) {
-    //     //alert("you have 70")
-    //     console.log(newBalance);
-    //   } else {
-    //     newBalance = 0;
-    //   }
-    // }
-    // User is signed in.
- 
-});
-
-
-
-//make it so it only takes from amount
-function amountCounterDatabase(cost,coupon) {
-
+firebase.auth().onAuthStateChanged(function (user) {
+  console.log(user);
   let uid = firebase.auth().currentUser.uid;
+  let newBalance = 0;
+  var BalanceDb = firebase
+    .database()
+    .ref()
+    .child(uid)
+    .child("users")
+    .child("amount");
 
-      const costNumber = parseInt(cost.replace(" cc", ""), 10);
-      var amountcounterFirebase= firebase.database().ref().child(uid).child('users').child("amount");
-      amountcounterFirebase.transaction(function(amountcounter) {
-        if (  amountcounter < costNumber ) {
-          coupon==false
-        alert("Insufficient account balance")
-      }else {
-        coupon==true
-        return  amountcounter - costNumber;
-        
-        
+  BalanceDb.on(
+    "value",
+    function (snapshot) {
+      newBalance = snapshot.val();
+      console.log(snapshot.val());
+      document.getElementById("amountaccount").innerHTML = newBalance + " CC";
+      console.log(newBalance);
+    },
+    function (error) {
+      console.log("Error: " + error.code);
+    }
+  );
 
-      }
-    });
-
-  // var uid = firebase.auth().currentUser.uid;
-  // let amountCounterFirebase;
-  // let newAmount;
-  // alert('assax')
-
-  // const amountRef = firebase.database().ref(`${uid}/users/amount`);
-
-  // const a = amountRef.on("value", (snap) => {
-  //   const amount = snap.val();
-  //   amountCounterFirebase = amount;
-  //   const costNumber = parseInt(cost.replace(" cc", ""), 10);
-
-  //   if (amount < 1) {
-  //     return alert("you dont have enough Cycl Coins");
+  // function refreshResults() {
+  //   document.getElementById("amountaccount").innerHTML =
+  //   newBalance + " CC";
+  //   if (newBalance == 70) {
+  //     //alert("you have 70")
+  //     console.log(newBalance);
   //   } else {
-  //     newAmount = amount - costNumber;
-  //     const update = {};
-  //     update[`${uid}/users/`] = { amount: newAmount };
-  //     firebase.database().ref().update(update);
+  //     newBalance = 0;
   //   }
-  // });
-}
+  // }
+  // User is signed in.
+});
 
 //hva er index?
 // tasks.map((task, index) => {
@@ -142,78 +103,73 @@ function amountCounterDatabase(cost,coupon) {
 // `;
 // });
 
-function showDetail(task, coupon, index) {
-  const data = JSON.parse(decodeURIComponent(task));
-  if (coupon==true) {
-    overlayCoupon.innerHTML = `
-    <div class="cardoverlay">
+function amountCounterDatabase(cost) {
+  const uid = firebase.auth().currentUser.uid;
+  const amountRef = firebase
+    .database()
+    .ref(`${uid}/users/amount`)
+    .once("value")
+    .then((snap) => {
+      const amount = snap.val();
+      const costNumber = parseInt(cost.replace(" cc", ""), 10);
+      if (amount < costNumber) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  return amountRef;
+}
 
-    <span id="backbtnoverlay" onclick="closeCard()" style="position: relative;left: 40%;">&times;</span> 
-    <img
-      id="aproveImg"
-      src='Images/activated.png'
-      style="
-        width: 90px;
-        height: 90px;
-        position: absolute;
-        top: 10%;
-        object-fit: cover;
-        object-position: 50% 50%;
-        display: block;
-      "
-    />
-    <h4 style="text-align: center"><b>${data.title}</b></h4>
-    <img
-      class="imgclass"
-      src=${data.image}
-      alt="Avatar"
-      style="width: 100%"
-    />
-    <h2 style="text-align: center">${data.price}</h2>
-    <p style="text-align: center">${data.description}</p>
-   
-              
-    <p style={{margin-bottom: -200px}}>COUPON: ${coupon}</p>
-    <button class="btn" id="activate" onclick="alert('Activated')" >Activated</button>
-    <div id="countdown"></div>
-  </div>
-    `;
-  } else {
+async function showDetail(task, coupon, index) {
+  const isPurchased = coupon !== "" && coupon !== null;
+  const data = JSON.parse(decodeURIComponent(task));
+  const canPurchase = await amountCounterDatabase(data.price);
+
+  if (canPurchase) {
     overlayCoupon.innerHTML = `
-      <div class="cardoverlay">
-  
-      <span id="backbtnoverlay" onclick="closeCard()" style="position: relative;left: 40%;">&times;</span> 
-      <img 
-      onclick="aprovedeimg()"
-        id="aproveImg"
-        src="Images/activated.png"
-        style="
-          width: 90px;
-          height: 90px;
-          position: absolute;
-          top: 10%;
-          object-fit: cover;
-          object-position: 50% 50%;
-          display: none;
-        "
-      />
-      <h4 style="text-align: center"><b>${data.title}</b></h4>
-      <img
-        class="imgclass"
-        src=${data.image}
-        alt="Avatar"
-        style="width: 100%"
-      />
-      <h2 style="text-align: center">${data.price}</h2>
-      <p style="text-align: center">${data.description}</p>
-      <p style="text-align: center"> ${data.list} </p>
-                
-      <button class="btn" id="activate" onclick="getCoupon('${task}', '${index}',)" >Activate</button>
-      <div id="countdown"></div>
-    </div>
-      `;
+        <div class="cardoverlay">
+        <span id="backbtnoverlay" onclick="closeCard()" style="position: relative;left: 40%;">&times;</span> 
+        <h4 style="text-align: center"><b>${data.title}</b></h4>
+        <img 
+          onclick="aprovedeimg()"
+          id="aproveImg"
+          src="Images/activated.png"
+          style="
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            top: 8%;
+            object-fit: cover;
+            object-position: 50% 50%;
+            display: ${isPurchased ? `block` : `none`};
+          "
+        />
+        <img
+          class="imgclass"
+          src=${data.image}
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <h2 style="text-align: center">${data.price}</h2>
+        <p style="text-align: center">${data.description}</p>
+        ${
+          !isPurchased
+            ? `<p style="text-align: center"> ${data.list} </p>`
+            : `<p style={{margin-bottom: -200px}}>COUPON: ${coupon}</p>`
+        }
+        <button class="btn" id="activate" onclick=${
+          !isPurchased
+            ? `getCoupon('${task}','${index}')`
+            : `alert('Already Activated')`
+        }>${isPurchased ? `Activated` : `Activate`}</button>
+        <div><h4 style="text-align: center" id="timer"></h4></div>
+      </div>
+        `;
+    overlayCoupon.style.display = "block";
+  } else {
+    alert("You don’t have enough Cycl coins");
   }
-  overlayCoupon.style.display = "block";
 }
 
 function aprovedeimg() {
@@ -228,8 +184,22 @@ function closeCard() {
   imgAproved.style.display = "none";
 }
 
+function purchaseItem(cost) {
+  let uid = firebase.auth().currentUser.uid;
+  const amountcounterFirebase = firebase
+    .database()
+    .ref()
+    .child(uid)
+    .child("users")
+    .child("amount");
+  amountcounterFirebase.transaction(function (counterAmount) {
+    return counterAmount - cost;
+  });
+}
+
 async function getCoupon(task, type) {
   const decodeTask = JSON.parse(decodeURIComponent(task));
+  const cost = parseInt(decodeTask.price.replace(" cc", ""), 10);
   const data = {
     market: "NO",
     programId: 1657214553,
@@ -237,45 +207,62 @@ async function getCoupon(task, type) {
   };
 
   //type definerer hvilket kort innholdet skal være i
-  const adVendor =
-    type === "1"
-      ? "https://api.adtraction.com/v2/affiliate/offers/?token=486DD3496AAA36C1B9D6D7F92C66A3073084E57F"
-      : type == "2"
-      ? ""
-      : "";
-
-      //hvordan kjøre kortene uten coupon
-
-  if (adVendor.length > 1) {
-    const req = await fetch(adVendor, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  if (type === "1") {
+    const req = await fetch(
+      "https://api.adtraction.com/v2/affiliate/offers/?token=486DD3496AAA36C1B9D6D7F92C66A3073084E57F",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     const res = await req.json();
     if (req.status === 200) {
-      const date =new Date(res[0].validTo)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-      const day = date.getDate()
-      const string= "Click here to use your coupon code on checkout";
-      const website= string.link("https://adtr.co/X9ovTH");
-      console.log("res::", day);
+      const date = new Date(res[0].validTo);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const string = "Click here to use your coupon code on checkout";
+      const website = string.link("https://adtr.co/X9ovTH");
 
-      showDetail(task, res[0].offerCoupon + ": VALID TO: " + `${year}/${month}/${day}` +
-      ' '+ website);
+      showDetail(
+        task,
+        res[0].offerCoupon +
+          ": VALID TO: " +
+          `${year}/${month}/${day}` +
+          " " +
+          website
+      );
+      startTimer(10, "timer", cost);
     } else {
       return alert("Something went wrong, please try again!");
     }
-    // validTo: console.log(res[4]);
   } else {
     showDetail(task, `successfully charged ${decodeTask.price}`);
+    startTimer(10, "timer", cost);
   }
+}
 
-  const final = amountCounterDatabase(decodeTask.price);
-  console.log("FINAL::", final);
+function startTimer(duration, id, cost) {
+  var timer = duration,
+    minutes,
+    seconds;
+  var timeIntervalRef = setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById(id).innerHTML = minutes + ":" + seconds;
+    if (--timer < 0) {
+      purchaseItem(cost);
+      clearInterval(timeIntervalRef);
+      overlayCoupon.style.display = "none";
+    }
+  }, 1000);
 }
 
 //FIREBASEUSER
@@ -299,7 +286,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       `;
     });
 
-  
     // User is signed in.
   } else {
     console.log("noUser");
