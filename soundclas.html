@@ -11,24 +11,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  
 
-    <div class="container">
+    <div style="width: 100%; height: 100%;" id="webcam-container" class="completedclass">
+      <div class="container" style="position: absolute; z-index: 1;">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs">Return</li>
+          <li class="activeprgrs"> Return</li>
           <li>Recycled</li>
         </ul>
-      </div>
+        
+        </div>
+        <div class="overlaycameraimg">
+          <div class="scan-animation">
+            <span class="scan-animation__angle scan-animation__angle--top"></span>
+            <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+          </div>
+        </div>
+        <h2 id="text2" style="color:#52b459; display: none; position: absolute; bottom: 25%;
+        left: 20%;"> Aim for the hole</h2>
+        <button id="backbtn" style="bottom: 20%;left: 30%;  background-color: rgba(0, 128, 0, 0.171); width: 180px;
+        height: 40px;
+        border-radius: 25px; position: absolute;
+        font-size: 20px; border: none; z-index: 1;
+        color: white;" id="homebtn">Cancel</button> 
+      <div style="display: none;" id="label-container"></div>
+      <h3  style="display: none;" id="bottleshow"></h3>
+    </div>
     
-    <div style="border: 2px solid #52b459; width: 270px;
-    height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
-    <div style="display: none;" id="label-container"></div>
-    <h3  id="bottleshow"></h3>
+  
 
-    <img src="Images/holdingphn.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;" alt="">
-    <img src="Images/recyclehand.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;"  alt="">
+   
+        
+    
+  </div>
+   
 
-    <div id="overlaystation" style="background-color: white;"> 
+    <div id="overlaystation"> 
         <div class="container">
           <ul class="progressbar">
             <li class="activeprgrs">Scan</li>
@@ -38,10 +57,9 @@
         </div>
   
         <div class="completedclass">
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <lottie-player style="position: relative;left: 2%;" src="https://assets6.lottiefiles.com/datafiles/NEtXbCwaq9H5isJ/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>           
-            <h2 style="color: #52b459;" > Recycling completed </h2>
-          <h2 style="color: #52b459;" > You got 2 CC </h2>
+          <img src="Images/recycledone.png" alt="">
+          <h2 style="color: white;" > Recycling completed </h2>
+          <h2 style="color: white;" > You got 2 CC </h2>
           <button style="  background-color: green; width: 180px;
           height: 40px;
           border-radius: 25px;
@@ -50,7 +68,7 @@
         </div>
         
       </div>
-      <div id="loading" class="lds-ellipsis" style="display: none;"><div></div><div></div><div></div><div></div></div>
+      <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   
       <div class="loadingsoundclass">
       <h1 id="text1" style="color:#52b459;"> Loading... </h1>
@@ -59,12 +77,6 @@
         <br>
         <br>
         <br>
-        <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
-        <button id="backbtn" style="  background-color: green; width: 180px;
-        height: 40px;
-        border-radius: 25px;
-        font-size: 20px; border: none;
-        color: white;" id="homebtn">Cancel</button>   
       </div>
 
 
@@ -158,8 +170,8 @@ amountcc.transaction(function(amount) {
 
         // Convenience function to setup a webcam
         const flip = false; // whether to flip the webcam
-        const width = 270;
-        const height = 200;
+        const width = 550;
+        const height = 550;
         webcam = new tmImage.Webcam(width, height); // width, height, flip
         await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
@@ -226,7 +238,7 @@ amountcc.transaction(function(amount) {
                 load()
 
                 switch (classPrediction) {
-                   case 'drop: 0.95':
+                  case 'drop: 0.95':
                    case 'drop: 0.96':
                    case 'drop: 0.97':
                    case 'drop: 0.98':
@@ -240,6 +252,89 @@ amountcc.transaction(function(amount) {
     }
 </script>
 
+<style>
+  .overlaycameraimg {
+  position:absolute;
+  top:0;
+  z-index:25;
+  text-align:center;
+  bottom: 15%; 
+  width: 50%;
+}
+
+img {
+  display:inline-block;
+}
+
+.scan-animation {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 135px;
+    height: 110px;
+    z-index: 1;
+    left: 100%;
+    top:40%;
+   
+  }
+  
+  .scan-animation__angle:before,
+  .scan-animation__angle:after {
+    content: "";
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: #52b459;
+    border-width: 0px;
+    z-index: 1;
+ 
+  }
+  
+  .scan-animation__angle:before {
+    border-left-width: 6px;
+    left: 0;
+    
+  }
+  
+  .scan-animation__angle:after {
+    border-right-width: 6px;
+    right: 0;
+
+
+  }
+  
+  .scan-animation__angle--top:before,
+  .scan-animation__angle--top:after {
+    top: 0;
+    border-top-width: 6px;
+
+
+  }
+  
+  .scan-animation__angle--bottom:before,
+  .scan-animation__angle--bottom:after {
+    bottom: 0;
+    border-bottom-width: 6px;
+  }
+  
+  .scan-animation__angle--top:before {
+    border-top-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--top:after {
+    border-top-right-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:before {
+    border-bottom-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:after {
+    border-bottom-right-radius: 50px;
+  }
+</style>
 
 </body>
 </html>
+
