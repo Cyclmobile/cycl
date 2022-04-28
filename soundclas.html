@@ -238,13 +238,30 @@ amountcc.transaction(function(amount) {
                 load()
 
                 switch (classPrediction) {
-                  case 'drop: 0.95':
-                   case 'drop: 0.96':
-                   case 'drop: 0.97':
-                   case 'drop: 0.98':
-                   case 'drop: 0.99':
-                   case 'drop: 1.00':
+                   case 'dropBlck: 0.95':
+                   case 'dropBlck: 0.96':
+                   case 'dropBlck: 0.97':
+                   case 'dropBlck: 0.98':
+                   case 'dropBlck: 0.99':
+                   case 'dropBlck: 1.00':
                      amountcounter();
+                  overlay();
+             
+                    }
+
+                    switch (classPrediction) {
+                  //  case 'hold: 0.90':
+                  //  case 'hold: 0.91':
+                  //  case 'hold: 0.92':
+                  //  case 'hold: 0.93':
+                  //  case 'hold: 0.94':
+                   case 'dropYt: 0.95':
+                   case 'dropYt: 0.96':
+                   case 'dropYt: 0.97':
+                   case 'dropYt: 0.98':
+                   case 'dropYt: 0.99':
+                   case 'dropYt: 1.00':
+                   amountcounter();
                   overlay();
              
                     }
