@@ -143,8 +143,9 @@
   }
 
   .closesidenav{
-
-    font-size:30px;cursor:pointer; 
+    padding: 10px;
+    font-size:30px;
+    cursor:pointer; 
     color: #52b459;
     width: 15px;
     height: 5px;
@@ -403,7 +404,9 @@
   -webkit-animation-name: fadeIn; /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+  align-items: center;
+  justify-content: center;
   }
   
   /* Modal Content */
@@ -411,12 +414,13 @@
   position: fixed;
   bottom: 0;
   background-color: #fefefe;
-  width: 100%;
+  width: 80%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s;
-  border-radius: 2%;
+  border-radius: 50px;
+  margin-bottom: 20px;
   }
   
   /* The Close Button */

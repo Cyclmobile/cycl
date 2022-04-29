@@ -112,6 +112,26 @@ window.onclick = function (event) {
   }
 };
 
+window.addEventListener("load", function () {
+  if (document.body.clientWidth < 500) {
+    document.getElementById("applyModalWindowResize").style.justifyContent =
+      "start";
+  } else {
+    document.getElementById("applyModalWindowResize").style.justifyContent =
+      "center";
+  }
+});
+
+window.addEventListener("resize", function () {
+  if (document.body.clientWidth < 500) {
+    document.getElementById("applyModalWindowResize").style.justifyContent =
+      "start";
+  } else {
+    document.getElementById("applyModalWindowResize").style.justifyContent =
+      "center";
+  }
+});
+
 // Add markers to the map.
 for (const marker of geojson.features) {
   // Create a DOM element for each marker.
@@ -159,7 +179,7 @@ for (const marker of geojson.features) {
       } else {
         switch (marker.properties.message) {
           case "1002":
-            modal.style.display = "block";
+            modal.style.display = "flex";
             document.getElementById("returnstation").innerHTML = "1002";
             document.getElementById("place").innerHTML = "Telia   ";
             document.getElementById("adress").innerHTML = "Løren 1";
@@ -171,7 +191,7 @@ for (const marker of geojson.features) {
             break;
             return;
           case "1003":
-            modal.style.display = "block";
+            modal.style.display = "flex";
             document.getElementById("returnstation").innerHTML = "1003";
             document.getElementById("place").innerHTML = "Backstube";
             document.getElementById("adress").innerHTML = "C.berner";
@@ -182,7 +202,7 @@ for (const marker of geojson.features) {
             break;
 
           case "1004":
-            modal.style.display = "block";
+            modal.style.display = "flex";
             document.getElementById("returnstation").innerHTML = "1004";
             document.getElementById("place").innerHTML = "Circle K";
             document.getElementById("adress").innerHTML = "Økern";
@@ -216,7 +236,7 @@ for (const marker of geojson.features) {
                 .child("place")
                 .child("bag3");
               checkbag();
-              modal.style.display = "block";
+              modal.style.display = "flex";
               var bagcount = firebase.database().ref("place/").child("bag3");
               bagcount.transaction(function (bagcountr) {
                 return bagcountr + 1;
@@ -225,7 +245,7 @@ for (const marker of geojson.features) {
               break;
 
             case "1004":
-              modal.style.display = "block";
+              modal.style.display = "flex";
               var bagcount = firebase.database().ref("place/").child("bag4");
               bagcount.transaction(function (bagcountr) {
                 return bagcountr + 1;
@@ -260,7 +280,7 @@ for (const marker of geojson.features) {
 
                 return;
               } else {
-                modal.style.display = "block";
+                modal.style.display = "flex";
                 return bagcountr;
               }
             });

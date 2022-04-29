@@ -15,7 +15,7 @@
 	<link href="styles.css" rel="stylesheet">
 	<link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
 	<meta name="theme-color" content="white" />
-	
+
 	<style>
 		#map {
 			position: absolute;
@@ -26,137 +26,138 @@
 		}
 
 		.alert {
-  padding: 20px;
-  background-color: #52b459;
-  color: white;
-  opacity: 1;
-  transition: opacity 0.6s;
-  margin-bottom: 15px;
-  z-index: 1;
-  position: absolute;
-  bottom: 50%;
-  left: 10%;
-  background-color: rgba(0, 0, 0, 0.89);
-  z-index: 2;
-  cursor: pointer;
-  display: none;
-  width: 70%;
-}
+			padding: 20px;
+			background-color: #52b459;
+			color: white;
+			opacity: 1;
+			transition: opacity 0.6s;
+			margin-bottom: 15px;
+			z-index: 1;
+			position: absolute;
+			bottom: 50%;
+			left: 10%;
+			background-color: rgba(0, 0, 0, 0.89);
+			z-index: 2;
+			cursor: pointer;
+			display: none;
+			width: 70%;
+		}
 
-.alert.success {background-color: #04AA6D;}
+		.alert.success {
+			background-color: #04AA6D;
+		}
 
 
-.closebtnAlert {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+		.closebtnAlert {
+			margin-left: 15px;
+			color: white;
+			font-weight: bold;
+			float: right;
+			font-size: 22px;
+			line-height: 20px;
+			cursor: pointer;
+			transition: 0.3s;
+		}
 
-.closebtnAlert:hover {
-  color: black;
-}
+		.closebtnAlert:hover {
+			color: black;
+		}
 
-.marker {
-				display: block;
-				border: none;
-				border-radius: 10%;
-				cursor: pointer;
-				padding: 0;
-				z-index: 1; 
-			}
+		.marker {
+			display: block;
+			border: none;
+			border-radius: 10%;
+			cursor: pointer;
+			padding: 0;
+			z-index: 1;
+		}
 	</style>
 </head>
 
-<body>
-
-	<!--sidenavigation-->
-	<div id="sidenav" class="mobile-container">
-		<img src="Images/hovedlogo.png" style="width:30px; position: relative; left: 45%;">
-		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">
-				Profile</a>
-			<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;">
-				Purchase</a>
-			<a href="faq.html"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
-			<!--<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>-->
-			<a id="hidesignin" href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;"> Sign
-				in</a>
-			<div id="hidesignoff">
-				<a id="logoff" href="home.html"><img src="Images/logout.png" style="width: 20px; height: 21px;"> Sign
-					out</a>
-				<!--legg til en sign in knapp når bruker er avloget-->
+<body style="display: flex;">
+	<div id="sidenav" class="mobile-container"
+		style="display: flex; flex: 1; flex-direction: column;">
+		<div style="display: flex; flex-direction: row; justify-content: space-between;">
+			<span class="closesidenav" onclick="openNav()">&#9776; </span>
+			<img src="Images/hovedlogo.png" style="width:30px; padding: 10px;">
+			<div style="width: 10px;"></div>
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">
+					Profile</a>
+				<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;">
+					Purchase</a>
+				<a href="faq.html"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
+				<a id="hidesignin" href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;">
+					Sign
+					in</a>
+				<div id="hidesignoff">
+					<a id="logoff" href="home.html"><img src="Images/logout.png" style="width: 20px; height: 21px;">
+						Sign
+						out</a>
+				</div>
 			</div>
 		</div>
-		<span class="closesidenav" onclick="openNav()">&#9776; </span>
+
 		<div id="map"></div>
-		<!-- Simulate a smartphone / tablet look -->
 	</div>
 	<!--sidenavigation-->
 
 	<div class="alert" id="alertdiv">
-		<span class="closebtnAlert" id="closeAlert">&times;</span>  
+		<span class="closebtnAlert" id="closeAlert">&times;</span>
 		<strong>Too far from the current station!</strong> Please come nearby.
-	  </div>
-	
+	</div>
+
 	<div class="alert" id="fullbagAlert">
-		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>  
+		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>
 		<strong>This station is full</strong> Please contact employee or use another station.
-	  </div>
+	</div>
 
 	<!--station overlay-->
 	<div id="myModal" class="modal">
-
-		<!-- Modal content -->
 		<div class="modal-content">
-
-
 			<div class="returnstationcontent">
-
 				<span class="close">&times;</span>
-				<div class="itemstation">
-					<h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2>
-				</div>
-				<div class="itemstation">
-					<div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 110px; margin-right: 5px; 
-			position: relative;left: 35%;"><img src="Images/store.png" style="width:29px; height:39px;">
-						<p id="place" style="color: black;">Deli De Luca</p>
+					<div class="itemstation" style="flex-direction: row;">
+						<h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2>
 					</div>
+
+					<div style="display: flex; flex-direction: row; justify-content: center;" id="applyModalWindowResize">
+
+					<img src="Images/stationcycl.png" style="width:115px; height:170px;">
+					
+					<div class="itemstation" style="display: flex;flex-direction: column; width: 10%;">
+					
+					<div class="itemstation">
+						<div class="itemsicons" style="display: flex; max-width: 110px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/store.png" style="width:29px; height:39px;">
+							<p id="place" style="color: black; padding-left: 20px;">Deli De Luca</p>
+						</div>
+					</div>
+
+					<div class="itemstation">
+						<div class="itemsicons" style=" display: flex; max-width: 110px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/placemark.png" style="width:29px; height:39px;">
+							<p id="adress" style="color: black; padding-left: 20px;">Karl Johansgata</p>
+						</div>
+					</div>
+
+					<div class="itemstation">
+						<div class="itemsicons" style=" display: flex; max-width: 120px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
+							<p id="bagQauntity" style="color: black; padding-left: 20px;">100%</p>
+						</div>
+					</div>
+
+					</div>
+
 				</div>
 
-				<div class="itemstation">
-					<div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 110px; margin-right: 5px; 
-			position: relative;left: 35%;"><img src="Images/placemark.png" style="width:29px; height:39px;">
-						<p id="adress" style="color: black;">Karl Johansgata</p>
-					</div>
-				</div>
-
-				<div class="itemstation">
-					<div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 120px; margin-right: 5px; 
-			position: relative;left: 35%;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
-						<p id="bagQauntity" style="color: black;">100%</p>
-					</div>
-				</div>
-
-				<div class="itemstation" style="position: relative;left: 30%; z-index: 1;"><button class="scannerbtn"
-						id="scannbtn">Recycle</button></div>
+				<div class="itemstation" style="display: flex;justify-content: center;padding: 15px;"><button class="scannerbtn" id="scannbtn">Recycle</button></div>
 			</div>
-			<img src="Images/stationcycl.png"
-				style="width:115px; height:170px; position: absolute;right: 70%; top: 30%; z-index: -1;">
-			<hr>
-			</hr>
+
 		</div>
-
-		<!--station overlay-->
-
-		<script src="js/home.js"></script>
-
-
+	</div>
+	<script src="js/home.js"></script>
 </body>
-
 </html>
