@@ -17,6 +17,55 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+function donateCC() {
+  inputDonate = parseInt(document.getElementById("donateInput").value);
+  var inputDonateInt = parseInt(inputDonate);
+
+  //var inputDonate=parseInt(document.getElementById("donateInput").value);
+  var donationFirebase = firebase
+    .database()
+    .ref("donation/")
+    .child("donation CC");
+  donationFirebase.transaction(function (donated) {
+    inputDonate = inputDonate || 0;
+    alert("You have donated " + inputDonate);
+    return donated + inputDonateInt;
+  });
+}
+
+/*Donation activity*/
+function takeFromDonation() {
+  var inputDonate = document.getElementById("donateInput");
+  var inputamount = inputDonate.value;
+  var uid=firebase.auth().currentUser.uid;
+  var amountcounterFirebase = firebase
+    .database()
+    .ref()
+    .child(uid)
+    .child("users")
+    .child("amount");
+  amountcounterFirebase.transaction(function (amountcounter) {
+    if (amountcounter < inputamount) {
+      alert("Insufficient account balance");
+    } else {
+      donateCC()
+      return amountcounter - inputamount;
+      
+    }
+  });
+}
+
+donatebtn.addEventListener("click", function () {
+  takeFromDonation();
+  var donationInput = document.getElementById("donateInput");
+  donationInput.value=" ";
+  
+});
+
+document.getElementById('backbtn').addEventListener('click',function(){
+  window.location.href="home.html"
+})
+
 //this is inside the card
 const tasks = [
   {
