@@ -84,7 +84,7 @@ const tasks = [
     description: "20% discount for haircut in selected barbershops",
     button: "Claim",
     discreption: "Get 20% discount for haircut at these barber shops,",
-    list: "<a href=>OMAR BARBERSHOP</a>",
+    list: "<a href=https://www.bladezbarbershop.no/>BLADEZ BARBERSHOP</a>",
     // <ul>
     //   <li><a href="">OMAR BARBERSHOP</a></li>
     // </ul>"
