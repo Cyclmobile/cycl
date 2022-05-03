@@ -117,9 +117,10 @@
   }
   
   .sidenav a {
+    margin-top: 5px;
     padding: 8px 8px 8px 5px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 40px;
     color: white;
     display: block;
     transition: 0.3s;
