@@ -1,171 +1,75 @@
-<!DOCTYPE html>
+<html>
+<head>
+<title>cycl login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name='viewport'
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0,
+     user-scalable=0' >
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body" style="background-color: white;">
+  <img class="logo" style="margin-bottom: 15px; position: absolute;left: 33%;" src="Images/hovedlogo.png">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div  class="login-page" onsubmit="return false;">
+      <div class="form" style="z-index: 1;">
+        <form class="register-form">
+          <input type="text" placeholder="name"/>
+          <input type="password" placeholder="password"/>
+          <input type="text" placeholder="email address"/>
+          <button>create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+          <p class="message">Forgot your password? <a href="resetpass.html">Sign In</a></p>
+        </form>
+        <form class="login-form">
+          <input id="email"  type="text" placeholder="email" onkeypress="return event.charCode != 32"/>
+          <input id="passwrd" type="password" placeholder="password"/>
+          <button id="login">login</button>
+          <div class='g-sign-in-button' id="signInWithGoogle">
+            <div class=content-wrapper>
+            <div class='logo-wrapper'>  
+              <img src='https://developers.google.com/identity/images/g-logo.png'>
+              </div>  
+              <span class='text-container'> 
+                <span style="color: #000000;">Sign in with Google</span>
+              </span>
+            </div>  
+          </div>
+          
+          <div class='g-sign-in-button'>
+            <div class=content-wrapper>
+            <div class='logo-wrapper'>  
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAIAAABoJHXvAAAABmJLR0QA/wD/AP+gvaeTAAAERElEQVR4nO3dPWgTYRzH8ee5yyWX5FJiakEtbUV8QalFFHVwsoiKIurspAiODrqJoKOLk5uLCCqOvuDi1C4O4iQFW1+r1vgCpm2aNE1ydw6d6kuaJ/Fyz+/6+0wdkvCn39zdc5f0Ks2bU4JwGGEPQGoYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGJhb2AB21JmkM5qzetNmfNpMx6VjSMqQQYrrq+b5Y/GGm6s9Wve8V70vJ/Tjnlup+yEMvFf1gjiWP9ttH++z96+JrU6bq0z8U3Y33vwUxWGuiHGzAMS8OOac2pbos2fKLZOKtPzcI0Qxmm/Lyzsz5wbRt6vXrbl8Eg23Lxu4OrxrMWWEPEoioBdvdE390KLfajuzqN1LBdnRbT490O20csfQXnXfimqTx4GAu2rVElILd2JftTSuv2uFEJNjxAfvEejvsKZrU1pl4FIJJIa7syoQ9RfPa2mlHIdixAXt7RBfxf4pCsNObU2GP0DnwwboTxuG+RNhTdA78edhwb2LxinsL3hfdWxPlsUJtquS5/t/XAnWvjeECAB/sQG8rm5fri0vPZ6+/nPP0+vBkefDB9vS0stw4M1K482b+vw/TAdjHMMuQW7LK77nbr8ugtQR6sI1dZlzxAFb3xNUXxYDm6QDsYC1ci3o4WZmcc4MYpjNWXLAnnypBTNIx2MFyCeX5R/ILQUzSMdjBkorfAKi4PvT+UKAHsxT3iO+LLtyJ12/AgykuEWeqml23UIcdTFWpBr59rbRgNfgNbIUF05LaRs9goVM7DDMYGAYDw2BgGAwMg4GRGv4f52t7u06uTzbzyFxCZuMK77ly3f86r3YuNppfODs6rfSUQOn4FYEe29iQCeRL16mYVH3lx5N6XRzhLnEZEzP1sEdYgsGWMc5gWManGQxHsebny3p94MlgjUzMaHaXDgZr7JVm+0PBYI3ptkQUDNaYbisOwWCNveIWBsTzxdtZBsMxOefOa7dIZLB/0/AAJhisAd0uSi3S8eOVHtvINHdDmwtDzrmt6eZfeTRfPTtaaPLBPxf8af2+eKrjxys/Kt6P5v7EpFBVO8aU6/67ol6XmlRxlwiGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOB0fE+Hc2796acL7l9jtnvmH1pM5swUjHZZUnHklLIYs0r1f0F1/82730uuVMl99n3atgjtws72FihPlbQ8QZDweEuEQyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBiYX41w72AwSdmBAAAAAElFTkSuQmCC">
+              </div>  
+              <span class='text-container'> 
+                <span style="color: #000000;">Sign in with Facebook</span>
+              </span>
+            </div>  
+          </div>
+          <p class="message" id="loginmessage" class="mbmr" style="color:red;"></p>
+          <p style="color: #000000;" class="message">Not registered ? <a href="member.html">Create an account</a></p>
+          <p class="message" style="color: #000000;">Forgot your password ? <a href="resetpass.html">Get new password</a></p>
+  
+        </form>
+      </div>
+     
+    </div>
+
+    
+
+
+
+<!--Med koden under vil den koble seg til javascript filen firebaseauth.js.
+alt jeg skriver der vil kunne samkjøres med html elementene som er her.-->
+  <script src="js/login.js"></script>
+</body>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<title>Locate the user</title>
-	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-	<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
-	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
-	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
-	<link href="styles.css" rel="stylesheet">
-	<link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
-	<meta name="theme-color" content="white" />
-
-	<style>
-		
-		style="-webkit-touch-callout: none;
-  		-webkit-user-select: none;
-  		-khtml-user-select: none;
-  		-moz-user-select: none;
-  		-ms-user-select: none;
-  		user-select: none;"
-		
-		#map {
-			position: absolute;
-			top: 8%;
-			bottom: 0;
-			width: 100%;
-			height: 92%;
-		}
-
-		.alert {
-			padding: 20px;
-			background-color: #52b459;
-			color: white;
-			opacity: 1;
-			transition: opacity 0.6s;
-			margin-bottom: 15px;
-			z-index: 1;
-			position: absolute;
-			bottom: 50%;
-			left: 10%;
-			background-color: rgba(0, 0, 0, 0.89);
-			z-index: 2;
-			cursor: pointer;
-			display: none;
-			width: 70%;
-		}
-
-		.alert.success {
-			background-color: #04AA6D;
-		}
-
-
-		.closebtnAlert {
-			margin-left: 15px;
-			color: white;
-			font-weight: bold;
-			float: right;
-			font-size: 22px;
-			line-height: 20px;
-			cursor: pointer;
-			transition: 0.3s;
-		}
-
-		.closebtnAlert:hover {
-			color: black;
-		}
-
-		.marker {
-			display: block;
-			border: none;
-			border-radius: 10%;
-			cursor: pointer;
-			padding: 0;
-			z-index: 1;
-		}
-	</style>
-</head>
-
-<body style="display: flex; background-color: white;">
-	<div id="sidenav" class="mobile-container"
-		style="display: flex; flex: 1; flex-direction: column;">
-		<div style="display: flex; flex-direction: row; justify-content: space-between;">
-			<span class="closesidenav" onclick="openNav()">&#9776; </span>
-			<img src="Images/hovedlogo.png" style="width:30px; padding: 10px;">
-			<div style="width: 10px;"></div>
-			<div id="mySidenav" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">
-					Profile</a>
-				<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;">
-					Purchase</a>
-				<a href="faq.html"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
-				<a id="hidesignin" href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;">
-					Sign
-					in</a>
-				<div id="hidesignoff">
-					<a id="logoff" href="home.html"><img src="Images/logout.png" style="width: 20px; height: 21px;">
-						Sign
-						out</a>
-				</div>
-			</div>
-		</div>
-
-		<div id="map"></div>
-	</div>
-	<!--sidenavigation-->
-
-	<div class="alert" id="alertdiv">
-		<span class="closebtnAlert" id="closeAlert">&times;</span>
-		<strong>Too far from the current station!</strong> Please come nearby.
-	</div>
-
-	<div class="alert" id="fullbagAlert">
-		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>
-		<strong>This station is full</strong> Please contact employee or use another station.
-	</div>
-
-	<!--station overlay-->
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<div class="returnstationcontent">
-				<span class="close">&times;</span>
-					<div class="itemstation" style="flex-direction: row;">
-						<h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2>
-					</div>
-
-					<div style="display: flex; flex-direction: row; justify-content: center;" id="applyModalWindowResize">
-
-					<img src="Images/stationcycl.png" style="width:115px; height:170px;">
-					
-					<div class="itemstation" style="display: flex;flex-direction: column; width: 10%;">
-					
-					<div class="itemstation">
-						<div class="itemsicons" style="display: flex; max-width: 110px; margin-right: 5px; 
-				position: relative;left: 35%;align-items: center;"><img src="Images/store.png" style="width:29px; height:39px;">
-							<p id="place" style="color: black; padding-left: 20px;">Deli De Luca</p>
-						</div>
-					</div>
-
-					<div class="itemstation">
-						<div class="itemsicons" style=" display: flex; max-width: 110px; margin-right: 5px; 
-				position: relative;left: 35%;align-items: center;"><img src="Images/placemark.png" style="width:29px; height:39px;">
-							<p id="adress" style="color: black; padding-left: 20px;">Karl Johansgata</p>
-						</div>
-					</div>
-
-					<div class="itemstation">
-						<div class="itemsicons" style=" display: flex; max-width: 120px; margin-right: 5px; 
-				position: relative;left: 35%;align-items: center;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
-							<p id="bagQauntity" style="color: black; padding-left: 20px;">100%</p>
-						</div>
-					</div>
-
-					</div>
-
-				</div>
-
-				<div class="itemstation" style="display: flex;justify-content: center;padding: 15px;"><button class="scannerbtn" id="scannbtn">Recycle</button></div>
-			</div>
-
-		</div>
-	</div>
-	<script src="js/home.js"></script>
-</body>
-</html>
