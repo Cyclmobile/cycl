@@ -13,7 +13,7 @@
 <body>
   
 
-    <div style="width: 100%; height: 100%;" id="webcam-container" class="completedclass">
+  <div style="width: 100%; height: 100%;" id="webcam-container" class="completedclass">
       <div class="container" style="position: absolute; z-index: 1;">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
@@ -23,13 +23,14 @@
         
         </div>
         <div class="overlaycameraimg">
-          <div class="scan-animation">
+          <img style="height: 100%; opacity: 0.5;" src="images/holdcrrct.png" alt="">
+          <!-- <div class="scan-animation">
             <span class="scan-animation__angle scan-animation__angle--top"></span>
             <span class="scan-animation__angle scan-animation__angle--bottom"></span>
-          </div>
+          </div> -->
         </div>
-        <h2 id="text2" style="color:#52b459; display: none; position: absolute; bottom: 25%;
-        left: 20%;"> Drop your bottle </h2>
+        <p id="text2" style="color:#52b459; display: none; position: absolute; bottom: 25%;
+        left: 20%;"> Hold the bottle as demonstraded and drop it</p>
         <button id="backbtn" style="bottom: 20%;left: 30%;  background-color: rgba(0, 128, 0, 0.171); width: 180px;
         height: 40px;
         border-radius: 25px; position: absolute;
@@ -38,7 +39,6 @@
       <div style="display: none;" id="label-container"></div>
       <h3  style="display: block;" id="bottleshow"></h3>
     </div>
-    
   
 
    
