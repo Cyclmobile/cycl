@@ -135,6 +135,8 @@ window.addEventListener("resize", function () {
 // Add markers to the map.
 for (const marker of geojson.features) {
   // Create a DOM element for each marker.
+  var isMarkerClickable = true;
+  var timeout;
   const el = document.createElement("div");
   const width = marker.properties.iconSize[0];
   const height = marker.properties.iconSize[1];
@@ -150,7 +152,7 @@ for (const marker of geojson.features) {
   geolocate.on("geolocate", function (e) {
     var lon = e.coords.longitude;
     var lat = e.coords.latitude;
-    var position = [lon, lat];
+    var position = [10.772899, 59.926319];
     //console.log(position);
 
     var from = position; //lng, lat
@@ -167,126 +169,134 @@ for (const marker of geojson.features) {
     //Marker onclick
     //gives wrong output for bagcount
     el.addEventListener("click", () => {
-      if (distance > 111.036) {
-        var divAlert = document.getElementById("alertdiv");
-        //gi den 3 sec delay
-        divAlert.style.display = "block";
-        var close = document
-          .getElementById("closeAlert")
-          .addEventListener("click", function () {
-            divAlert.style.display = "none";
-          });
-      } else {
-        switch (marker.properties.message) {
-          case "1002":
-            modal.style.display = "flex";
-            document.getElementById("returnstation").innerHTML = "1002";
-            document.getElementById("place").innerHTML = "Telia   ";
-            document.getElementById("adress").innerHTML = "Løren 1";
-
-            var divAlert = document.getElementById("alertdiv");
-            divAlert.style.display = "none";
-            return bagcount();
-
-            break;
-            return;
-          case "1003":
-            modal.style.display = "flex";
-            document.getElementById("returnstation").innerHTML = "1003";
-            document.getElementById("place").innerHTML = "Backstube";
-            document.getElementById("adress").innerHTML = "C.berner";
-            bagcount();
-            var divAlert = document.getElementById("alertdiv");
-            divAlert.style.display = "none";
-            return;
-            break;
-
-          case "1004":
-            modal.style.display = "flex";
-            document.getElementById("returnstation").innerHTML = "1004";
-            document.getElementById("place").innerHTML = "Circle K";
-            document.getElementById("adress").innerHTML = "Økern";
-            var divAlert = document.getElementById("alertdiv");
-            divAlert.style.display = "none";
-            bagcount();
-            return;
-            break;
-        }
-
-        //function bagcounter
-        function bagcount() {
+      if (isMarkerClickable) {
+        isMarkerClickable = false;
+        if (distance > 111.036) {
+          var divAlert = document.getElementById("alertdiv");
+          //gi den 3 sec delay
+          divAlert.style.display = "block";
+          var close = document
+            .getElementById("closeAlert")
+            .addEventListener("click", function () {
+              divAlert.style.display = "none";
+            });
+        } else {
           switch (marker.properties.message) {
             case "1002":
-              var bagcounter = firebase
-                .database()
-                .ref()
-                .child("place")
-                .child("bag");
-              checkbag();
-              var bagcount = firebase.database().ref("place/").child("bag");
-              bagcount.transaction(function (bagcountr) {
-                return bagcountr + 1;
-              });
+              modal.style.display = "flex";
+              document.getElementById("returnstation").innerHTML = "1002";
+              document.getElementById("place").innerHTML = "Telia   ";
+              document.getElementById("adress").innerHTML = "Løren 1";
+
+              var divAlert = document.getElementById("alertdiv");
+              divAlert.style.display = "none";
+              return bagcount();
 
               break;
+              return;
             case "1003":
-              var bagcounter = firebase
-                .database()
-                .ref()
-                .child("place")
-                .child("bag3");
-              checkbag();
               modal.style.display = "flex";
-              var bagcount = firebase.database().ref("place/").child("bag3");
-              bagcount.transaction(function (bagcountr) {
-                return bagcountr + 1;
-              });
-
+              document.getElementById("returnstation").innerHTML = "1003";
+              document.getElementById("place").innerHTML = "Backstube";
+              document.getElementById("adress").innerHTML = "C.berner";
+              bagcount();
+              var divAlert = document.getElementById("alertdiv");
+              divAlert.style.display = "none";
+              return;
               break;
 
             case "1004":
               modal.style.display = "flex";
-              var bagcount = firebase.database().ref("place/").child("bag4");
-              bagcount.transaction(function (bagcountr) {
-                return bagcountr + 1;
-              });
-              var bagcounter = firebase
-                .database()
-                .ref()
-                .child("place")
-                .child("bag4");
-              checkbag();
-
+              document.getElementById("returnstation").innerHTML = "1004";
+              document.getElementById("place").innerHTML = "Circle K";
+              document.getElementById("adress").innerHTML = "Økern";
+              var divAlert = document.getElementById("alertdiv");
+              divAlert.style.display = "none";
+              bagcount();
+              return;
               break;
           }
 
-          function checkbag() {
-            bagcounter.transaction(function (bagcountr) {
-              var bagcapicity = document.getElementById("bagQauntity");
-              var fullbag = 500;
-              var percent = Math.round((bagcountr / fullbag) * 100);
-              bagcapicity.innerHTML = percent + "% full";
+          //function bagcounter
+          function bagcount() {
+            switch (marker.properties.message) {
+              case "1002":
+                var bagcounter = firebase
+                  .database()
+                  .ref()
+                  .child("place")
+                  .child("bag");
+                checkbag();
+                var bagcount = firebase.database().ref("place/").child("bag");
+                bagcount.transaction(function (bagcountr) {
+                  return bagcountr + 1;
+                });
 
-              if (bagcountr > 500) {
-                modal.style.display = "none";
-                var bagfullAlert = document.getElementById("fullbagAlert");
-
-                bagfullAlert.style.display = "block";
-                var closeAlertBag = document
-                  .getElementById("closeFullbagAlert")
-                  .addEventListener("click", function () {
-                    bagfullAlert.style.display = "none";
-                  });
-
-                return;
-              } else {
+                break;
+              case "1003":
+                var bagcounter = firebase
+                  .database()
+                  .ref()
+                  .child("place")
+                  .child("bag3");
+                checkbag();
                 modal.style.display = "flex";
-                return bagcountr;
-              }
-            });
+                var bagcount = firebase.database().ref("place/").child("bag3");
+                bagcount.transaction(function (bagcountr) {
+                  return bagcountr + 1;
+                });
+
+                break;
+
+              case "1004":
+                modal.style.display = "flex";
+                var bagcount = firebase.database().ref("place/").child("bag4");
+                bagcount.transaction(function (bagcountr) {
+                  return bagcountr + 1;
+                });
+                var bagcounter = firebase
+                  .database()
+                  .ref()
+                  .child("place")
+                  .child("bag4");
+                checkbag();
+
+                break;
+            }
+
+            function checkbag() {
+              bagcounter.transaction(function (bagcountr) {
+                var bagcapicity = document.getElementById("bagQauntity");
+                var fullbag = 500;
+                var percent = Math.round((bagcountr / fullbag) * 100);
+                bagcapicity.innerHTML = percent + "% full";
+
+                if (bagcountr > 500) {
+                  modal.style.display = "none";
+                  var bagfullAlert = document.getElementById("fullbagAlert");
+
+                  bagfullAlert.style.display = "block";
+                  var closeAlertBag = document
+                    .getElementById("closeFullbagAlert")
+                    .addEventListener("click", function () {
+                      bagfullAlert.style.display = "none";
+                    });
+
+                  return;
+                } else {
+                  modal.style.display = "flex";
+                  return bagcountr;
+                }
+              });
+            }
           }
+          var span = document.getElementsByClassName("close")[0];
         }
-        var span = document.getElementsByClassName("close")[0];
+      } else {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          isMarkerClickable = true;
+        }, 1000);
       }
     });
   });
