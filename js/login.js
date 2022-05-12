@@ -20,6 +20,7 @@
     var btnsignup=document.getElementById("signup");
     var btnlLogout=document.getElementById("logout");
     var database = firebase.database();
+   const signInWithFb = document.getElementById("signInWithFb");
     
 
     function keyDown(e) { 
@@ -64,6 +65,22 @@
       const googleProvider= new firebase.auth.GoogleAuthProvider()
 
       auth.signInWithPopup(googleProvider)
+      .then(() => {
+        window.location.assign('home2.html')
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+    });
+  
+  
+  //login with facebook
+
+    signInWithFb.addEventListener("click",function (){ 
+      const auth=firebase.auth();
+      const fbProvider= new firebase.auth.FacebookAuthProvider()
+
+      auth.signInWithPopup(fbProvider)
       .then(() => {
         window.location.assign('home2.html')
       })
