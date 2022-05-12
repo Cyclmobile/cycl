@@ -57,6 +57,20 @@
     
     });
     
+  //login with google
+
+    signInWithGoogle.addEventListener("click",function (){ 
+      const auth=firebase.auth();
+      const googleProvider= new firebase.auth.GoogleAuthProvider()
+
+      auth.signInWithPopup(googleProvider)
+      .then(() => {
+        window.location.assign('home2.html')
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+    });
   
     //realtile listener
     //we can check if we are logged in from here aswell
