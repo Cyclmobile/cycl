@@ -64,7 +64,7 @@
       const auth=firebase.auth();
       const googleProvider= new firebase.auth.GoogleAuthProvider()
 
-      auth.signInWithPopup(googleProvider)
+       auth.signInWithRedirect(googleProvider)
       .then(() => {
         window.location.assign('home2.html')
       })
