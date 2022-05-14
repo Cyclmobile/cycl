@@ -60,35 +60,45 @@
     
   //login with google
 
-    signInWithGoogle.addEventListener("click",function (){ 
-      const auth=firebase.auth();
-      const googleProvider= new firebase.auth.GoogleAuthProvider()
+  signInWithGoogle.addEventListener("click", function () {
+    const auth = firebase.auth();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-       auth.signInWithRedirect(googleProvider)
+      auth.signInWithRedirect(googleProvider)
       .then(() => {
-        window.location.assign('home2.html')
+        if (FirebaseUser) {
+          window.location.href = "home2.html";
+          console.log(FirebaseUser);
+        } else {
+          console.log("not logged in");
+        }
       })
-      .catch(error =>{
+      .catch((error) => {
         console.log(error);
-      })
-    });
-  
-  
+      });
+  });
+
   //login with facebook
 
-    signInWithFb.addEventListener("click",function (){ 
-      const auth=firebase.auth();
-      const fbProvider= new firebase.auth.FacebookAuthProvider()
+  signInWithFb.addEventListener("click", function () {
+    const auth = firebase.auth();
+    const fbProvider = new firebase.auth.FacebookAuthProvider();
 
-      auth.signInWithPopup(fbProvider)
+    auth.signInWithRedirect(fbProvider)
       .then(() => {
-        window.location.assign('home2.html')
+        if (FirebaseUser) {
+          window.location.href = "home2.html";
+          console.log(FirebaseUser);
+        } else {
+          console.log("not logged in");
+        }
+       
       })
-      .catch(error =>{
+      .catch((error) => {
         console.log(error);
-      })
-    });
-  
+      });
+      console.log(fbProvider)
+  });
     //realtile listener
     //we can check if we are logged in from here aswell
     //if user is loged in forward to the map.
