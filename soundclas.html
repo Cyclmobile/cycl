@@ -1,453 +1,95 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-  <title>Image test using</title>
-  <link rel="stylesheet" href="styles.css">
-  <!--<button type="button" onclick="init()">Start</button>-->
+<div>Teachable Machine Image Model - p5.js and ml5.js</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  
-
-  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
-
-    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
-      <ul class="progressbar">
-        <li class="activeprgrs">Scan</li>
-        <li class="activeprgrs"> Return</li>
-        <li>Recycled</li>
-      </ul>
-
-  </div>
-
-  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
-    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
-    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
-      <br>
-      <br>
-      <br>
-      <br>
-  </div>
-  
-  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
-      <div style="display: none;" id="label-container"></div>
-      <h3  style="display: block;" id="bottleshow"></h3>
-  </div>
-
-  </div>
-
-  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 80%;">
-    <p style="color:#52b459;"> Hold the bottle as demonstraded and drop it</p>
-    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
-    z-index: 1; color: white;" id="homebtn">Cancel</button> 
-  </div>
-       
-  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
-    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
-    <!-- <div class="scan-animation">
-      <span class="scan-animation__angle scan-animation__angle--top"></span>
-      <span class="scan-animation__angle scan-animation__angle--bottom"></span>
-    </div> -->
-  </div>
-   
-
-    <div id="overlaystation"> 
-        <div class="container">
-          <ul class="progressbar">
-            <li class="activeprgrs">Scan</li>
-            <li class="activeprgrs">Return</li>
-            <li class="activeprgrs">Recycled</li>
-          </ul>
-        </div>
-  
-        <div class="completedclass">
-          <img src="Images/recycledone.png" alt="">
-          <h2 style="color: white;" > Recycling completed </h2>
-          <h2 style="color: white;" > You got 2 CC </h2>
-          <button style="  background-color: green; width: 180px;
-          height: 40px;
-          border-radius: 25px;
-          font-size: 20px; border: none;
-          color: white;" id="homebtn">Go back</button> 
-        </div>
-        
-      </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 <script type="text/javascript">
-let video=document.getElementById("webcam-container");
-video.setAttribute('autoplay', '');
-video.setAttribute('muted', '');
-video.setAttribute('playsinline', '');
+  // Classifier Variable
+  let classifier;
+  // Model URL
+  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
+  
+  // Video
+  let video;
+  let flippedVideo;
+  // To store the classification
+  let label = "";
 
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+  // Load the model first
+  function preload() {
+    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  }
 
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "https://teachablemachine.withgoogle.com/models/P7PtLepi1/";
+  function setup() {
+    createCanvas(320, 260);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
 
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
 
-    var backbtn=document.getElementById("backbtn");
-
-    backbtn.addEventListener("click",function(){
-      window.location.href="home.html"
-    });
-
-    function load(){
-      document.getElementById("text2").style.display="flex";
+    if (isMobileDevice()) {
+  	console.log("mobile device");
+  var constraints = {
+    audio: false,
+    video: {
+      facingMode: {
+        exact: "environment"
+      }
     }
-    function hidetxt(){
-      document.getElementById("text1").style.display="none";
-      document.getElementById("text3").style.display="none";
-      document.getElementById("loading").style.display="none";
-
-    }
-
-    function overlay(){
-      document.getElementById("overlaystation").style.display="block";
-    }
-
-  function homebtn(){
-    document.getElementById("homebtn").addEventListener("click",function(){
-      window.location.href="home.html"
-    })
   };
-  homebtn();
-
-   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-   const firebaseConfig = {
-    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
-    authDomain: "cycl-77b6c.firebaseapp.com",
-    databaseURL: "https://cycl-77b6c.firebaseio.com",
-    projectId: "cycl-77b6c",
-    storageBucket: "cycl-77b6c.appspot.com",
-    messagingSenderId: "139900263133",
-    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
-    measurementId: "G-VPV104NQQW"
-  };
-firebase.initializeApp(firebaseConfig);
-
-var amount=0
-
-function amountcounter(){
-var uid=firebase.auth().currentUser.uid;
-
-var amountcc = firebase.database().ref().child(uid).child("users/").child("amount");
-amountcc.transaction(function(amount) {
- return amount + 1;
-});
-}
-
-    let model, webcam, labelContainer, maxPredictions;
-
-    let isIos = false; 
-    // fix when running demo in ios, video will be frozen;
-    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
-      isIos = true;
-    }
-
-    // Load the image model and setup the webcam
-    async function init() {
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
-
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
-
-        // Convenience function to setup a webcam
-        const flip = false; // whether to flip the webcam
-        const width = window.screen.width > 1000 ? window.screen.width : window.screen.width;
-        const height = window.screen.height > 1000 ? window.screen.height : window.screen.height;
-        webcam = new tmImage.Webcam(width, height); // width, height, flip
-        await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
-
-        if (isIos) {
-            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
-            // grab video-object in any way you want and set the attributes
-            const webCamVideo = document.getElementsByTagName('video')[0];
-            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
-            webCamVideo.muted = "true";
-            // webCamVideo.style.width = width + 'px';
-            // webCamVideo.style.height = height + 'px';
-        } else {
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-        }
-
-        try {
-            // append elements to the DOM
-            // if (isIos) {
-            //     document.getElementById("webcam-container").appendChild(webcam.webcam);
-            // }
-            // else{
-            //     document.getElementById("webcam-container").appendChild(webcam.canvas);
-            // }
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) { // and class labels
-                 labelContainer.appendChild(document.createElement("div"));
-            }
-            await webcam.play() ? console.log("working") : console.log("not working");
-            window.requestAnimationFrame(loop);
-        }
-        catch(e) {
-            console.log('Catch an error: ', e)
-        }
-    } 
-
-    //executes the init function
-    init()
-
-    async function loop() {
-        webcam.update(); // update the webcam frame
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
-
-    // run the webcam image through the image model
-    async function predict() {
-        // predict can take in an image, video or canvas html element
-        // const prediction;
-        // if (isIos) {
-        //     prediction = await model.predict(webcam.webcam);
-        // } else {
-        //     prediction = await model.predict(webcam.canvas);
-        // }
-        const prediction = await model.predict(webcam.canvas);
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-            //console.log(classPrediction);
-
-            var Imagedetect=document.getElementById("label-container");
-                document.getElementById("bottleshow").innerHTML=classPrediction;
-                hidetxt()
-                load()
-
-                switch (classPrediction) {
-           
-                   case 'openhnd: 0.50':
-                   case 'openhnd: 0.51':
-                   case 'openhnd: 0.52':
-                   case 'openhnd: 0.53':
-                   case 'openhnd: 0.54':
-                   case 'openhnd: 0.55':
-                   case 'openhnd: 0.56':
-                   case 'openhnd: 0.57':
-                   case 'openhnd: 0.58':
-                   case 'openhnd: 0.59':
-                   case 'openhnd: 0.60':
-                   case 'openhnd: 0.61':
-                   case 'openhnd: 0.62':
-                   case 'openhnd: 0.63':
-                   case 'openhnd: 0.64':
-                   case 'openhnd: 0.65':
-                   case 'openhnd: 0.66':
-                   case 'openhnd: 0.67':
-                   case 'openhnd: 0.68':
-                   case 'openhnd: 0.69':
-                   case 'openhnd: 0.70':
-                   case 'openhnd: 0.71':
-                   case 'openhnd: 0.72':
-                   case 'openhnd: 0.73':
-                   case 'openhnd: 0.74':
-                   case 'openhnd: 0.75':
-                   case 'openhnd: 0.76':
-                   case 'openhnd: 0.77':
-                   case 'openhnd: 0.78':
-                   case 'openhnd: 0.79':
-                   case 'openhnd: 0.80':
-                   case 'openhnd: 0.81':
-                   case 'openhnd: 0.82':
-                   case 'openhnd: 0.83':
-                   case 'openhnd: 0.84':
-                   case 'openhnd: 0.85':
-                   case 'openhnd: 0.86':
-                   case 'openhnd: 0.87':
-                   case 'openhnd: 0.88':
-                   case 'openhnd: 0.89':
-                   case 'openhnd: 0.90':
-                   case 'openhnd: 0.91':
-                   case 'openhnd: 0.92':
-                   case 'openhnd: 0.93':
-                   case 'openhnd: 0.94':      
-                   case 'openhnd: 0.95':
-                   case 'openhnd: 0.96':
-                   case 'openhnd: 0.97':
-                   case 'openhnd: 0.98':
-                   case 'openhnd: 0.99':
-                   case 'openhnd: 1.00':
-                     amountcounter();
-                  overlay();
-             
-                    }
-            
-            
-              switch (classPrediction) {
-             
-                   case 'DropHnd: 0.50':
-                   case 'DropHnd: 0.51':
-                   case 'DropHnd: 0.52':
-                   case 'DropHnd: 0.53':
-                   case 'DropHnd: 0.54':
-                   case 'DropHnd: 0.55':
-                   case 'DropHnd: 0.56':
-                   case 'DropHnd: 0.57':
-                   case 'DropHnd: 0.58':
-                   case 'DropHnd: 0.59':
-                   case 'DropHnd: 0.60':
-                   case 'DropHnd: 0.61':
-                   case 'DropHnd: 0.62':
-                   case 'DropHnd: 0.63':
-                   case 'DropHnd: 0.64':
-                   case 'DropHnd: 0.65':
-                   case 'DropHnd: 0.66':
-                   case 'DropHnd: 0.67':
-                   case 'DropHnd: 0.68':
-                   case 'DropHnd: 0.69':
-                   case 'DropHnd: 0.70':
-                   case 'DropHnd: 0.71':
-                   case 'DropHnd: 0.72':
-                   case 'DropHnd: 0.73':
-                   case 'DropHnd: 0.74':
-                   case 'DropHnd: 0.75':
-                   case 'DropHnd: 0.76':
-                   case 'DropHnd: 0.77':
-                   case 'DropHnd: 0.78':
-                   case 'DropHnd: 0.79':
-                   case 'DropHnd: 0.80':
-                   case 'DropHnd: 0.81':
-                   case 'DropHnd: 0.82':
-                   case 'DropHnd: 0.83':
-                   case 'DropHnd: 0.84':
-                   case 'DropHnd: 0.85':
-                   case 'DropHnd: 0.86':
-                   case 'DropHnd: 0.87':
-                   case 'DropHnd: 0.88':
-                   case 'DropHnd: 0.89':
-                   case 'DropHnd: 0.90':
-                   case 'DropHnd: 0.91':
-                   case 'DropHnd: 0.92':
-                   case 'DropHnd: 0.93':
-                   case 'DropHnd: 0.94':      
-                   case 'DropHnd: 0.95':
-                   case 'DropHnd: 0.96':
-                   case 'DropHnd: 0.97':
-                   case 'DropHnd: 0.98':
-                   case 'DropHnd: 0.99':
-                   case 'DropHnd: 1.00':
-                     amountcounter();
-                  overlay();
-             
-                    }
-            
-             
-        }
-    }
-</script>
-
-<style>
-  .overlaycameraimg {
-  position:absolute;
-  top:0;
-  z-index:25;
-  text-align:center;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: url("Images/holdcrrct.png");
-  z-index: 10;
-  opacity: 0.5;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-img {
-  display:inline-block;
-}
-
-.scan-animation {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    width: 320px;
-    height: 320px;
-    z-index: 1;
-    left: 100%;
-    top:40%;
-   
+  
+  video = createCapture(constraints);
+  } else {
+  	console.log("NOT mobile device");
+    video = createCapture(VIDEO);
   }
   
-  .scan-animation__angle:before,
-  .scan-animation__angle:after {
-    content: "";
-    position: absolute;
-
-    width: 30px;
-    height: 30px;
-    border-style: solid;
-    border-color: #52b459;
-    border-width: 0px;
-    z-index: 1;
- 
   }
-  
-  .scan-animation__angle:before {
-    border-left-width: 6px;
-    left: 0;
+
+  function draw() {
+    background(0);
+    // Draw the video
+    image(flippedVideo, 0, 0);
+
+    // Draw the label
+    fill(255);
+    textSize(16);
+    textAlign(CENTER);
+    text(label, width / 2, height - 4);
+  }
+
+  function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+
+  // Get a prediction for the current video frame
+  function classifyVideo() {
+    flippedVideo = ml5.flipImage(video)
+    classifier.classify(flippedVideo, gotResult);
+    flippedVideo.remove();
+
+  }
+
+  // When we get a result
+  function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+      console.error(error);
+      return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    // Classifiy again!
+    classifyVideo();
     
+    if(label==='openhnd'){
+      alert('check')
+    }
   }
-  
-  .scan-animation__angle:after {
-    border-right-width: 6px;
-    right: 0;
-
-
-  }
-  
-  .scan-animation__angle--top:before,
-  .scan-animation__angle--top:after {
-    top: 0;
-    border-top-width: 6px;
-
-
-  }
-  
-  .scan-animation__angle--bottom:before,
-  .scan-animation__angle--bottom:after {
-    bottom: 0;
-    border-bottom-width: 6px;
-  }
-  
-  .scan-animation__angle--top:before {
-    border-top-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--top:after {
-    border-top-right-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:before {
-    border-bottom-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:after {
-    border-bottom-right-radius: 50px;
-  }
-</style>
-
-</body>
-</html>
-
+</script>
