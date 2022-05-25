@@ -1,95 +1,115 @@
-<div>Teachable Machine Image Model - p5.js and ml5.js</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="text/javascript">
-  // Classifier Variable
-  let classifier;
-  // Model URL
-  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
-  
-  // Video
-  let video;
-  let flippedVideo;
-  // To store the classification
-  let label = "";
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <div>Teachable Machine Image Model - p5.js and ml5.js</div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image return</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-  // Load the model first
-  function preload() {
-    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-  }
+  <div class="container" style="position: absolute; z-index: 1">
+    <ul class="progressbar">
+      <li class="activeprgrs">Scan</li>
+      <li class="activeprgrs">Return</li>
+      <li>Recycled</li>
+    </ul>
+  </div>
+  <body>
+    <script type="text/javascript">
+      // Classifier Variable
+      let classifier;
+      // Model URL
+      let imageModelURL =
+        "https://teachablemachine.withgoogle.com/models/P7PtLepi1/";
 
-  function setup() {
-    createCanvas(320, 260);
-    // Create the video
-    video = createCapture(VIDEO);
-    video.size(320, 240);
-    video.hide();
+      // Video
+      let video;
+      let flippedVideo;
+      // To store the classification
+      let label = "";
 
-    flippedVideo = ml5.flipImage(video);
-    // Start classifying
-    classifyVideo();
-
-    if (isMobileDevice()) {
-  	console.log("mobile device");
-  var constraints = {
-    audio: false,
-    video: {
-      facingMode: {
-        exact: "environment"
+      // Load the model first
+      function preload() {
+        classifier = ml5.imageClassifier(imageModelURL + "model.json");
       }
-    }
-  };
-  
-  video = createCapture(constraints);
-  } else {
-  	console.log("NOT mobile device");
-    video = createCapture(VIDEO);
-  }
-  
-  }
 
-  function draw() {
-    background(0);
-    // Draw the video
-    image(flippedVideo, 0, 0);
+      function setup() {
+        createCanvas(410, 660);
+        // Create the video
+        //video = createCapture(VIDEO);
 
-    // Draw the label
-    fill(255);
-    textSize(16);
-    textAlign(CENTER);
-    text(label, width / 2, height - 4);
-  }
+        if (isMobileDevice()) {
+          console.log("mobile device");
+          var constraints = {
+            audio: false,
+            video: {
+              width: 360,
+              height: 480,
+              facingMode: {exact: "environment"},
+            },
+          };
 
-  function isMobileDevice() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-};
+          video = createCapture(constraints);
+        } else {
+          console.log("NOT mobile device");
+          video = createCapture(VIDEO);
+          video.size(410, 640);
+        }
 
+        video.hide();
+        flippedVideo = ml5.flipImage(video);
+        // Start classifying
+        classifyVideo();
+      }
 
-  // Get a prediction for the current video frame
-  function classifyVideo() {
-    flippedVideo = ml5.flipImage(video)
-    classifier.classify(flippedVideo, gotResult);
-    flippedVideo.remove();
+      function draw() {
+        background(0);
+        // Draw the video
+        image(flippedVideo, 0, 0);
 
-  }
+        // Draw the label
+        fill(255);
+        textSize(16);
+        textAlign(CENTER);
+        text(label, width / 2, height - 4);
+      }
 
-  // When we get a result
-  function gotResult(error, results) {
-    // If there is an error
-    if (error) {
-      console.error(error);
-      return;
-    }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label;
-    // Classifiy again!
-    classifyVideo();
-    
-    if(label==='openhnd'){
-      alert('check')
-    }
-  }
-</script>
+      function isMobileDevice() {
+        return (
+          typeof window.orientation !== "undefined" ||
+          navigator.userAgent.indexOf("IEMobile") !== -1
+        );
+      }
+
+      // Get a prediction for the current video frame
+      function classifyVideo() {
+        //flippedVideo = ml5.flipImage(video);
+        classifier.classify(flippedVideo, gotResult);
+        flippedVideo.remove();
+      }
+
+      // When we get a result
+      function gotResult(error, results) {
+        // If there is an error
+        if (error) {
+          console.error(error);
+          return;
+        }
+        // The results are in an array ordered by confidence.
+        //console.log(results[0]);
+
+        label = results[0].label;
+        if (results[0].label > 50) {
+          alert("check");
+        }
+        // Classifiy again!
+        classifyVideo();
+      }
+    </script>
+  </body>
+</html>
+
