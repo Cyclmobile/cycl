@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="styles.css">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div style="width: 100%; height: 100%;" id="webcam-container" class="completedclass">
+  <div class="container" style="position: absolute; z-index: 1;">
+    <ul class="progressbar">
+      <li class="activeprgrs">Scan</li>
+      <li class="activeprgrs"> Return</li>
+      <li class="activeprgrs">Recycled</li>
+    </ul>
+  </div>
 </head>
 <body >
 
@@ -52,7 +60,7 @@ amountcc.transaction(function(amount) {
 });
 }
       
-  var backbtn=document.getElementById("backbtn");
+  var backbtn=document.getElementById("homebtn");
 
     backbtn.addEventListener("click",function(){
       window.location.href="home.html"
