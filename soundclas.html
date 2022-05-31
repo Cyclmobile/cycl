@@ -1,97 +1,116 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- <div>Teachable Machine Image Model - p5.js and ml5.js</div> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image return</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <div>Teachable Machine Image Model - p5.js and ml5.js</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <!--<button type="button" onclick="init()">Start</button>-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-  <div class="container" style="position: absolute; z-index: 1">
-    <ul class="progressbar">
-      <li class="activeprgrs">Scan</li>
-      <li class="activeprgrs">Return</li>
-      <li>Recycled</li>
-    </ul>
-  </div>
-  <body>
+    <div style="width: 100%; height: 10%;" id="webcam-container" class="completedclass">
+      <div class="container" style="position: absolute; z-index: 1;">
+        <ul class="progressbar">
+          <li class="activeprgrs">Scan</li>
+          <li class="activeprgrs"> Return</li>
+          <li>Recycled</li>
+        </ul>
+        
+        </div>
+        <div class="overlaycameraimg">
+          <img style="height: 100%; opacity: 0.5; position: absolute;" src="images/holdcrrct.png" alt="">
+          <!-- <div class="scan-animation">
+            <span class="scan-animation__angle scan-animation__angle--top"></span>
+            <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+          </div> -->
+        </div>
+        
+        <p id="text2" style="color:#52b459; display: block; position: absolute; bottom: 25%;
+        left: 20%;"> Hold the bottle as demonstraded. Follow the instruction above</p>
+
+<h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
+left: 20%;">Dont drop your bottle. Get closer to the station</h4>
+      
+    </div>
+
     <script type="text/javascript">
       // Classifier Variable
       let classifier;
       // Model URL
-      let imageModelURL =
-        "https://teachablemachine.withgoogle.com/models/P7PtLepi1/";
-
+      let imageModelURL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
+      
       // Video
       let video;
       let flippedVideo;
       // To store the classification
       let label = "";
-
+    
       // Load the model first
       function preload() {
-        classifier = ml5.imageClassifier(imageModelURL + "model.json");
+        classifier = ml5.imageClassifier(imageModelURL + 'model.json');
       }
-
+    
       function setup() {
-        createCanvas(410, 660);
+        createCanvas(320, 260);
         // Create the video
-        //video = createCapture(VIDEO);
-
+        
+    
         if (isMobileDevice()) {
-          console.log("mobile device");
-          var constraints = {
-            audio: false,
-            video: {
-              width: 360,
-              height: 480,
-              facingMode: {exact: "environment"},
-            },
-          };
-
-          video = createCapture(constraints);
-        } else {
-          console.log("NOT mobile device");
-          video = createCapture(VIDEO);
-          video.size(410, 640);
+        console.log("mobile device");
+      var constraints = {
+        audio: false,
+        video: {
+          facingMode: {
+            exact: "environment"
+          }
         }
-
+        
+      };  
+      video = createCapture(constraints);
+      video.size(320, 240);
+      video.hide();
+    
+    
+      } else {
+        console.log("NOT mobile device");
+        video = createCapture(VIDEO);
+        video.size(320, 240);
         video.hide();
+      }
+    
         flippedVideo = ml5.flipImage(video);
         // Start classifying
         classifyVideo();
       }
-
+    
       function draw() {
         background(0);
         // Draw the video
         image(flippedVideo, 0, 0);
-
+    
         // Draw the label
         fill(255);
         textSize(16);
         textAlign(CENTER);
         text(label, width / 2, height - 4);
       }
-
+    
       function isMobileDevice() {
-        return (
-          typeof window.orientation !== "undefined" ||
-          navigator.userAgent.indexOf("IEMobile") !== -1
-        );
-      }
-
+        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+    };
+    
       // Get a prediction for the current video frame
       function classifyVideo() {
-        //flippedVideo = ml5.flipImage(video);
+        flippedVideo = ml5.flipImage(video)
         classifier.classify(flippedVideo, gotResult);
         flippedVideo.remove();
+    
       }
-
+    
       // When we get a result
       function gotResult(error, results) {
         // If there is an error
@@ -100,16 +119,44 @@
           return;
         }
         // The results are in an array ordered by confidence.
-        //console.log(results[0]);
-
+        // console.log(results[0]);
         label = results[0].label;
-        if (results[0].label > 50) {
-          alert("check");
-        }
         // Classifiy again!
         classifyVideo();
+        
+        if(results[4].confidence > 0.5){
+           alert('correct')
+         }
+        
+        if(label === 'OpBlc'){
+           window.location.href="completrecycl.html"
+         }
+        
+        if(label === 'OpYt'){
+          window.location.href="completrecycl.html"
+         }
+        
+         if(label === 'dropYt'){
+          window.location.href="completrecycl.html"
+         }
+        
+         if(label === 'Dropblc'){
+          window.location.href="completrecycl.html"
+         }
+
+         if(label === 'holdBlck'){
+           document.getElementById("distance").innerHTML="Drop your bottle slowly :)"
+         }
+         if(label === 'Hyt'){
+           document.getElementById("distance").innerHTML="Drop your bottle slowly :)"
+         }else 
+         document.getElementById("distance").innerHTML="Dont drop your bottle. Get closer to the station"
+
       }
     </script>
-  </body>
+
+</body>
+
 </html>
+
 
