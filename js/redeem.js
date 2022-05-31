@@ -91,7 +91,7 @@ const tasks = [
   },
   {
     image: "Images/jonk.png",
-    title: "10% off everything on the menu",
+    title: "10% at JØNK",
     price: "20 CC",
     description: "Get 10% off for anything on the menu.",
     button: "Claim",
