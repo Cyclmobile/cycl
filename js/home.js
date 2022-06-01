@@ -83,17 +83,17 @@ const geojson = {
         coordinates: [10.799808823702392, 59.93047248965732],
       },
     },
-    /*{
-					'type': 'Feature',
-					'properties': {
-					'message': '1004',
-					'iconSize': [50, 50]
+   {
+					type: 'Feature',
+					properties: {
+					message: '1004',
+					iconSize: [50, 50]
 					},
-					'geometry': {
-					'type': 'Point',
-					'coordinates': [10.775725586708518,59.92644802399647]
+					geometry: {
+					type: 'Point',
+					coordinates: [59.92181227628155, 10.725105914265871]
 					}
-					}*/
+					}
   ],
 };
 
