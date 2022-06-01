@@ -91,7 +91,7 @@ const geojson = {
 					},
 					geometry: {
 					type: 'Point',
-					coordinates: [59.92181227628155, 10.725105914265871]
+					coordinates: [10.724765402342086,59.92126791274231]
 					}
 					}
   ],
