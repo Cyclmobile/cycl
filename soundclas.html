@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div style="width: 100%; height: 10%;" id="webcam-container" class="completedclass">
+    <!-- <div style="width: 100%; height: 10%;" id="webcam-container" class="completedclass">
       <div class="container" style="position: absolute; z-index: 1;">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
@@ -30,21 +30,71 @@
         </div>
         
         <p id="text2" style="color:#52b459; display: block; position: absolute; bottom: 25%;
-        left: 20%;"> Hold the bottle as demonstraded. Follow the instruction above</p>
+        left: 20%;"> Hold the bottle as demonstrated in the image.</p>
 
-<h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
-left: 20%;">Dont drop your bottle. Get closer to the station</h4>
+
+
+<div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="defaultCanvas1" class="completedclass">
+
+  <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
+    <ul class="progressbar">
+      <li class="activeprgrs">Scan</li>
+      <li class="activeprgrs"> Return</li>
+      <li>Recycled</li>
+    </ul>
+
+</div>
+
+<div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
+  <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
+  <h1 id="loadingTxt" style="color:#52b459;"> Loading... </h1>
+  <h3 id="distance" style="color:#cc1414; display: none;"> * Dont drop your bottle. Get closer to the station </h3>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+</div>
+
+<div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 80%;">
+  <p style="color:#52b459;"> Hold the bottle as demonstraded and drop it</p>
+  <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
+  z-index: 1; color: white;" id="homebtn">Cancel</button> 
+</div>
+     
+<div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
+  <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
+  <!-- <div class="scan-animation">
+    <span class="scan-animation__angle scan-animation__angle--top"></span>
+    <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+  </div> -->
+</div>
+
       
     </div>
 
     <script type="text/javascript">
+
+      //description Texts
+      function infoText(){
+        let DropTxt= document.getElementById('distance').style.display='block'
+      }
+
+      function LoadingTxt(){
+        let loading= document.getElementById('loading').style.display='none'
+        let loadingtext= document.getElementById('loadingTxt').style.display='none'
+
+      }
+
+
       // Classifier Variable
       let classifier;
       // Model URL
       let imageModelURL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
       
       // Video
-      let video;
+      let video=document.getElementById("defaultCanvas1");
       let flippedVideo;
       // To store the classification
       let label = "";
@@ -84,6 +134,8 @@ left: 20%;">Dont drop your bottle. Get closer to the station</h4>
     
         flippedVideo = ml5.flipImage(video);
         // Start classifying
+        LoadingTxt()
+        infoText()
         classifyVideo();
       }
     
@@ -145,16 +197,16 @@ left: 20%;">Dont drop your bottle. Get closer to the station</h4>
          }
 
          if(label === 'holdBlck'){
-           document.getElementById("distance").innerHTML="Drop your bottle carefully :)"
+           document.getElementById("distance").innerHTML="Drop your bottle slowly :)"
          }else if (label === 'Hyt') document.getElementById("distance").innerHTML="Drop your bottle carefully :)"
          else 
          document.getElementById("distance").innerHTML="Dont drop your bottle. Get closer to the station"
-
       }
     </script>
 
 </body>
 
 </html>
+
 
 
