@@ -84,7 +84,7 @@
     const auth = firebase.auth();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
 
-    auth.signInWithRedirect(fbProvider)
+    auth.signInWithPopup(fbProvider)
       .then(() => {
         if (FirebaseUser) {
           window.location.href = "home2.html";
