@@ -106,7 +106,9 @@
       function draw() {
         background(0);
         // Draw the video
-        image(flippedVideo, 0, 0);
+        image(flippedVideo, 600, 0);
+        // ctx.translate(600, 0);
+        image.scale(-1, 1);
     
         // Draw the label
         fill(255);
