@@ -10,8 +10,6 @@
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
 	<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
-	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
-	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 	<link href="styles.css" rel="stylesheet">
 	<meta name="theme-color" content="white" />
 </head>
@@ -38,7 +36,9 @@
 		<span class="nav__text">Menu</span>
 	  </a>
 	</nav>
-    
+    <div>
+      <img style="display:flex;width: 100%;border: white;" src="Images/greenbtl.png" alt="">
+    </div>
     <div class="middle">
         <ul class="menus">
           <li class="item" id="hideprofile">
@@ -64,12 +64,15 @@
         </ul>
            
       </div>
+      <div style="position:absolute; bottom:10%; width: 100%;">
+        <hr>
+        <h5 style="text-align: center;"><a style="text-decoration:none;color:#000000" href="https://cyclmobileapp.com/Termsncondetions">Terms</a></h5>
+        <hr>
+        <h5 style="text-align: center;"><a style="text-decoration:none;color:#000000" href="https://cyclmobileapp.com/Privacy.html">Policy</a></h5>
+        <hr>
 
-      <h4 style="text-align: center;"><a style="text-decoration:none;color:#000000" href="https://cyclmobileapp.com/Termsncondetions">Terms</a></h4>
-      <hr>
-      <h4 style="text-align: center;"><a style="text-decoration:none;color:#000000" href="https://cyclmobileapp.com/Privacy.html">Policy</a></h4>
-      <hr>
-
+      </div>
+     
 
       <style>
           * {
@@ -81,9 +84,10 @@
 .middle {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: 50%;
+  top: 35%;
+  width: 90%;
   display: flex;
+  justify-content: center;
 }
 .menus {
   border-radius: 8px;
