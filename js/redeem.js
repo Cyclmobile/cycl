@@ -305,11 +305,12 @@ function startTimer(duration, id, cost) {
 
     document.getElementById(id).innerHTML = minutes + ":" + seconds;
     if (--timer < 0) {
-      purchaseItem(cost);
+      //purchaseItem(cost);
       clearInterval(timeIntervalRef);
       overlayCoupon.style.display = "none";
     }
   }, 1000);
+  purchaseItem(cost);
 }
 
 //FIREBASEUSER
