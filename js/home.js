@@ -302,13 +302,10 @@ for (const marker of geojson.features) {
   });
 }
 
+
 //check if signed in
 
 var scnnrbtn = document.getElementById("scannbtn");
-var profile = document.getElementById("hideprofile");
-var signout = document.getElementById("hidesignoff");
-var redeem = document.getElementById("redeem");
-var signin = document.getElementById("hidesignin");
 var database = firebase.database();
 var user = firebase.auth().currentUser;
 var email = firebase.auth().currentUser && firebase.auth().currentUser.email;
@@ -334,22 +331,22 @@ scnnrbtn.addEventListener("click", function () {
   });
   var uid = firebase.auth().currentUser.uid;
 });
-signout.addEventListener("click", function () {
-  firebase.auth().signOut();
-});
 
-redeem.addEventListener("click", function () {
-  window.location.href = "Redeem.html";
-});
+
+
 
 firebase.auth().onAuthStateChanged((FirebaseUser) => {
+
+  var redeem = document.getElementById("redeem");
+
+redeem.addEventListener("click", function () {
   if (FirebaseUser) {
+    window.location.href = "Redeem.html";
     console.log(FirebaseUser);
-    signin.style.display = "none";
   } else {
     console.log("not logged in");
-    signoutbtn.style.display = "none";
-    redeem.style.display = "none";
-    profile.style.display = "none";
+    window.location.href = "login.html";
   }
+});
+ 
 });
