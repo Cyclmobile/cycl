@@ -62,9 +62,7 @@ donatebtn.addEventListener("click", function () {
   
 });
 
-document.getElementById('backbtn').addEventListener('click',function(){
-  window.location.href="home.html"
-})
+
 
 //this is inside the card
 const tasks = [
