@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <div>Teachable Machine Image Model - p5.js and ml5.js</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
   <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
@@ -9,6 +8,7 @@
   <link rel="stylesheet" href="styles.css">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
@@ -32,8 +32,24 @@
         <p id="text2" style="color:#52b459; display: block; position: absolute; bottom: 25%;
         left: 20%;"> Hold the bottle as demonstraded. Follow the instruction above</p>
 
-<h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
-left: 20%;">Dont drop your bottle. Get closer to the station</h4>
+        <div id="wrong" style="display: none;">
+          <h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
+          left: 20%;">Dont drop your bottle. Get closer to the station</h4>
+          
+          <lottie-player style="display: block; position: absolute; bottom: 15%" src="https://assets6.lottiefiles.com/packages/lf20_1zvbfarz.json" background="transparent"  speed="1" loop autoplay></lottie-player>
+
+        </div>
+
+        <div id="correct" style="display: none;">
+          <h4 style="color:green; display: block; position: absolute; bottom: 30%;
+          left: 20%;">Drop your bottle carefully :)</h4>
+          
+          <lottie-player style="display: block; position: absolute; bottom: 15%" src="https://assets6.lottiefiles.com/private_files/lf30_jvkdnlap.json" background="transparent"  speed="1" loop autoplay></lottie-player>
+
+        </div>
+
+
+
       
     </div>
 
@@ -127,28 +143,35 @@ left: 20%;">Dont drop your bottle. Get closer to the station</h4>
         if(results[4].confidence > 0.5){
            alert('correct')
          }
-        
-        if(label === 'OpBlc'){
-           window.location.href="completrecycl.html"
-         }
-        
-        if(label === 'OpYt'){
-          window.location.href="completrecycl.html"
-         }
-        
-         if(label === 'dropYt'){
-          window.location.href="completrecycl.html"
-         }
-        
-         if(label === 'Dropblc'){
-          window.location.href="completrecycl.html"
-         }
 
-         if(label === 'holdBlck'){
-           document.getElementById("distance").innerHTML="Drop your bottle carefully :)"
-         }else if (label === 'Hyt') document.getElementById("distance").innerHTML="Drop your bottle carefully :)"
-         else 
-         document.getElementById("distance").innerHTML="Dont drop your bottle. Get closer to the station"
+
+         switch (label) {
+                   case 'OpBlc':
+                   case 'OpYt':
+                   case 'dropYt':
+                   case 'Dropblc':
+                   window.location.href="completrecycl.html"
+                    }
+        
+                    switch (label) {
+                   case 'holdBlck':
+                   case 'Hyt':
+                   document.getElementById("correct").style.display='block'
+           document.getElementById("wrong").style.display='none'
+                    }
+
+                    switch (label) {
+                   case 'stn':
+                   case '2far':
+                   case 'bottleOut':
+                   case 'blurry':
+                   case 'HlfYt':
+                   case 'HlfBt':
+         document.getElementById("correct").style.display='none';
+         document.getElementById("wrong").style.display='block'
+                    }
+        
+    
 
       }
     </script>
@@ -156,6 +179,3 @@ left: 20%;">Dont drop your bottle. Get closer to the station</h4>
 </body>
 
 </html>
-
-
-
