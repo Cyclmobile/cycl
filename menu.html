@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Locate the user</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+	<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+	<link href="styles.css" rel="stylesheet">
+	<meta name="theme-color" content="white" />
+</head>
+
+<body style="background-color: white;">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<nav class="nav">
+	  <a href="home 2.html" class="nav__link">
+		<i class="material-icons nav__icon">home</i>
+		<span class="nav__text">Home</span>
+	  </a>
+
+	  <a href="login.html" class="nav__link">
+		<i class="material-icons nav__icon">redeem</i>
+		<span class="nav__text">Redeem</span>
+	  </a>
+	  <!-- <a href="#" class="nav__link">
+		<i class="material-icons nav__icon">person</i>
+		<span class="nav__text">Profile</span>
+	  </a> -->
+	  <a href="#" class="nav__link nav__link--active">
+		<i class="material-icons nav__icon">list</i>
+		<span class="nav__text">Menu</span>
+	  </a>
+	</nav>
+    
+    <div class="middle">
+        <ul class="menus">
+          <li class="item" id="hideprofile">
+            <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
+          </li>
+
+          <li class="item">
+            <a href="faq.html"><i class="fas fa-cog"></i>faqs</a>
+          </li>
+        
+          <li class="item" id="settings">
+            <a href="#settings"><i class="fas fa-cog"></i>Settings</a>
+            <div class="sub-menus">
+              <a href="resetpass.html">Password</a>
+            </div>
+          </li>
+          <li class="item" id="logOut">
+            <a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </li>
+          <li class="item" id="hidesignin" style="display: none;">
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i>Sign in</a>
+          </li>
+        </ul>
+      </div>
+
+      <style>
+          * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+.middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.menus {
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  overflow: hidden;
+}
+.menus a {
+  display: block;
+  padding: 16px 20px;
+  position: relative;
+  color: white;
+}
+.menus .item {
+  border-top: 1px solid #2980b9;
+}
+.menus .item > a {
+  background: #52b459;
+}
+.menus .item > a i {
+  margin-right: 10px;
+}
+.menus .item > a:before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 20px;
+  bottom: -7px;
+  background: #3498db;
+  transform: rotate(45deg);
+  visibility: hidden;
+}
+.menus .item:target > a:before {
+  visibility: visible;
+}
+.menus .item:target .sub-menus {
+  max-height: 10em;
+}
+
+.sub-menus {
+  background: green;
+  overflow: hidden;
+  transition: max-height .3s;
+  max-height: 0;
+}
+.sub-menus a {
+  font-size: 14px;
+  padding: 16px 26px;
+  margin-top: 4px;
+  position: relative;
+}
+.sub-menus a:before {
+  content: '';
+  width: 6px;
+  height: 100%;
+  background: #3498db;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: .3s;
+  opacity: 0;
+}
+.sub-menus a:hover:before {
+  opacity: 1;
+}
+      </style>
+
+<script src="js/menu.js"></script>
+
+</body>
+
+</html>
