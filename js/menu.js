@@ -43,6 +43,7 @@ var signout = document.getElementById("logOut");
 // });
 signout.addEventListener("click", function () {
   firebase.auth().signOut();
+  window.location.href="login.html"
 });
 
 
