@@ -105,10 +105,16 @@
     
       function draw() {
         background(0);
-        // Draw the video
-        image(flippedVideo, 600, 0);
-        // ctx.translate(600, 0);
-        image.scale(-1, 1);
+        background(0);
+        image.clearRect(0, 0, canvas.width, canvas.height);
+    // vertical-flip
+    image.scale(1, -1);
+    image.translate(0, -canvas.height);
+    image.drawImage(video, 0, 0);
+    // reset the transform-matrix
+    image.setTransform(1, 0, 0, 1, 0, 0);
+    image.fillText("Some text", canvas.width / 2, canvas.height / 2);
+    requestFrame(draw);
     
         // Draw the label
         fill(255);
