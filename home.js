@@ -305,6 +305,7 @@ for (const marker of geojson.features) {
 
 //check if signed in
 
+var scnnrbtn = document.getElementById("scannbtn");
 var database = firebase.database();
 var user = firebase.auth().currentUser;
 var email = firebase.auth().currentUser && firebase.auth().currentUser.email;
