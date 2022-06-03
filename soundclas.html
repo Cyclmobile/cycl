@@ -34,7 +34,7 @@
 
         <div id="wrong" style="display: none;">
           <h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
-          left: 20%;">Dont drop your bottle. Get closer to the station</h4>
+          left: 20%;">Dont drop your bottle. Move the camera to your while holding the bottle in the hole</h4>
           
           <lottie-player style="display: block; position: absolute; bottom: 15%; opacity: 0.6" src="https://assets6.lottiefiles.com/packages/lf20_1zvbfarz.json" background="transparent"  speed="1" loop autoplay></lottie-player>
 
@@ -145,7 +145,7 @@
          }
 
 
-         switch (label) {
+           switch (label) {
                    case 'OpBlc':
                    case 'OpYt':
                    case 'dropYt':
@@ -156,8 +156,11 @@
                     switch (label) {
                    case 'holdBlck':
                    case 'Hyt':
-                   document.getElementById("correct").style.display='block'
-           document.getElementById("wrong").style.display='none'
+                     setTimeout(() => {
+                      document.getElementById("correct").style.display='block'
+                      document.getElementById("wrong").style.display='none'
+                       
+                     }, 2000);
                     }
 
                     switch (label) {
