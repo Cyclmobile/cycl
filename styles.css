@@ -455,7 +455,7 @@
   /* Modal Content */
   .modal-content {
   position: fixed;
-  bottom: 0;
+  bottom: 8%;
   background-color: #fefefe;
   width: 80%;
   -webkit-animation-name: slideIn;
