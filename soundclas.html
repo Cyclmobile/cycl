@@ -6,6 +6,7 @@
   <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -31,24 +32,24 @@
         
         <p id="text2" style="color:#52b459; display: block; position: absolute; bottom: 25%;
         left: 20%;"> Hold the bottle as demonstraded. Follow the instruction above</p>
+        
 
         <div id="wrong" style="display: none;">
-          <h4 id="distance" style="color:red; display: block; position: absolute; bottom: 30%;
-          left: 20%;font: size 200px;">Dont drop your bottle. Move the camera closer to the bottle while holding it in the hole.
-          &#128721 </h4>
+          <p id="distance" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%;
+          left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center;">Dont drop your bottle. Move the camera closer to the bottle while holding it in the hole.
+          &#128721 <p>
           
           <!-- <lottie-player style="display: block; position: absolute; bottom: 15%; opacity: 0.6" src="https://assets6.lottiefiles.com/packages/lf20_1zvbfarz.json" background="transparent"  speed="1" loop autoplay></lottie-player> -->
 
         </div>
-
         <div id="correct" style="display: none;">
-          <h4 style="color:green; display: block; position: absolute; bottom: 30%;
-          left: 20%;">Now, drop your bottle carefully &#128516; &#9851;</h4>
+          <p style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%;
+          left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center;">Now, drop your bottle carefully &#128516; &#9851;<p>
           
           <!-- <lottie-player style="display: block; position: absolute; bottom: 15%; opacity: 0.6" src="https://assets6.lottiefiles.com/private_files/lf30_jvkdnlap.json" background="transparent"  speed="1" loop autoplay></lottie-player> -->
 
         </div>
-        
+
 
 
 
@@ -175,6 +176,16 @@
          document.getElementById("correct").style.display='none';
          document.getElementById("wrong").style.display='block'
                     }
+        
+    
+
+      }
+    </script>
+
+</body>
+
+</html>
+
         
     
 
