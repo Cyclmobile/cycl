@@ -69,7 +69,7 @@ const geojson = {
       },
       geometry: {
         type: "Point",
-        coordinates: [10.800186028081384, 59.93037787027734],
+        coordinates: [10.76460523138374,59.91834370141862],
       },
     },
     {
@@ -185,8 +185,8 @@ for (const marker of geojson.features) {
             case "1002":
               modal.style.display = "flex";
               document.getElementById("returnstation").innerHTML = "1002";
-              document.getElementById("place").innerHTML = "Telia   ";
-              document.getElementById("adress").innerHTML = "Løren 1";
+              document.getElementById("place").innerHTML = "Hersleb V.gående";
+              document.getElementById("adress").innerHTML = "Herslebs gate";
 
               var divAlert = document.getElementById("alertdiv");
               divAlert.style.display = "none";
