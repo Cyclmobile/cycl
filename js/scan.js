@@ -209,7 +209,7 @@ document.getElementById('rezlt').textContent = err
     this.alert("This bottle/can cant by recycled with us")
     var database= firebase.database();// først setter vi oss inn i databasen
                var ref = database.ref().child("missingbrcds")//så lager vi en referanse i databasen
-               ref.push(result); //så dytter vi noe inn i referansen.
+               ref.push(result.text); //så dytter vi noe inn i referansen.
   }
   
   
