@@ -338,6 +338,8 @@ firebase.auth().onAuthStateChanged(function (user) {
   } else {
     console.log("noUser");
     reward.innerHTML = "You need to be signed in to see the various offers!";
+    window.location.href="login.html"
+
     // No user is signed in.
   }
 });
