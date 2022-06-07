@@ -267,7 +267,7 @@ for (const marker of geojson.features) {
             function checkbag() {
               bagcounter.transaction(function (bagcountr) {
                 var bagcapicity = document.getElementById("bagQauntity");
-                var fullbag = 500;
+                var fullbag = 75;
                 var percent = Math.round((bagcountr / fullbag) * 100);
                 bagcapicity.innerHTML = percent + "% full";
 
