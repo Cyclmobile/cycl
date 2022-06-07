@@ -271,7 +271,7 @@ for (const marker of geojson.features) {
                 var percent = Math.round((bagcountr / fullbag) * 100);
                 bagcapicity.innerHTML = percent + "% full";
 
-                if (bagcountr > 75) {
+                if (bagcountr => 75) {
                   modal.style.display = "none";
                   var bagfullAlert = document.getElementById("fullbagAlert");
 
