@@ -22,13 +22,11 @@ station_bag.transaction(function(result) {
           alert("beholderen er nå tom");
            return result = 0;
           });
-        break;
-      default:
-        this.alert("Ops en feil har oppståt prøv på nytt")
+        
     }
 
 if (err && !(err instanceof ZXing.NotFoundException)) {
-console.error(err)
+console.error(err + this.alert("Ops en feil har oppståt prøv på nytt"))
 document.getElementById('rezlt').textContent = err
 }
 
@@ -73,3 +71,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+  
+   
+
+    
