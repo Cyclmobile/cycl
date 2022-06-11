@@ -8,83 +8,30 @@ window.addEventListener('load', function () {
 
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
 
-
-    if (result) {
-  
-      const auth= firebase.auth();
-      console.log(result)
-
-      var station=["bag","bag2", "bag3","bag4"];
-      var msg=document.getElementById("message");
-      for(let i=0; i<station.length; i++){ 
-
-  if (result == station[0]) {
-var station_bag = firebase.database().ref().child('place').child("bag")
+    switch(result) {
+      case '1002':
+        var station_bag = firebase.database().ref().child('place').child("bag")
 station_bag.transaction(function(result) {
-  result = 0;
   alert("beholderen er nå tom");
-  return;
-  
-
-});
-
-return
-
-} 
-
-if (result == station[1]) {
-  var station_bag = firebase.database().ref().child('place').child("bag2")
-  station_bag.transaction(function(result) {
-    result = 0;
-    alert("beholderen er nå tom");
-    return;
-    
-  
+   return result = 0;
   });
-  
-  return
-  
-  } 
-
-  if (result == station[2]) {
-    var station_bag = firebase.database().ref().child('place').child("bag3")
-    station_bag.transaction(function(result) {
-      result = 0;
-      alert("beholderen er nå tom");
-      return;
-      
-    
-    });
-    
-    return
-    
-    } 
-
-    if (result == station[3]) {
-      var station_bag = firebase.database().ref().child('place').child("bag4")
-      station_bag.transaction(function(result) {
-        result = 0;
-        alert("beholderen er nå tom");
-        return;
-        
-      
-      });
-      
-      return
-      
-      } 
-}
+        break;
+      case '1003':
+        var station_bag = firebase.database().ref().child('place').child("bag2")
+        station_bag.transaction(function(result) {
+          alert("beholderen er nå tom");
+           return result = 0;
+          });
+        break;
+      default:
+        this.alert("Ops en feil har oppståt prøv på nytt")
+    }
 
 if (err && !(err instanceof ZXing.NotFoundException)) {
 console.error(err)
 document.getElementById('rezlt').textContent = err
 }
 
-else{
-this.alert("Ops en feil har oppståt prøv på nytt")
-}
-
-}
 
   /* find the fuck out of the auth  firebase.auth().onAuthStateChanged(FirebaseUser => {
       if (FirebaseUser) {
@@ -126,4 +73,3 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-  
