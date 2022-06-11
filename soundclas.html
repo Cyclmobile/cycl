@@ -13,47 +13,29 @@
 </head>
 <body>
 
-    <div style="width: 100%; height: 10%;" id="webcam-container" class="completedclass">
-      <div class="container" style="position: absolute; z-index: 1;">
+    <div style="display: flex;flex: 1;align-items: center; justify-content: center;" id="webcam-container" class="completedclass">
+     
+      <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
         <ul class="progressbar">
           <li class="activeprgrs">Scan</li>
           <li class="activeprgrs"> Return</li>
           <li>Recycled</li>
         </ul>
-        
-        </div>
-        <div class="overlaycameraimg">
-          <img style="height: 100%; opacity: 0.5; position: absolute;" src="Images/holdcrrct.png" alt="">
-          <!-- <div class="scan-animation">
-            <span class="scan-animation__angle scan-animation__angle--top"></span>
-            <span class="scan-animation__angle scan-animation__angle--bottom"></span>
-          </div> -->
-        </div>
-        
-        <p id="text2" style="color:#52b459; display: block; position: absolute; bottom: 25%;
-        left: 20%;"> Follow the instruction above</p>
-        
+      </div>
 
         <div id="wrong" style="display: none;">
-          <p id="distance" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%;
-          left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center;">Move the camera closer please.
+          <p id="distance1" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%; left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center; z-index: 100;">Move the camera closer please.
           &#128721 <p>
-          
-          <!-- <lottie-player style="display: block; position: absolute; bottom: 15%; opacity: 0.6" src="https://assets6.lottiefiles.com/packages/lf20_1zvbfarz.json" background="transparent"  speed="1" loop autoplay></lottie-player> -->
-
         </div>
+
         <div id="correct" style="display: none;">
-          <p style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%;
-          left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center;">your turn &#128516; &#9851;<p>
-          
-          <!-- <lottie-player style="display: block; position: absolute; bottom: 15%; opacity: 0.6" src="https://assets6.lottiefiles.com/private_files/lf30_jvkdnlap.json" background="transparent"  speed="1" loop autoplay></lottie-player> -->
-
+          <p id="distance2" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%; left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center; z-index: 100;">your turn &#128516; &#9851;<p>
         </div>
+    </div>
 
-
-
-
-      
+    <div id="text2" style="color:#52b459; display: flex; flex: 1; position: absolute; z-index: 100; align-items: center; justify-content: flex-end; bottom: 6%;"><p> Follow the instruction above</p></div>
+    
+    <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
     </div>
 
     <script type="text/javascript">
@@ -181,7 +163,27 @@
     
 
       }
-    </script>
+
+    window.addEventListener("load", function () {
+      document.getElementById("text2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+      document.getElementById("distance1").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+      document.getElementById("distance2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+      setTimeout(() => {
+        document.getElementById("defaultCanvas0").style.position = "absolute";
+        document.getElementById("defaultCanvas0").style.width = "100%";
+        document.getElementById("defaultCanvas0").style.height = "100%";
+        document.getElementById("defaultCanvas0").style.top = 0;
+        document.getElementById("defaultCanvas0").style.zIndex = 1;
+      }, 1000);
+    });
+
+    window.addEventListener("resize", function () {
+      document.getElementById("text2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+      document.getElementById("distance1").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+      document.getElementById("distance2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
+    });
+
+</script>
 
 </body>
 
@@ -192,6 +194,28 @@
 
       }
     </script>
+
+    <style>
+      .overlaycameraimg {
+      position:absolute;
+      top:0;
+      z-index:25;
+      text-align:center; 
+      width: 50%;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: url("Images/holdcrrct.png");
+      z-index: 10;
+      opacity: 0.5;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
 
 </body>
 
