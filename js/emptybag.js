@@ -19,7 +19,7 @@ window.addEventListener('load', function () {
       for(let i=0; i<station.length; i++){ 
 
   if (result == station[i]) {
-var station_bag = firebase.database().ref().child('place').child("butbag2")
+var station_bag = firebase.database().ref().child('place').child("bag")
 station_bag.transaction(function(result) {
   alert("beholderen er nå tom");
    return result = 0;
