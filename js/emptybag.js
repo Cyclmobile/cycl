@@ -14,21 +14,65 @@ window.addEventListener('load', function () {
       const auth= firebase.auth();
       console.log(result)
 
-      var station=["5012345678900","12313123123", "5000112636833"];
+      var station=["bag","bag2", "bag3","bag4"];
       var msg=document.getElementById("message");
       for(let i=0; i<station.length; i++){ 
 
-  if (result == station[i]) {
-var station_bag = firebase.database().ref().child('place').child("butbag2")
+  if (result == station[0]) {
+var station_bag = firebase.database().ref().child('place').child("bag")
 station_bag.transaction(function(result) {
+  result = 0;
   alert("beholderen er nå tom");
-   return result = 0;
+  return;
+  
 
 });
 
 return
 
 } 
+
+if (result == station[1]) {
+  var station_bag = firebase.database().ref().child('place').child("bag2")
+  station_bag.transaction(function(result) {
+    result = 0;
+    alert("beholderen er nå tom");
+    return;
+    
+  
+  });
+  
+  return
+  
+  } 
+
+  if (result == station[2]) {
+    var station_bag = firebase.database().ref().child('place').child("bag3")
+    station_bag.transaction(function(result) {
+      result = 0;
+      alert("beholderen er nå tom");
+      return;
+      
+    
+    });
+    
+    return
+    
+    } 
+
+    if (result == station[3]) {
+      var station_bag = firebase.database().ref().child('place').child("bag4")
+      station_bag.transaction(function(result) {
+        result = 0;
+        alert("beholderen er nå tom");
+        return;
+        
+      
+      });
+      
+      return
+      
+      } 
 }
 
 if (err && !(err instanceof ZXing.NotFoundException)) {
@@ -83,6 +127,3 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
   
-   
-
-    
