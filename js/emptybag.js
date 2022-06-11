@@ -8,28 +8,39 @@ window.addEventListener('load', function () {
 
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
 
-    switch(result) {
-      case '1002':
-        var station_bag = firebase.database().ref().child('place').child("bag")
+
+    if (result) {
+  
+      const auth= firebase.auth();
+      console.log(result)
+
+      var station=["1002","12313123123", "5000112636833"];
+      var msg=document.getElementById("message");
+      for(let i=0; i<station.length; i++){ 
+
+  if (result == station[i]) {
+var station_bag = firebase.database().ref().child('place').child("butbag2")
 station_bag.transaction(function(result) {
   alert("beholderen er nå tom");
    return result = 0;
-  });
-        break;
-      case '1003':
-        var station_bag = firebase.database().ref().child('place').child("bag2")
-        station_bag.transaction(function(result) {
-          alert("beholderen er nå tom");
-           return result = 0;
-          });
-        
-    }
+
+});
+
+return
+
+} 
+}
 
 if (err && !(err instanceof ZXing.NotFoundException)) {
-console.error(err + this.alert("Ops en feil har oppståt prøv på nytt"))
+console.error(err)
 document.getElementById('rezlt').textContent = err
 }
 
+else{
+this.alert("Ops en feil har oppståt prøv på nytt")
+}
+
+}
 
   /* find the fuck out of the auth  firebase.auth().onAuthStateChanged(FirebaseUser => {
       if (FirebaseUser) {
@@ -72,6 +83,9 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
   
+   
+
+    
    
 
     
