@@ -72,7 +72,7 @@
 
   //login with google
 
-  signInWithGoogle.addEventListener("click", function () {
+  /*signInWithGoogle.addEventListener("click", function () {
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -111,7 +111,8 @@
         console.log(error);
       });
     console.log(fbProvider);
-  });
+  });*/
+  
   //realtile listener
   //we can check if we are logged in from here aswell
   //if user is loged in forward to the map.
