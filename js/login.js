@@ -56,7 +56,7 @@
 
   window.addEventListener("load", function () {
     if (document.body.clientWidth < 500) {
-      document.getElementById("appLogoID").style.width = "100px";
+      document.getElementById("appLogoID").style.width = "200px";
     } else {
       document.getElementById("appLogoID").style.width = "160px";
     }
