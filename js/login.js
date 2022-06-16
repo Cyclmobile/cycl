@@ -44,6 +44,7 @@
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(function (firebaseUser) {
+          document.getElementById('loginload').style.display="block"
           // Success
         })
         .catch(function (error) {
