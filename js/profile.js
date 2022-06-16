@@ -41,6 +41,9 @@
       var namefirebase = database.ref().child(uid).child('users').child("name");
       namefirebase.on('value', function(snapshot) {
         document.getElementById('firebasename').innerHTML= snapshot.val();;
+        if(snapshot.val){
+          document.getElementById('profileload').style.display="none"
+        }
       });
   
       var emailfirebase = database.ref().child(uid).child('users').child("email");
