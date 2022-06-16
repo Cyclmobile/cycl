@@ -50,7 +50,7 @@
 
       var backbtn=document.getElementById("backbtn");
        backbtn.addEventListener("click",function(){
-      window.location.href="home.html"
+      window.location.href="menu.html"
     });
       console.log(FirebaseUser);
     }else {
