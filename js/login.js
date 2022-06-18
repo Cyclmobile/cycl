@@ -78,7 +78,7 @@
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     auth
-      .signInWithRedirect(googleProvider)
+      .signInWithPopup(googleProvider)
       .then(() => {
         if (FirebaseUser) {
           window.location.href = "home2.html";
@@ -92,7 +92,7 @@
       });
   });
 
-  /*
+  
   //login with facebook
 
   signInWithFb.addEventListener("click", function () {
@@ -113,7 +113,7 @@
         console.log(error);
       });
     console.log(fbProvider);
-  });*/
+  });
   
   //realtile listener
   //we can check if we are logged in from here aswell
