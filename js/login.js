@@ -73,7 +73,7 @@
 
   //login with google
 
-  /*signInWithGoogle.addEventListener("click", function () {
+  signInWithGoogle.addEventListener("click", function () {
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -92,6 +92,7 @@
       });
   });
 
+  /*
   //login with facebook
 
   signInWithFb.addEventListener("click", function () {
