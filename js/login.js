@@ -73,12 +73,11 @@
 
   //login with google
 
-  signInWithGoogle.addEventListener("click", function () {
+  /*signInWithGoogle.addEventListener("click", function () {
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
-
     auth
-      .signInWithPopup(googleProvider)
+      .signInWithRedirect(googleProvider)
       .then(() => {
         if (FirebaseUser) {
           window.location.href = "home2.html";
@@ -91,14 +90,10 @@
         console.log(error);
       });
   });
-
-  
   //login with facebook
-
   signInWithFb.addEventListener("click", function () {
     const auth = firebase.auth();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
-
     auth
       .signInWithRedirect(fbProvider)
       .then(() => {
@@ -113,7 +108,7 @@
         console.log(error);
       });
     console.log(fbProvider);
-  });
+  });*/
   
   //realtile listener
   //we can check if we are logged in from here aswell
