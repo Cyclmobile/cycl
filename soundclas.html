@@ -1,222 +1,423 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+  <title>Image test using</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+  
 
-    <div style="display: flex;flex: 1;align-items: center; justify-content: center;" id="webcam-container" class="completedclass">
-     
-      <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
-        <ul class="progressbar">
-          <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs"> Return</li>
-          <li>Recycled</li>
-        </ul>
+  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
+
+    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
+      <ul class="progressbar">
+        <li class="activeprgrs">Scan</li>
+        <li class="activeprgrs"> Return</li>
+        <li>Recycled</li>
+      </ul>
+
+  </div>
+
+  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
+    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+  </div>
+  
+  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
+      <div style="display: none;" id="label-container"></div>
+      <h3  style="display: block;" id="bottleshow"></h3>
+  </div>
+
+  </div>
+
+  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 80%;">
+    <p style="color:#52b459;"> Hold the bottle as demonstraded and drop it</p>
+    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
+    z-index: 1; color: white;" id="homebtn">Cancel</button> 
+  </div>
+       
+  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
+    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
+    <!-- <div class="scan-animation">
+      <span class="scan-animation__angle scan-animation__angle--top"></span>
+      <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+    </div> -->
+  </div>
+   
+
+    <div id="overlaystation"> 
+        <div class="container">
+          <ul class="progressbar">
+            <li class="activeprgrs">Scan</li>
+            <li class="activeprgrs">Return</li>
+            <li class="activeprgrs">Recycled</li>
+          </ul>
+        </div>
+  
+        <div class="completedclass">
+          <img src="Images/recycledone.png" alt="">
+          <h2 style="color: white;" > Recycling completed </h2>
+          <h2 style="color: white;" > You got 2 CC </h2>
+          <button style="  background-color: green; width: 180px;
+          height: 40px;
+          border-radius: 25px;
+          font-size: 20px; border: none;
+          color: white;" id="homebtn">Go back</button> 
+        </div>
+        
       </div>
 
-        <div id="wrong" style="display: none;">
-          <p id="distance1" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%; left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center; z-index: 100;"> Move the camera closer.
-          &#128721 <p>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+let video=document.getElementById("webcam-container");
+video.setAttribute('autoplay', '');
+video.setAttribute('muted', '');
+video.setAttribute('playsinline', '');
 
-        <div id="correct" style="display: none;">
-          <p id="distance2" style="color:rgb(255, 255, 255); display: block; position: absolute; bottom: 50%; left: 20%;font: size 200px;background-color: #52b459;border-radius: 50px; text-align: center; z-index: 100;"> Drop your bottle carefully &#128516; &#9851; <p>
-        </div>
-    </div>
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-    <div id="text2" style="color:#52b459; display: flex; flex: 1; position: absolute; z-index: 100; align-items: center; justify-content: flex-end; bottom: 6%;"><p> Follow the instruction above</p></div>
-    
-    <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
-    </div>
-
-    <script type="text/javascript">
-      // Classifier Variable
-      let classifier;
-      // Model URL 1.2
-      let imageModelURL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
-      
-      // Video
-      let video;
-      let flippedVideo;
-      // To store the classification
-      let label = "";
-    
-      // Load the model first
-      function preload() {
-        classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-      }
-    
-      function setup() {
-        createCanvas(320, 260);
-        // Create the video
-        
-    
-        if (isMobileDevice()) {
-        console.log("mobile device");
-      var constraints = {
-        audio: false,
-        video: {
-          facingMode: {
-            exact: "environment"
-          }
-        }
-        
-      };  
-      video = createCapture(constraints);
-      video.size(320, 240);
-      video.hide();
-    
-    
-      } else {
-        console.log("NOT mobile device");
-        video = createCapture(VIDEO);
-        video.size(320, 240);
-        video.hide();
-      }
-    
-        flippedVideo = ml5.flipImage(video);
-        // Start classifying
-        classifyVideo();
-      }
-    
-      function draw() {
-        background(0);
-        // Draw the video
-        image(flippedVideo, 0, 0);
-    
-        // Draw the label
-        fill(255);
-        textSize(16);
-        textAlign(CENTER);
-        text(label, width / 2, height - 4);
-      }
-    
-      function isMobileDevice() {
-        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-    };
-    
-      // Get a prediction for the current video frame
-      function classifyVideo() {
-        flippedVideo = ml5.flipImage(video)
-        classifier.classify(flippedVideo, gotResult);
-        flippedVideo.remove();
-    
-      }
-    
-      // When we get a result
-      function gotResult(error, results) {
-        // If there is an error
-        if (error) {
-          console.error(error);
-          return;
-        }
-        // The results are in an array ordered by confidence.
-        // console.log(results[0]);
-        label = results[0].label;
-        // Classifiy again!
-        classifyVideo();
-        
-        if(results[4].confidence > 0.5){
-           alert('correct')
-         }
+    // the link to your model provided by Teachable Machine export panel
+    const URL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
 
 
-           switch (label) {
-                   case 'OpBlc':
-                   case 'OpYt':
-                   case 'dropYt':
-                   case 'Dropblc':
-                   case 'op.2':
-                   window.location.href="completrecycl.html"
-                    }
-        
-                    switch (label) {
-                   case 'holdBlck':
-                   case 'Hyt':
-                     setTimeout(() => {
-                      document.getElementById("correct").style.display='block'
-                      document.getElementById("wrong").style.display='none'
-                       
-                     }, 4000);
-                    }
+    var backbtn=document.getElementById("backbtn");
 
-                    switch (label) {
-                   case 'station.2.4':
-                   case '2far':
-                   case 'bottleOut':
-                   case 'blurry':
-                   case 'HlfYt':
-                   case 'HlfBt':
-         document.getElementById("correct").style.display='none';
-         document.getElementById("wrong").style.display='block'
-                    }
-        
-    
-
-      }
-
-    window.addEventListener("load", function () {
-      document.getElementById("text2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-      document.getElementById("distance1").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-      document.getElementById("distance2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-      setTimeout(() => {
-        document.getElementById("defaultCanvas0").style.position = "absolute";
-        document.getElementById("defaultCanvas0").style.width = "100%";
-        document.getElementById("defaultCanvas0").style.height = "100%";
-        document.getElementById("defaultCanvas0").style.top = 0;
-        document.getElementById("defaultCanvas0").style.zIndex = 1;
-      }, 1000);
+    backbtn.addEventListener("click",function(){
+      window.location.href="home.html"
     });
 
-    window.addEventListener("resize", function () {
-      document.getElementById("text2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-      document.getElementById("distance1").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-      document.getElementById("distance2").style.left = document.body.clientWidth < 500 ? "25%" : "40%";
-    });
+    function load(){
+      document.getElementById("text2").style.display="flex";
+    }
+    function hidetxt(){
+      document.getElementById("text1").style.display="none";
+      document.getElementById("text3").style.display="none";
+      document.getElementById("loading").style.display="none";
 
+    }
+
+    function overlay(){
+      document.getElementById("overlaystation").style.display="block";
+    }
+
+  function homebtn(){
+    document.getElementById("homebtn").addEventListener("click",function(){
+      window.location.href="home.html"
+    })
+  };
+  homebtn();
+
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+  };
+firebase.initializeApp(firebaseConfig);
+
+var amount=0
+
+function amountcounter(){
+var uid=firebase.auth().currentUser.uid;
+
+var amountcc = firebase.database().ref().child(uid).child("users/").child("amount");
+amountcc.transaction(function(amount) {
+ return amount + 1;
+});
+}
+
+    let model, webcam, labelContainer, maxPredictions;
+
+    let isIos = false; 
+    // fix when running demo in ios, video will be frozen;
+    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
+      isIos = true;
+    }
+
+    // Load the image model and setup the webcam
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = false; // whether to flip the webcam
+        const width = window.screen.width > 1000 ? window.screen.width : window.screen.width;
+        const height = window.screen.height > 1000 ? window.screen.height : window.screen.height;
+        webcam = new tmImage.Webcam(width, height); // width, height, flip
+        await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
+
+        if (isIos) {
+            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
+            // grab video-object in any way you want and set the attributes
+            const webCamVideo = document.getElementsByTagName('video')[0];
+            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
+            webCamVideo.muted = "true";
+            // webCamVideo.style.width = width + 'px';
+            // webCamVideo.style.height = height + 'px';
+        } else {
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+        }
+
+        try {
+            // append elements to the DOM
+            // if (isIos) {
+            //     document.getElementById("webcam-container").appendChild(webcam.webcam);
+            // }
+            // else{
+            //     document.getElementById("webcam-container").appendChild(webcam.canvas);
+            // }
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                 labelContainer.appendChild(document.createElement("div"));
+            }
+            await webcam.play() ? console.log("working") : console.log("not working");
+            window.requestAnimationFrame(loop);
+        }
+        catch(e) {
+            console.log('Catch an error: ', e)
+        }
+    } 
+
+    //executes the init function
+    init()
+
+    async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the image model
+    async function predict() {
+        // predict can take in an image, video or canvas html element
+        // const prediction;
+        // if (isIos) {
+        //     prediction = await model.predict(webcam.webcam);
+        // } else {
+        //     prediction = await model.predict(webcam.canvas);
+        // }
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+            console.log(classPrediction);
+
+            var Imagedetect=document.getElementById("label-container");
+                document.getElementById("bottleshow").innerHTML=classPrediction;
+                hidetxt()
+                load()
+
+                switch (classPrediction) {
+                   case 'dropBlck: 0.85':
+                   case 'dropBlck: 0.86':
+                   case 'dropBlck: 0.87':
+                   case 'dropBlck: 0.88':
+                   case 'dropBlck: 0.89':
+                   case 'dropBlck: 0.90':
+                   case 'dropBlck: 0.91':
+                   case 'dropBlck: 0.92':
+                   case 'dropBlck: 0.93':
+                   case 'dropBlck: 0.94':      
+                   case 'dropBlck: 0.95':
+                   case 'dropBlck: 0.96':
+                   case 'dropBlck: 0.97':
+                   case 'dropBlck: 0.98':
+                   case 'dropBlck: 0.99':
+                   case 'dropBlck: 1.00':
+                     amountcounter();
+                  overlay();
+             
+                    }
+            
+            
+            switch (classPrediction) {
+                   case 'openhndblck: 0.85':
+                   case 'openhndblck: 0.86':
+                   case 'openhndblck: 0.87':
+                   case 'openhndblck: 0.88':
+                   case 'openhndblck: 0.89':
+                   case 'openhndblck: 0.90':
+                   case 'openhndblck: 0.91':
+                   case 'openhndblck: 0.92':
+                   case 'openhndblck: 0.93':
+                   case 'openhndblck: 0.94':      
+                   case 'openhndblck: 0.95':
+                   case 'openhndblck: 0.96':
+                   case 'openhndblck: 0.97':
+                   case 'openhndblck: 0.98':
+                   case 'openhndblck: 0.99':
+                   case 'openhndblck: 1.00':
+                     amountcounter();
+                  overlay();
+             
+                    }
+            
+              switch (classPrediction) {
+                   case 'oHyt: 0.85':
+                   case 'oHyt: 0.86':
+                   case 'oHyt: 0.87':
+                   case 'oHyt: 0.88':
+                   case 'oHyt: 0.89':
+                   case 'oHyt: 0.90':
+                   case 'oHyt: 0.91':
+                   case 'oHyt: 0.92':
+                   case 'oHyt: 0.93':
+                   case 'oHyt: 0.94':      
+                   case 'oHyt: 0.95':
+                   case 'oHyt: 0.96':
+                   case 'oHyt: 0.97':
+                   case 'oHyt: 0.98':
+                   case 'oHyt: 0.99':
+                   case 'oHyt: 1.00':
+                     amountcounter();
+                  overlay();
+             
+                    }
+
+                    switch (classPrediction) {
+                   case 'dropYt: 0.85':
+                   case 'dropYt: 0.86':
+                   case 'dropYt: 0.87':
+                   case 'dropYt: 0.88':
+                   case 'dropYt: 0.89':
+                   case 'dropYt: 0.90':
+                   case 'dropYt: 0.91':
+                   case 'dropYt: 0.92':
+                   case 'dropYt: 0.93':
+                   case 'dropYt: 0.94':         
+                   case 'dropYt: 0.95':
+                   case 'dropYt: 0.96':
+                   case 'dropYt: 0.97':
+                   case 'dropYt: 0.98':
+                   case 'dropYt: 0.99':
+                   case 'dropYt: 1.00':
+                   amountcounter();
+                  overlay();
+             
+                    }
+        }
+    }
 </script>
 
-</body>
+<style>
+  .overlaycameraimg {
+  position:absolute;
+  top:0;
+  z-index:25;
+  text-align:center;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: url("Images/holdcrrct.png");
+  z-index: 10;
+  opacity: 0.5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-</html>
+img {
+  display:inline-block;
+}
 
-        
+.scan-animation {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 320px;
+    height: 320px;
+    z-index: 1;
+    left: 100%;
+    top:40%;
+   
+  }
+  
+  .scan-animation__angle:before,
+  .scan-animation__angle:after {
+    content: "";
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: #52b459;
+    border-width: 0px;
+    z-index: 1;
+ 
+  }
+  
+  .scan-animation__angle:before {
+    border-left-width: 6px;
+    left: 0;
     
+  }
+  
+  .scan-animation__angle:after {
+    border-right-width: 6px;
+    right: 0;
 
-      }
-    </script>
 
-    <style>
-      .overlaycameraimg {
-      position:absolute;
-      top:0;
-      z-index:25;
-      text-align:center; 
-      width: 50%;
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      background: url("Images/holdcrrct.png");
-      z-index: 10;
-      opacity: 0.5;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    </style>
+  }
+  
+  .scan-animation__angle--top:before,
+  .scan-animation__angle--top:after {
+    top: 0;
+    border-top-width: 6px;
+
+
+  }
+  
+  .scan-animation__angle--bottom:before,
+  .scan-animation__angle--bottom:after {
+    bottom: 0;
+    border-bottom-width: 6px;
+  }
+  
+  .scan-animation__angle--top:before {
+    border-top-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--top:after {
+    border-top-right-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:before {
+    border-bottom-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:after {
+    border-bottom-right-radius: 50px;
+  }
+</style>
 
 </body>
-
+</html>
 </html>
