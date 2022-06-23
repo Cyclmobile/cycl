@@ -145,7 +145,7 @@ for (const marker of geojson.features) {
   el.style.width = `${width}px`;
   el.style.height = `${height}px`;
   el.style.backgroundSize = "100%";
-  el.style.zIndex="0"
+  el.style.zIndex="1"
 
   new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
 
