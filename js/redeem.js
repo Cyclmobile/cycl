@@ -66,19 +66,19 @@ donatebtn.addEventListener("click", function () {
 
 //this is inside the card
 const tasks = [
-  {
-    image: "Images/dwimg.jpeg",
-    title: "Daniel Wellington",
-    price: "15 CC",
-    description: "15% off everything you buy",
-    button: "Claim",
-    list: "",
-    CheckedImg: "Images/activated.png",
-  },
+  // {
+  //   image: "Images/dwimg.jpeg",
+  //   title: "Daniel Wellington",
+  //   price: "15 CC",
+  //   description: "15% off everything you buy",
+  //   button: "Claim",
+  //   list: "",
+  //   CheckedImg: "Images/activated.png",
+  // },
   {
     image: "Images/barber.jpg",
     title: "20% Discount haircut",
-    price: "55 CC",
+    price: "15 CC",
     description: "20% discount for haircut in selected barbershops",
     button: "Claim",
     discreption: "Get 20% discount for haircut at these barber shops,",
@@ -274,16 +274,16 @@ async function getCoupon(task, type) {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-      const string = "Click here to use your coupon code on checkout";
-      const website = string.link("https://adtr.co/X9ovTH");
+      // const string = "Click here to use your coupon code on checkout";
+      // const website = string.link("https://adtr.co/X9ovTH");
 
       showDetail(
         task,
         res[0].offerCoupon +
           ": VALID TO: " +
-          `${year}/${month}/${day}` +
-          " " +
-          website
+          `${year}/${month}/${day}` 
+          //+ " " +
+          // website
       );
       startTimer(10, "timer", cost);
     } else {
