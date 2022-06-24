@@ -1,5 +1,4 @@
 <div>Teachable Machine Image Model</div>
-<button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
 <div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
@@ -12,6 +11,11 @@
     const URL = "https://teachablemachine.withgoogle.com/models/P7PtLepi1/";
 
     let model, webcam, labelContainer, maxPredictions;
+    let isIos = false; 
+    // fix when running demo in ios, video will be frozen;
+    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
+      isIos = true;
+    }
 
     // Load the image model and setup the webcam
     async function init() {
@@ -29,16 +33,39 @@
         const flip = true; // whether to flip the webcam
         webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
-        await webcam.play();
-        window.requestAnimationFrame(loop);
+        if (isIos) {
+            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
+            // grab video-object in any way you want and set the attributes
+            const webCamVideo = document.getElementsByTagName('video')[0];
+            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
+            webCamVideo.muted = "true";
+            // webCamVideo.style.width = width + 'px';
+            // webCamVideo.style.height = height + 'px';
+        } else {
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+        }
 
-        // append elements to the DOM
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
-            labelContainer.appendChild(document.createElement("div"));
+        try {
+            // append elements to the DOM
+            // if (isIos) {
+            //     document.getElementById("webcam-container").appendChild(webcam.webcam);
+            // }
+            // else{
+            //     document.getElementById("webcam-container").appendChild(webcam.canvas);
+            // }
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                 labelContainer.appendChild(document.createElement("div"));
+            }
+            await webcam.play() ? console.log("working") : console.log("not working");
+            window.requestAnimationFrame(loop);
+        }
+        catch(e) {
+            console.log('Catch an error: ', e)
         }
     }
+
+    init()
 
     async function loop() {
         webcam.update(); // update the webcam frame
@@ -55,7 +82,7 @@
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
 
-              var drB=prediction[4].probability.toFixed(2);
+            var drB=prediction[4].probability.toFixed(2);
                 var OpBlc=prediction[5].probability.toFixed(2);
                 var dropYt= prediction[8].probability.toFixed(2);
                 var OpYt=prediction[9].probability.toFixed(2);
