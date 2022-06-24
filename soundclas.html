@@ -222,7 +222,7 @@ video.setAttribute('playsinline', '');
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
-            // console.log(classPrediction);
+            console.log(classPrediction);
 
             var Imagedetect=document.getElementById("label-container");
                 document.getElementById("bottleshow").innerHTML=classPrediction;
@@ -235,24 +235,24 @@ video.setAttribute('playsinline', '');
                 var OpYt=prediction[9].probability.toFixed(2);
                 var op_2=prediction[13].probability.toFixed(2);
 
-                console.log(prediction[13].className +  " " + prediction[4].probability.toFixed(2));
+               // console.log(prediction[13].className +  " " + prediction[4].probability.toFixed(2));
 
-                if (drB >= 0.30){
+                if (drB >= 0.80){
                   alert('dropblack')
 
                 }
 
-                if (OpBlc >= 0.30){
+                if (OpBlc >= 0.80){
                   alert('openblack')
 
                 }
 
-                if (dropYt >= 0.30){
+                if (dropYt >= 0.80){
                   alert('dropYt')
 
                 }
 
-                if (op_2 >= 0.30){
+                if (op_2 >= 0.80){
                   alert('op.2')
 
                 }else
