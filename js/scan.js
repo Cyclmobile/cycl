@@ -3,7 +3,7 @@
 window.addEventListener('load', function () {
   let selectedDeviceId;
   var database = firebase.database();
-  const codeReader = new ZXing.BrowserMultiFormatReader()
+  const codeReader = new ZXing.BrowserBarcodeReader()
   console.log('ZXing code reader initialized')
   codeReader.listVideoInputDevices()
   this.document.getElementById("submitbarcodebtn").addEventListener("click", function () {
