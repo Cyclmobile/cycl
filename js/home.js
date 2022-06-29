@@ -24,7 +24,6 @@ function closeNav() {
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw";
 const map = new mapboxgl.Map({
-  flyTo: { duration: 0 },
   container: "map", // container ID
   style: "mapbox://styles/mapbox/streets-v11", // style URL
   center: [10.743482389383416, 59.908113321340466], // starting position
@@ -44,7 +43,8 @@ const map = new mapboxgl.Map({
 // Initialize the geolocate control.
 var geolocate = new mapboxgl.GeolocateControl({
   positionOptions: {
-    enableHighAccuracy: true,
+    flyTo: { duration: 0 },
+    enableHighAccuracy: true
   },
   // When active the map will receive updates to the device's location as it changes.
   trackUserLocation: true,
