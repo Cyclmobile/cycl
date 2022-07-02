@@ -4,6 +4,12 @@ window.addEventListener('load', function () {
     var hints = new Map();
     hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
     hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
+    //enable formats
+const enabledFormats = [
+    // ...ALL_FORMATS_WHICH_YOU_WANT_TO_ENABLE
+    ZXing.BarcodeFormat.UPC_A,
+];
+hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, enabledFormats);
     const codeReader = new ZXing.BrowserMultiFormatReader(hints)
     console.log('ZXing code reader initialized')
     codeReader.getVideoInputDevices()
@@ -25,11 +31,30 @@ window.addEventListener('load', function () {
                 const sourceSelectPanel = document.getElementById('sourceSelectPanel')
                 sourceSelectPanel.style.display = 'block'
             }
+            
 
 
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+
+                this.document.getElementById("submitbarcodebtn").addEventListener("click", function () {
+                    var inputBarcode = document.getElementById('result').value;
+                
+                  
+                
+                    if (colacola.includes(inputBarcode)) {
+                     alert('cola')
+                    } else {
+                
+                      alert("This bottle cant be recycled")
+                    }
+                    console.log(colacola.includes(inputBarcode)); //if true then proceed otherwise stay or prevent submitting
+                
+                
+                  });
+
                 if (result) {
 
+        
                     console.log(result.text)
                     console.log(result.getText())
                     document.getElementById('result').value = result;
@@ -45,7 +70,7 @@ window.addEventListener('load', function () {
                         "7090000248208", "5000112637595", "5000112636857", "5000112636826", "5000112636901", "5000112640755",
                         "5000112636895", "7026595400387", "90370953", "90382475", "5000112630244", "5449000279828", "5060466516304",
                         "5060608740130", "5060466516335", "5000112633795", "5000112634129", "5000112650723", "5000112638640",
-                        "5000112655070", "5000112650709", "5000112641455", "5000112650709", "5449000206442", "5000111507356", '5000112656961', '5060608744206', '5714411310140'];
+                        "5000112655070", "5000112650709", "5000112641455", "5000112650709", "5449000206442", "5000111507356", '5000112656961', '5060608744206'];
 
                     var pepsi = ["7044610874685", "7044610874678", "7044610875057", "7044610876177", "7044610874661", "7044610874326",
                         "7044610875040", "7044610038018", "7310070003263", "7044610874654", "7044610876184"];
@@ -89,30 +114,37 @@ window.addEventListener('load', function () {
                         "7040518510687", "7044930221404", "7035260000852", "90448379", "7038010067464", "7038010062865",
                         "5730800625084", "7038010063336", "7090045630099", "5042718527191", "6001811634136", "7040518411489", "8281011874848",
                         "7044670874816", "7044930220407", "7340131602579", '90453878', '6041618276146', '7040518507649', '7040518507632', '1240201251224',
-                        '7040518507038', '7040518507328', '6143011875848', '6001811620115', '7611612221351', '8002270206887', '5000111636001']
+                        '7040518507038', '7040518507328', '6143011875848', '6001811620115', '7611612221351', '8002270206887', '5000111636001','5714411310140']
 
                     if (otherCompanies.includes(result.text)) {
                         this.alert('otherCompanies')
+                        return;
                     }
 
                     if (ringnes.includes(result.text)) {
                         this.alert('ringnes')
+                        return;
                     }
 
                     if (tine.includes(result.text)) {
                         this.alert('tine')
+                        return;
                     }
 
                     if (colacola.includes(result.text)) {
                         this.alert('colacola')
+                        return;
                     }
 
                     if (pepsi.includes(result.text)) {
                         this.alert('pepsi')
+                        return;
 
                     } else {
 
                         alert("This bottle cant be recycled")
+
+                        return;
                     }
 
                 }
