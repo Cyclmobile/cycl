@@ -42,16 +42,25 @@
         </div>
         <input style="left: 10%; position: absolute; bottom: 15%;
         margin-bottom: 30px; background-color:rgba(0, 0, 0, 0); width: 75%; text-align: center;
-        color: #52b459;" type="number" id="rezlt" placeholder="barcode" width="100%"></input>     
+        color: #52b459;" type="number" id="result" placeholder="barcode" width="100%"></input>     
 
         <button id="submitbarcodebtn" style="background-color: #52b459; border-radius: 10px; border: 0px; width: 50%;
         position: absolute;
         bottom: 10%; left: 23%;">submit</button>
-       <img style="left:35%; position: absolute; top: 50%;z-index: 1;" src="Images/bottlescan.png"/>
-       <img style="left:55%; position: absolute; top: 50%;z-index: 1;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
-  
+        <img style="left:35%; position: absolute; top: 50%;z-index: 1;" src="Images/bottlescan.png"/>
+        <img style="left:55%; position: absolute; top: 50%;z-index: 1;" src="https://img.icons8.com/dotty/50/000000/barcode-scanner-2.png"/>
   
       </div>
+
+
+      
+       
+      
+          <div id="sourceSelectPanel" style="display:none">
+            <label for="sourceSelect">Change video source:</label>
+            <select id="sourceSelect" style="max-width:400px">
+            </select>
+          </div>
  
 
 <!--The library in the button has to stay upgraded to work-->
