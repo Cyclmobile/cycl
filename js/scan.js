@@ -273,6 +273,10 @@ window.addEventListener('load', function () {
     });
 })
 
+backbtn.addEventListener("click", () =>{
+    window.location.href="home.html";
+  });
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
