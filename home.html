@@ -4,6 +4,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>Locate the user</title>
+	<link rel="manifest" href="manifest.json">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#222" />
+    <meta name="description" content="Cycl">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Home">
+    <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
@@ -13,8 +22,14 @@
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 	<link href="styles.css" rel="stylesheet">
-	<link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
 	<meta name="theme-color" content="white" />
+
+	<script>
+		// Registering our Service worker
+		if('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('sw.js', { scope: './' })
+		}
+	  </script>
 
 </head>
 
