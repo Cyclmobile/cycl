@@ -5,6 +5,7 @@ const filesToCache = [
   "soundclas.html",
   "home.html",
   "Redeem.html",
+  "soundclas.html",
   "./js/home.js",
   "./js/ImgDetect.js",
   "./js/redeem.js",
