@@ -32,9 +32,10 @@
         window.location.href="edit.html"
       })
 
-      var totalrecycle = database.ref().child("TotalRecycled").child("TotalRecycled");
+      var totalrecycle = database.ref().child("TotalRecycled").child("TotalBottles");
       totalrecycle.on('value', function(snapshot) {
-        document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' +snapshot.val();
+        document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' + snapshot.val();
+        console.log(snapshot.val())
       });
 
 
