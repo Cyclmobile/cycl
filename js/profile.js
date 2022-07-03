@@ -32,9 +32,9 @@
         window.location.href="edit.html"
       })
 
-      var totalrecycle = database.ref().child("bottles").child("colacola comapany");
+      var totalrecycle = database.ref().child("TotalRecycled").child("TotalRecycled");
       totalrecycle.on('value', function(snapshot) {
-      document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' +snapshot.val();
+        document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' +snapshot.val();
       });
 
 
