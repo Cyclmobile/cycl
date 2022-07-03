@@ -43,7 +43,7 @@ window.addEventListener('load', function () {
 
             console.log(user)
 
-            codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+            codeReader.decodeFromVideoDevice(undefined, 'video', (result, err) => {
 
 
                 if (result) {
