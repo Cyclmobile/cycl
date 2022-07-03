@@ -6,12 +6,9 @@ window.addEventListener('load', function () {
     hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
     //enable formats
 const enabledFormats = [
-    // ...ALL_FORMATS_WHICH_YOU_WANT_TO_ENABLE
-    // ZXing.BarcodeFormat.CODE_39,
-    // ZXing.BarcodeFormat.EAN_8,
     ZXing.BarcodeFormat.EAN_13,
-    // ZXing.BarcodeFormat.UPC_EAN_EXTENSION,
-    ZXing.BarcodeFormat.UPC_A,
+    // ZXing.BarcodeFormat.UPC_E,
+    // ZXing.BarcodeFormat.UPC_A,
 ];
 hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, enabledFormats);
     const codeReader = new ZXing.BrowserMultiFormatReader(hints)
