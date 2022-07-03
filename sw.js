@@ -2,7 +2,6 @@
 const cacheName = "Cycl";
 const filesToCache = [
   "/",
-  "soundclas.html",
   "home.html",
   "Redeem.html",
   "soundclas.html",
