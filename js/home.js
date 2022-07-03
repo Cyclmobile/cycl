@@ -264,6 +264,12 @@ for (const marker of geojson.features) {
 
                 break;
             }
+	    
+	     //total recycled
+            var totalReecycled = firebase.database().ref().child('TotalRecycled').child("Total Recycled")
+            totalReecycled.transaction(function (result) {
+              return result + 1;
+            });
 
             function checkbag() {
               bagcounter.transaction(function (bagcountr) {
