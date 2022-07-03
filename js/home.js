@@ -266,7 +266,7 @@ for (const marker of geojson.features) {
             }
 	    
 	     //total recycled
-            var totalReecycled = firebase.database().ref().child('TotalRecycled').child("Total Recycled")
+            var totalReecycled = firebase.database().ref().child('TotalRecycled').child("TotalBottles")
             totalReecycled.transaction(function (result) {
               return result + 1;
             });
