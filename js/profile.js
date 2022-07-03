@@ -34,7 +34,7 @@
 
       var totalrecycle = database.ref().child("bottles").child("colacola comapany");
       totalrecycle.on('value', function(snapshot) {
-        document.getElementById('recycled').innerHTML="Total recycled " + snapshot.val();
+      document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' +snapshot.val();
       });
 
 
