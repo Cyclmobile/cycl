@@ -123,6 +123,7 @@ window.addEventListener('load', function () {
                         setTimeout(function () {
                             window.location.href = "droptuto.html"
                           }, 500);
+                          return;
                     }
 
                     if (ringnes.includes(result.text)) {
@@ -134,6 +135,8 @@ window.addEventListener('load', function () {
                         setTimeout(function () {
                             window.location.href = "droptuto.html"
                           }, 500);
+                          return;
+
                     }
 
                     if (tine.includes(result.text)) {
@@ -145,6 +148,8 @@ window.addEventListener('load', function () {
                         setTimeout(function () {
                             window.location.href = "droptuto.html"
                           }, 500);
+                          return;
+
                     }
 
                     if (CocaCola.includes(result.text)) {
@@ -169,6 +174,7 @@ window.addEventListener('load', function () {
                         setTimeout(function () {
                             window.location.href = "droptuto.html"
                           }, 500);
+                          return;
 
                     } else {
                         this.alert("This bottle cant by recycled, try again later")
@@ -281,3 +287,4 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
