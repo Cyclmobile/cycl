@@ -73,6 +73,12 @@ var amountcc = firebase.database().ref().child(uid).child("users/").child("amoun
 amountcc.transaction(function(amount) {
  return amount + 2;
 });
+        
+ //total recycled
+            var totalReecycled = firebase.database().ref().child('TotalRecycled').child("TotalBottles")
+            totalReecycled.transaction(function (result) {
+              return result + 1;
+            });
 
       console.log(FirebaseUser);
     } else {
