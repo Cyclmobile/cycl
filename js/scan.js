@@ -1,6 +1,7 @@
 window.addEventListener('load', function () {
     let selectedDeviceId;
     var inputBarcode = document.getElementById('result').value;
+    let loader=this.document.getElementById('ScanLoad');
     var hints = new Map();
     hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
     hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
@@ -44,6 +45,9 @@ window.addEventListener('load', function () {
             console.log(user)
 
             codeReader.decodeFromVideoDevice(undefined, 'video', (result, err) => {
+                
+                //loadinig
+                loader.style.display='none'
 
 
                 if (result) {
