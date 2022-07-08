@@ -23,24 +23,40 @@ function closeNav() {
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw";
-const map = new mapboxgl.Map({
-  container: "map", // container ID
-  style: "mapbox://styles/mapbox/streets-v11", // style URL
-  center: [10.743482389383416, 59.908113321340466], // starting position
-  zoom: 16, // starting zoom
-  maxZoom: 20,
-  minZoom: 5,
-});
 
-// Add geolocate control to the map.
-/*map.addControl(
-			new mapboxgl.GeolocateControl({
-			positionOptions: {
-			enableHighAccuracy: true
-			},
-			
-			);*/
-// Initialize the geolocate control.
+  const map = new mapboxgl.Map({
+    container: "map", // container ID
+    style: "mapbox://styles/mapbox/streets-v11", // style URL
+    center: [10.76460523138374,59.91834370141862],
+    zoom: 16, // starting zoom
+    maxZoom: 20,
+    minZoom: 5,
+  });
+  var geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+      flyTo: { duration: 0 },
+      enableHighAccuracy: true
+    },
+    // When active the map will receive updates to the device's location as it changes.
+    trackUserLocation: true,
+  });
+  // Add the control to the map.
+  map.addControl(geolocate);
+  map.on("load", function () {
+    geolocate.trigger(); //<- Automatically activates geolocation
+  });
+  
+  if ("geolocation" in navigator) { 
+    navigator.geolocation.getCurrentPosition(position => { 
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/mapbox/streets-v11", // style URL
+        center: [position.coords.longitude, position.coords.latitude],
+        zoom: 16, // starting zoom
+        maxZoom: 20,
+        minZoom: 5,
+      });
+      // Initialize the geolocate control.
 var geolocate = new mapboxgl.GeolocateControl({
   positionOptions: {
     flyTo: { duration: 0 },
@@ -49,13 +65,11 @@ var geolocate = new mapboxgl.GeolocateControl({
   // When active the map will receive updates to the device's location as it changes.
   trackUserLocation: true,
 });
-
 // Add the control to the map.
 map.addControl(geolocate);
 map.on("load", function () {
   geolocate.trigger(); //<- Automatically activates geolocation
 });
-
 //markers
 
 const geojson = {
@@ -357,6 +371,25 @@ redeem.addEventListener("click", function () {
 });
  
 });
+  
+      
+    }); 
+  } else { 
+    console.log('denied')
+    alert('not accepted') /* geolocation IS NOT available, handle it */ }
+
+// Add geolocate control to the map.
+/*map.addControl(
+			new mapboxgl.GeolocateControl({
+			positionOptions: {
+			enableHighAccuracy: true
+			},
+			
+			);*/
+
+
+
+
 
 
 
