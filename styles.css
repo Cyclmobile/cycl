@@ -1,6 +1,6 @@
 .body {
+  background-color: white;
   font-family:  Verdana, Geneva, Tahoma, sans-serif;
-
     -youbkit-touch-callout: none; /* iOS Safari */
       -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
       -moz-user-select: none;       /* Firefox */
@@ -10,14 +10,21 @@
 -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
 -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
-  /*hide google info on map*/
-  a[href^="http://maps.google.com/maps"]{display:none !important}
-  a[href^="https://maps.google.com/maps"]{display:none !important}
-  .gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
-   }
-   .gmnoprint div {background:none !important;}
-   /*^hide google info on map*/
+
+.body2 {
+  background-color: white;
+  display: flex;flex: 
+  1;align-items: center;justify-content: center;
+  font-family:  Verdana, Geneva, Tahoma, sans-serif;
+    -youbkit-touch-callout: none; /* iOS Safari */
+      -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+      -moz-user-select: none;       /* Firefox */
+      -ms-user-select: none;        /* IE 10+ and Edge */
+      user-select: none;
+      -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
 
 
    /*home.html styles*/
