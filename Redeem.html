@@ -42,12 +42,18 @@
     </div>
   </header>
 
-  <body style="background-color:white;">
+  <body class="body" style="-webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;">
 
     <section class="features">
       <!--Cardcontainer-->
       <!--Show tooken-->
       <section class="reward"></section>
+      
 
       <div id="overlay-coupon">
         
@@ -55,6 +61,21 @@
           <!-- <span id="backbtnoverlay" style="position: relative;left: 40%;">&times;</span>  -->
 
           </div>
+          
+      </div>
+      <div class="cardshowmsf">
+        <img class="imgclass" src="Images/msf.jpeg" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4 style="text-align: center;"><b>Donate to MSF</b></h4>
+          <p style="text-align: center;"> Donation for MSF</p>
+          <button class="btncard" id="donatebtn">Donate</button>
+          <br>
+          <br>
+          
+          <input oninput="this.value = Math.abs(this.value)" type="number" pattern="\d*" id="donateInput" style=" text-align: center;
+        font-size:20px;  border-radius:5px; width: 140px; height:25px;;
+        ; border-color: #52b459;"placeholder="amount" min="0">
+        </div>
       </div>
 
       <section class="details"></section>
@@ -73,22 +94,10 @@
               <button class="btn" id="activate">Activate </button>
               <div id="countdown"></div>
           </div> -->
+          
       </div>
 
-      <div class="cardshow">
-        <img class="imgclass" src="Images/msf.jpeg" alt="Avatar" style="width:100%">
-        <div class="container">
-          <h4 style="text-align: center;"><b>Donate to MSF</b></h4>
-          <p style="text-align: center;"> Donation for MSF</p>
-          <button class="btncard" id="donatebtn">Donate</button>
-          <br>
-          <br>
-          
-          <input oninput="this.value = Math.abs(this.value)" type="number" pattern="\d*" id="donateInput" style=" text-align: center;
-        font-size:20px;  border-radius:5px; width: 140px; height:25px;;
-        ; border-color: #52b459;"placeholder="amount" min="0">
-        </div>
-      </div>
+ 
         <br>
         <br>
         <br>
