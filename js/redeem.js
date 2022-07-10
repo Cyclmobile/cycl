@@ -256,8 +256,8 @@ async function getCoupon(task, type) {
     channelId: 1703965087,
   };
 
-  //type definerer hvilket kort innholdet skal være i
-  if (type === "1") {
+  //type definerer hvilket kort innholdet skal være i,kort 3 finnes ikke
+  if (type === "3") {
     const req = await fetch(
       "https://api.adtraction.com/v2/affiliate/offers/?token=486DD3496AAA36C1B9D6D7F92C66A3073084E57F",
       {
