@@ -19,7 +19,17 @@
   </div>
 </header>
 
-<body>
+<body style=" background-color: white;
+font-family:  Verdana, Geneva, Tahoma, sans-serif;
+
+  -youbkit-touch-callout: none; /* iOS Safari */
+    -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+    -moz-user-select: none;       /* Firefox */
+    -ms-user-select: none;        /* IE 10+ and Edge */
+    user-select: none;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;  ">
 
   <nav class="nav">
     <a href="Redeem.html" class="nav__link">
@@ -71,7 +81,26 @@
       </div>
       <hr>
 
-      <div id="logOut" style="display: flex; margin-right: 45px;">
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">book</i>
+      <a
+      style="text-decoration: none; color: #000000;margin-left: 15px;"
+      href="terms.html">Terms</a>
+      </div>
+      <hr>
+
+
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">policy</i>
+      <a
+      style="text-decoration: none; color: #000000;margin-left: 15px;"
+      href="Privacy.html">Policy</a>
+      </div>
+      <hr>
+
+      <div id="logOut" style="display: flex; margin-right: 45px;color: red;">
         <i class="material-icons nav__icon color" style="position: relative;
         margin-left: 15px;">logout</i>
         <a 
@@ -90,25 +119,6 @@
 
 
 
-
-   <div style="position: absolute; bottom: 10%; width: 100%">
-    
-    <p style="margin-left: 5px;">
-      <a
-        style="color: #000000"
-        href="terms.html"
-        >Terms</a
-      >
-    </p>
-
-    <p style="margin-left: 5px;">
-      <a
-        style=" color: #000000"
-        href="Privacy.html"
-        >Policy</a
-      >
-    </p>
-    <hr />
   </div>
 
 
@@ -121,15 +131,6 @@
       font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
       line-height: 1.45;
       background-color: whitesmoke;
-      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
-  -youbkit-touch-callout: none; /* iOS Safari */
-      -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
-      -moz-user-select: none;       /* Firefox */
-      -ms-user-select: none;        /* IE 10+ and Edge */
-      user-select: none;
-      -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
--webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
--webkit-user-select: none;  
     }
 
     header {
