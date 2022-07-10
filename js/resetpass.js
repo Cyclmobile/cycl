@@ -37,14 +37,7 @@
       //realtile listener
       //we can check if we are logged in from here aswell
       //if user is loged in forward to the map.
-      firebase.auth().onAuthStateChanged(FirebaseUser => {
-        if (FirebaseUser) {
-          window.location.href=("home.html")
-          console.log(FirebaseUser);
-        }else {
-          console.log("not logged in");
-        }
-      });
+     
       
       }());
       
