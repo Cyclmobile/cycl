@@ -1,82 +1,76 @@
 <!DOCTYPE html>
 <html>
-<head>
-  
+  <head>
+    <title>Image detections</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-  <title>Image clasify using</title>
-  <link rel="stylesheet" href="styles.css">
-  <!--<button type="button" onclick="init()">Start</button>-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <!--<button type="button" onclick="init()">Start</button>-->
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
   
-
- <!DOCTYPE html>
-<html>
-<head>
-  <title>Image detections</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-  <!--<button type="button" onclick="init()">Start</button>-->
-  <link rel="stylesheet" href="styles.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body class="body2">
+  <body class="body2">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
+    <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container"
+      class="completedclass">
 
-    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
-      <ul class="progressbar">
-        <li class="activeprgrs">Scan</li>
-        <li class="activeprgrs"> Return</li>
-        <li>Recycled</li>
-      </ul>
+      <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
+        <ul class="progressbar">
+          <li class="activeprgrs">Scan</li>
+          <li class="activeprgrs"> Return</li>
+          <li>Recycled</li>
+        </ul>
 
-  </div>
-  
+      </div>
 
-  
 
-  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
-    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
-    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-    <p id="text3" style="color:#52b459;"> * Follow the instructions to recycle corectly </hp>
-      <br>
-      <br>
-      <br>
-      <br>
-  </div>
-  
-  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
+
+
+      <div
+        style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
+        <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+        <p id="text3" style="color:#52b459;"> * Follow the instructions to recycle corectly </hp>
+
+      </div>
+
+      <!-- <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
       <div style="display: none;" id="label-container"></div>
       <h3  style="display: none;" id="bottleshow"></h3>
-  </div>
+  </div> -->
 
-  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 60%;">
-    <p style="color:white; background-color: #52b459;border-radius: 15px; text-align: center;" id="info"> Hold the bottle as demonstraded and drop it</p>
-    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
-    z-index: 1; color: white; left: 25%; position: absolute;" id="homebtn">Cancel</button> 
-  </div>
-  
-       
-  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
-    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
-    <!-- <div class="scan-animation">
+      <div id="text2"
+        style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 60%;">
+        <p style="color:white; background-color: #52b459;border-radius: 15px; text-align: center;" id="info"> Hold the
+          bottle as demonstraded and drop it</p>
+        <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
+    z-index: 1; color: white; left: 25%; position: absolute;" id="homebtn">Cancel</button>
+      </div>
+
+
+      <div class="overlaycameraimg"
+        style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
+        <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
+        <!-- <div class="scan-animation">
       <span class="scan-animation__angle scan-animation__angle--top"></span>
       <span class="scan-animation__angle scan-animation__angle--bottom"></span>
     </div> -->
-    <div id="DropColor" style=" border: 8px solid red;
+        <div id="DropColor" style=" border: 8px solid red;
     width: 100%;
     height: 100%;
     margin: 10px auto;display: block;">
 
-  </div>
-  </div>
-</div>
+        </div>
+      </div>
+    </div>
 
-   
+
 
     <!-- <div id="overlaystation"> 
         <div class="container">
@@ -100,100 +94,33 @@
         
       </div> -->
 
-<script src="js/ImgDetect.js"></script>
+    <script src="js/ImgDetect.js"></script>
 
-<style>
-  .overlaycameraimg {
-  position:absolute;
-  top:0;
-  z-index:25;
-  text-align:center;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: url("Images/holdcrrct.png");
-  z-index: 10;
-  opacity: 0.5;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+    <style>
+      .overlaycameraimg {
+        position: absolute;
+        top: 0;
+        z-index: 25;
+        text-align: center;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: url("Images/holdcrrct.png");
+        z-index: 10;
+        opacity: 0.5;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
 
-img {
-  display:inline-block;
-}
+      img {
+        display: inline-block;
+      }
+    </style>
 
-.scan-animation {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    width: 320px;
-    height: 320px;
-    z-index: 1;
-    left: 100%;
-    top:40%;
-   
-  }
-  
-  .scan-animation__angle:before,
-  .scan-animation__angle:after {
-    content: "";
-    position: absolute;
+  </body>
 
-    width: 30px;
-    height: 30px;
-    border-style: solid;
-    border-color: #52b459;
-    border-width: 0px;
-    z-index: 1;
- 
-  }
-  
-  .scan-animation__angle:before {
-    border-left-width: 6px;
-    left: 0;
-    
-  }
-  
-  .scan-animation__angle:after {
-    border-right-width: 6px;
-    right: 0;
-
-
-  }
-  
-  .scan-animation__angle--top:before,
-  .scan-animation__angle--top:after {
-    top: 0;
-    border-top-width: 6px;
-
-
-  }
-  
-  .scan-animation__angle--bottom:before,
-  .scan-animation__angle--bottom:after {
-    bottom: 0;
-    border-bottom-width: 6px;
-  }
-  
-  .scan-animation__angle--top:before {
-    border-top-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--top:after {
-    border-top-right-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:before {
-    border-bottom-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:after {
-    border-bottom-right-radius: 50px;
-  }
-</style>
-
-</body>
-</html>
+  </html>
