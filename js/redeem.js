@@ -77,7 +77,7 @@ const tasks = [
   // },
   {
     image: "Images/barber.jpg",
-    title: "20% Discount haircut",
+    title: "10% Discount haircut",
     price: "15 CC",
     description: "20% discount for haircut in selected barbershops",
     button: "Claim",
