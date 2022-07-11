@@ -55,10 +55,12 @@ firebase.auth().onAuthStateChanged((FirebaseUser) => {
 
     deletBtn.addEventListener("click", function () {
 
-      if (confirm('Are you sure you want to delete your account?')) {
-        // Save it!
-        console.log('Thing was saved to the database.');
-        var user = firebase.auth().currentUser;
+      var text='Are you sure you want to delete your account?'
+
+        
+        if (confirm(text) == true) {
+          var user = firebase.auth().currentUser;
+        console.log(' deleted')
 
         user.delete().then(function() {
           // User deleted.
@@ -66,14 +68,19 @@ firebase.auth().onAuthStateChanged((FirebaseUser) => {
           console.log(error)
           // An error happened.
         });
-      } else {
-        // Do nothing!
-        console.log('Thing was not saved to the database.');
-      }
+        return;
+        } else {
+          console.log('not deleted')
+        }
 
-     
+        
+        
+
+       
   
 });
+
+
     console.log(FirebaseUser);
     setTimeout(() => {
         signin.style.display = "none";
