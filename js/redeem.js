@@ -81,8 +81,8 @@ const tasks = [
     price: "15 CC",
     description: "20% discount for haircut in selected barbershops",
     button: "Claim",
-    discreption: "Get 20% discount for haircut at these barber shops,",
-    list: "<a href=https://www.google.no/maps/place/Stenersgata+24,+0184+Oslo/data=!4m2!3m1!1s0x46416e61baf3dcb1:0x523ddd6410ba2495?sa=X&ved=2ahUKEwjak4nq08L3AhVUQvEDHVhhAjgQ8gF6BAgMEAE/ target=_blank>ACLIMAX BARBERSHOP</a>",
+    discreption: "Get 10% discount for haircut at these barber shops,",
+    list: "<a href=https://www.google.com/maps/place/Aclimax+Barber+Shop/@59.9193934,10.7470514,17z/data=!3m1!4b1!4m5!3m4!1s0x46416fbbebca9fa3:0xb4bda7db2492816d!8m2!3d59.9193934!4d10.7492401 target=_blank>ACLIMAX BARBERSHOP</a>",
     // <ul>
     //   <li><a href="">OMAR BARBERSHOP</a></li>
     // </ul>"
