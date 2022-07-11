@@ -34,7 +34,7 @@
 
       var totalrecycle = database.ref().child("TotalRecycled").child("TotalBottles");
       totalrecycle.on('value', function(snapshot) {
-        document.getElementById('recycled').innerHTML=  ' Total recycled with Cycl ' + snapshot.val();
+        document.getElementById('recycled').innerHTML=  snapshot.val() + ' bottles & alaminum cans have been recycled with Cycl';
         console.log(snapshot.val())
       });
 
