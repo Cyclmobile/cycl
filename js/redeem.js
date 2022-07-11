@@ -116,8 +116,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("amountaccount").innerHTML = newBalance + " CC";
       console.log(newBalance);
       if(snapshot.val()){
-        document.getElementById('redeemload').style.display="none"
       }
+      document.getElementById('redeemload').style.display="none"
+
     },
     function (error) {
       console.log("Error: " + error.code);
