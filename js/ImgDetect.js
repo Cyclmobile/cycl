@@ -52,8 +52,8 @@ video.setAttribute('playsinline', '');
 
         // Convenience function to setup a webcam
         const flip = false; // whether to flip the webcam
-        const width = 550;
-        const height = 550;
+        const width = 450;
+        const height = 450;
         webcam = new tmImage.Webcam(width, height); // width, height, flip
         await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
