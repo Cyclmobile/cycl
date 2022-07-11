@@ -21,6 +21,7 @@ var profile = document.getElementById("hideprofile");
 // var redeem = document.getElementById("redeem");
 var signin = document.getElementById("hidesignin");
 var signout = document.getElementById("logOut");
+var deletBtn=document.getElementById('deleteAcc')
 // scnnrbtn.addEventListener("click", function () {
 //   firebase.auth().onAuthStateChanged((FirebaseUser) => {
 //     if (FirebaseUser) {
@@ -48,8 +49,22 @@ signout.addEventListener("click", function () {
 
 
 
+
 firebase.auth().onAuthStateChanged((FirebaseUser) => {
   if (FirebaseUser) {
+
+    deletBtn.addEventListener("click", function () {
+
+      var user = firebase.auth().currentUser;
+
+      user.delete().then(function() {
+        // User deleted.
+      }, function(error) {
+        console.log(error)
+        // An error happened.
+      });
+  
+});
     console.log(FirebaseUser);
     setTimeout(() => {
         signin.style.display = "none";
@@ -58,6 +73,7 @@ firebase.auth().onAuthStateChanged((FirebaseUser) => {
     console.log("not logged in");
     profile.style.display = "none";
     signout.style.display='none';
+    deletBtn.style.display='none'
     setTimeout(() => {
         signin.style.display = "block";
     }, 1000);
