@@ -65,7 +65,8 @@ firebase.auth().onAuthStateChanged((FirebaseUser) => {
         user.delete().then(function() {
           // User deleted.
         }, function(error) {
-          console.log(error)
+          console.log(error.message)
+          alert(error.message)
           // An error happened.
         });
         return;
