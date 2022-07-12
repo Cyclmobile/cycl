@@ -79,7 +79,7 @@ const tasks = [
     image: "Images/barber.jpg",
     title: "10% Discount haircut",
     price: "15 CC",
-    description: "20% discount for haircut in selected barbershops",
+    description: "10% discount for haircut in selected barbershops",
     button: "Claim",
     discreption: "Get 10% discount for haircut at these barber shops,",
     list: "<a href=https://www.google.com/maps/place/Aclimax+Barber+Shop/@59.9193934,10.7470514,17z/data=!3m1!4b1!4m5!3m4!1s0x46416fbbebca9fa3:0xb4bda7db2492816d!8m2!3d59.9193934!4d10.7492401 target=_blank>ACLIMAX BARBERSHOP</a>",
