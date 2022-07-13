@@ -76,10 +76,23 @@ const tasks = [
   //   CheckedImg: "Images/activated.png",
   // },
   {
+    image: "Images/bowlSunt&godt.webp",
+    title: " Discount at Sunt & Godt ",
+    price: "15 CC",
+    description: " Discount",
+    button: "Claim",
+    discreption: "Get discount",
+    list: " must be presented when ordering at <a href=https://www.google.com/maps/place/Sunt+og+Godt/@59.9282903,10.7591013,21z/data=!4m5!3m4!1s0x46416e695ad3dcbb:0x97cf2e576199d041!8m2!3d59.9282655!4d10.7592386 target=_blank> Sunt & Godt</a>",
+    // <ul>
+    //   <li><a href="">OMAR BARBERSHOP</a></li>
+    // </ul>"
+  },
+
+  {
     image: "Images/barber.jpg",
     title: "10% Discount haircut",
     price: "15 CC",
-    description: "10% discount for haircut in selected barbershops",
+    description: "10% Discount for haircut in selected barbershops",
     button: "Claim",
     discreption: "Get 10% discount for haircut at these barber shops,",
     list: "<a href=https://www.google.com/maps/place/Aclimax+Barber+Shop/@59.9193934,10.7470514,17z/data=!3m1!4b1!4m5!3m4!1s0x46416fbbebca9fa3:0xb4bda7db2492816d!8m2!3d59.9193934!4d10.7492401 target=_blank>ACLIMAX BARBERSHOP</a>",
