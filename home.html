@@ -4,7 +4,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>Locate the user</title>
-	<link rel="manifest" href="manifest.json">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="#222" />
@@ -23,14 +22,6 @@
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 	<link href="styles.css" rel="stylesheet">
 	<meta name="theme-color" content="white" />
-
-	<script>
-		// Registering our Service worker
-		if('serviceWorker' in navigator) {
-		  navigator.serviceWorker.register('sw.js', { scope: './' })
-		}
-	  </script>
-
 </head>
 
 <body class="body">
