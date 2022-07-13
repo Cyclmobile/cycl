@@ -3,14 +3,15 @@ window.addEventListener('load', function () {
     var inputBarcode = document.getElementById('result').value;
     let loader=this.document.getElementById('ScanLoad');
     var hints = new Map();
-    hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
-    hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
+    // hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
+    // hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
     //enable formats
     const enabledFormats = [
         ZXing.BarcodeFormat.UPC_EAN_EXTENSION,
         // ZXing.BarcodeFormat.UPC_E,
         // ZXing.BarcodeFormat.UPC_A,
     ];
+    hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, enabledFormats);
 
     // var opts = new MobileBarcodeScanningOptions
     //     {
