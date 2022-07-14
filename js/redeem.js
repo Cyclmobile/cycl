@@ -3,6 +3,8 @@ const overlayCoupon = document.getElementById("overlay-coupon");
 const closeOverlayCard = document.getElementById("backbtnoverlay");
 const reward = document.querySelector(".reward");
 
+AOS.init();
+
 //Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
@@ -339,7 +341,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     tasks.map((task, index) => {
       const data = JSON.stringify(task);
       reward.innerHTML += `
-      <div class="cardshow">
+      <div class="cardshow" data-aos="fade-up"
+      data-aos-anchor-placement="center-center">
       <img class="imgclass" src="${task.image}" alt="Avatar">
       <h3>${task.title}</h3>
       <h4> ${task.price}</h4>
