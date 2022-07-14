@@ -66,7 +66,7 @@ firebase.auth().onAuthStateChanged((FirebaseUser) => {
           // User deleted.
         }, function(error) {
           console.log(error.message)
-          alert(error.message + ' please contact us at contact.cycl@gmail.com to delete your account')
+          alert(error.message + ' please contact us at team@cyclmobileapp.com to delete your account')
           // An error happened.
         });
         return;
