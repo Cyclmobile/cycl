@@ -5,6 +5,11 @@ const reward = document.querySelector(".reward");
 
 AOS.init();
 
+document.getElementById('rward').scrollIntoView({
+  behavior: 'smooth'
+});
+
+
 //Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
