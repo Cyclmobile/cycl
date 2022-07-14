@@ -5,12 +5,6 @@ const reward = document.querySelector(".reward");
 
 AOS.init();
 
-document.getElementById('rward').scrollIntoView({
-  behavior: 'smooth'
-});
-
-
-
 
 
 //Firebase
@@ -350,7 +344,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       const data = JSON.stringify(task);
       reward.innerHTML += `
       <div class="cardshow" data-aos="fade-up"
-      data-aos-anchor-placement="center-center">
+      data-aos-anchor-placement="center-bottom">
       <img class="imgclass" src="${task.image}" alt="Avatar">
       <h3>${task.title}</h3>
       <h4> ${task.price}</h4>
