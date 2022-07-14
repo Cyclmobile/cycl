@@ -195,6 +195,12 @@ async function showDetail(task, coupon, index) {
   const canPurchase = await amountCounterDatabase(data.price);
 
   if (canPurchase) {
+    //firebase
+    var storeName = firebase.database().ref().child('activatedstores').child(data.title)
+    storeName.transaction(function (result) {
+      return result + 0.5;
+    });
+
     overlayCoupon.innerHTML = `
         <div class="cardoverlay">
         <span id="backbtnoverlay" onclick="closeCard()" style="position: relative;left: 40%;">&times;</span> 
