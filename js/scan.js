@@ -7,9 +7,9 @@ window.addEventListener('load', function () {
     hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
     //enable formats
     const enabledFormats = [
-          //ZXing.BarcodeFormat.UPC_EAN_EXTENSION,
-         ZXing.BarcodeFormat.EAN-13,
-        ZXing.BarcodeFormat.UPC_A,
+          ZXing.BarcodeFormat.UPC_EAN_EXTENSION,
+        // ZXing.BarcodeFormat.EAN-13,
+       // ZXing.BarcodeFormat.UPC_A,
     ];
 
     // var opts = new MobileBarcodeScanningOptions
