@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
     //     };
 
     hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, enabledFormats);
-    const codeReader = new ZXing.BrowserMultiFormatReader(hints)
+    const codeReader = new ZXing.BrowserBarcodeReader(hints)
     console.log('ZXing code reader initialized')
     codeReader.getVideoInputDevices()
         .then((videoInputDevices) => {
