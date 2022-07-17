@@ -1,9 +1,25 @@
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
 window.addEventListener('load', function () {
     let selectedDeviceId;
-    var inputBarcode = document.getElementById('result').value;
+    const inputBarcode = document.getElementById('result').value;
     let loader=this.document.getElementById('ScanLoad');
-    var hints = new Map();
-    hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
+    const hints = new Map();
+    // hints.set(ZXing.DecodeHintType.ASSUME_GS1, true)
     hints.set(ZXing.DecodeHintType.TRY_HARDER, true)
     //enable formats
     const enabledFormats = [
@@ -12,7 +28,7 @@ window.addEventListener('load', function () {
        // ZXing.BarcodeFormat.UPC_A,
     ];
 
-    // var opts = new MobileBarcodeScanningOptions
+    // const opts = new MobileBarcodeScanningOptions
     //     {
     //       PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.EAN_13 }
     //     };
@@ -40,7 +56,7 @@ window.addEventListener('load', function () {
                 sourceSelectPanel.style.display = 'block'
             }
 
-            var user = firebase.auth().currentUser;
+            const user = firebase.auth().currentUser;
 
             console.log(user)
 
@@ -58,7 +74,7 @@ window.addEventListener('load', function () {
                     document.getElementById('result').value = result;
 
                     //barcodes
-                    var CocaCola = [12345678, "1231231313", "5012345678900", "5000112597318", "5000112636864",
+                    const CocaCola = [12345678, "1231231313", "5012345678900", "5000112597318", "5000112636864",
                         "5000112642773", "5000112636871", "5000112597363", "5000112597349", "5000112597370", "5000112597356",
                         "5000112634136", "5000112633801", "5449000141521", "5000112620115", "42357445", "42357469", "5060517889937",
                         "5060517887704", "5060337502238", "5060166693732", "5060639122325", "5060639122295", "5060335636287", "5060517885267",
@@ -71,16 +87,16 @@ window.addEventListener('load', function () {
                         "5000112655070", "5000112650709", "5000112641455", "5000112650709", "5449000206442", "5000111507356", '5000112656961', 
                         '5060608744206','5000112649727','5000112656534','5000112644647'];
 
-                    var pepsi = ["7044610874685", "7044610874678", "7044610875057", "7044610876177", "7044610874661", "7044610874326",
+                    const pepsi = ["7044610874685", "7044610874678", "7044610875057", "7044610876177", "7044610874661", "7044610874326",
                         "7044610875040", "7044610038018", "7310070003263", "7044610874654", "7044610876184"];
 
-                    var ringnes = ["7044610874012", "7044610870991", "7045710033033", "7044610871103", "7044610873190", "7044610871110",
+                    const ringnes = ["7044610874012", "7044610870991", "7045710033033", "7044610871103", "7044610873190", "7044610871110",
                         "7044610874531", "7044610874555", "7044610874548", "7044610874579", "7044610874876", "7044610874869", "7044610874746", "7044610874760",
                         "7044610874784", "7044610874753", "7044610874135", , "7044610875316", , "7044610874135", "7044610876351", "7044610876290", '7044610876313'];
 
-                    var tine = ["7038010063398", "7038010063404", "7038010063367", "7038010063381", "7038010063374"]
+                    const tine = ["7038010063398", "7038010063404", "7038010063367", "7038010063381", "7038010063374"]
 
-                    var otherCompanies = ["7090041230064", "7044610874890", "7044613875405", "5000112636840",
+                    const otherCompanies = ["7090041230064", "7044610874890", "7044613875405", "5000112636840",
                         "5000112642759", "7044613875504", "7044610875484", "5410188036688", "7025110168559", "7025110168047",
                         "70441610874180", "7023720067002", "8728500996334", "7035790610620", "7037120014962",
                         "7340131600902", "6415600543712", "5000112626308", "500112630572", "5060517882853", "5060517882822",
@@ -122,7 +138,7 @@ window.addEventListener('load', function () {
                         //Function after scan
 
                     if (otherCompanies.includes(result.text)) {
-                        var coce = firebase.database().ref().child('bottles').child("Other Companies")
+                        const coce = firebase.database().ref().child('bottles').child("Other Companies")
                         coce.transaction(function (result) {
                             return result + 1;
                         });
@@ -131,23 +147,8 @@ window.addEventListener('load', function () {
                             window.location.href = "droptuto.html"
                           }, 500);
                           return;
-                    }
-
-                    if (ringnes.includes(result.text)) {
-                        var coce = firebase.database().ref().child('bottles').child("Ringnes comapany")
-                        coce.transaction(function (result) {
-                            return result + 1;
-                        });
-
-                        setTimeout(function () {
-                            window.location.href = "droptuto.html"
-                          }, 500);
-                          return;
-
-                    }
-
-                    if (tine.includes(result.text)) {
-                        var coce = firebase.database().ref().child('bottles').child("Tine comapany")
+                    } else if (ringnes.includes(result.text)) {
+                        const coce = firebase.database().ref().child('bottles').child("Ringnes comapany")
                         coce.transaction(function (result) {
                             return result + 1;
                         });
@@ -157,11 +158,20 @@ window.addEventListener('load', function () {
                           }, 500);
                           return;
 
-                    }
+                    } else if (tine.includes(result.text)) {
+                        const coce = firebase.database().ref().child('bottles').child("Tine comapany")
+                        coce.transaction(function (result) {
+                            return result + 1;
+                        });
 
-                    if (CocaCola.includes(result.text)) {
+                        setTimeout(function () {
+                            window.location.href = "droptuto.html"
+                          }, 500);
+                          return;
 
-                        var coce = firebase.database().ref().child('bottles').child("Coca Cola comapany")
+                    } else if (CocaCola.includes(result.text)) {
+
+                        const coce = firebase.database().ref().child('bottles').child("Coca Cola comapany")
                         coce.transaction(function (result) {
                             return result + 1;
                         });
@@ -171,10 +181,8 @@ window.addEventListener('load', function () {
                           }, 500);
 
                         return
-                    }
-
-                    if (pepsi.includes(result.text)) {
-                        var coce = firebase.database().ref().child('bottles').child("Pepsi comapany")
+                    } else if (pepsi.includes(result.text)) {
+                        const coce = firebase.database().ref().child('bottles').child("Pepsi comapany")
                         coce.transaction(function (result) {
                             return result + 1;
                         });
@@ -185,16 +193,13 @@ window.addEventListener('load', function () {
 
                     } else {
                         this.alert("This bottle cant by recycled, try again later")
-                        var database = firebase.database();// først setter vi oss inn i databasen
-                        var ref = database.ref().child("missingbrcds")//så lager vi en referanse i databasen
+                        const database = firebase.database();// først setter vi oss inn i databasen
+                        const ref = database.ref().child("missingbrcds")//så lager vi en referanse i databasen
                         ref.push(result.text); //så dytter vi noe inn i referansen.
                         return;
                     }
 
-                }
-
-
-                if (err && !(err instanceof ZXing.NotFoundException)) {
+                } else  if (err && !(err instanceof ZXing.NotFoundException)) {
                     console.error(err)
                     document.getElementById('result').textContent = err
                 }
@@ -215,9 +220,9 @@ window.addEventListener('load', function () {
     //Submit Button function
 
     this.document.getElementById("submitbarcodebtn").addEventListener("click", function () {
-        var inputBarcode = document.getElementById('result').value;
+        const inputBarcode = document.getElementById('result').value;
 
-        var BottleBarcodes = [12345678, "1231231313", "5012345678900", "5000112597318", "5000112636864",
+        const BottleBarcodes = [12345678, "1231231313", "5012345678900", "5000112597318", "5000112636864",
         "5000112642773", "5000112636871", "5000112597363", "5000112597349", "5000112597370", "5000112597356",
         "5000112634136", "5000112633801", "5449000141521", "5000112620115", "42357445", "42357469", "5060517889937",
         "5060517887704", "5060337502238", "5060166693732", "5060639122325", "5060639122295", "5060335636287", "5060517885267",
@@ -282,17 +287,4 @@ backbtn.addEventListener("click", () =>{
     window.location.href="home.html";
   });
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
-    authDomain: "cycl-77b6c.firebaseapp.com",
-    databaseURL: "https://cycl-77b6c.firebaseio.com",
-    projectId: "cycl-77b6c",
-    storageBucket: "cycl-77b6c.appspot.com",
-    messagingSenderId: "139900263133",
-    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
-    measurementId: "G-VPV104NQQW"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+
