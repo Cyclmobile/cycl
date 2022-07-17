@@ -105,7 +105,7 @@ const geojson = {
 					},
 					geometry: {
 					type: 'Point',
-					coordinates: [10.724765402342086,59.92126791274231]
+					coordinates: [10.787695513253993,59.931212039434655]
 					}
 					}
   ],
@@ -159,7 +159,7 @@ for (const marker of geojson.features) {
   el.style.width = `${width}px`;
   el.style.height = `${height}px`;
   el.style.backgroundSize = "100%";
-  el.style.zIndex="0"
+  el.style.zIndex="1"
 
   new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
 
@@ -167,7 +167,7 @@ for (const marker of geojson.features) {
   geolocate.on("geolocate", function (e) {
     var lon = e.coords.longitude;
     var lat = e.coords.latitude;
-    var position = [10.772899, 59.926319];
+    var position = [lon, lat];
     //console.log(position);
 
     var from = position; //lng, lat
@@ -186,7 +186,7 @@ for (const marker of geojson.features) {
     el.addEventListener("click", () => {
       if (isMarkerClickable) {
         isMarkerClickable = false;
-        if (distance > 111.036) {
+        if (distance > 0.012) {
           var divAlert = document.getElementById("alertdiv");
           //gi den 3 sec delay
           divAlert.style.display = "block";
