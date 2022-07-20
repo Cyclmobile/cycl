@@ -81,11 +81,11 @@ const tasks = [
   // },
   {
     image: "Images/bowlSunt&godt.webp",
-    title: " Discount at Sunt & Godt ",
+    title: " 15% off at Sunt & Godt ",
     price: "15 CC",
-    description: " Discount",
+    description: "15% discount from the menu",
     button: "Claim",
-    discreption: "Get discount",
+    descriptionB: "*Drinks are not included",
     list: " must be presented when ordering at <a href=https://www.google.com/maps/place/Sunt+og+Godt/@59.9282903,10.7591013,21z/data=!4m5!3m4!1s0x46416e695ad3dcbb:0x97cf2e576199d041!8m2!3d59.9282655!4d10.7592386 target=_blank> Sunt & Godt</a>",
     // <ul>
     //   <li><a href="">OMAR BARBERSHOP</a></li>
@@ -98,7 +98,7 @@ const tasks = [
     price: "15 CC",
     description: "10% Discount for haircut in selected barbershops",
     button: "Claim",
-    discreption: "Get 10% discount for haircut at these barber shops,",
+    descriptionB: "",
     list: "<a href=https://www.google.com/maps/place/Aclimax+Barber+Shop/@59.9193934,10.7470514,17z/data=!3m1!4b1!4m5!3m4!1s0x46416fbbebca9fa3:0xb4bda7db2492816d!8m2!3d59.9193934!4d10.7492401 target=_blank>ACLIMAX BARBERSHOP</a>",
     // <ul>
     //   <li><a href="">OMAR BARBERSHOP</a></li>
@@ -107,9 +107,10 @@ const tasks = [
   {
     image: "Images/jonk.png",
     title: "10% at JØNK",
-    price: "20 CC",
+    price: "10 CC",
     description: "Get 10% off for anything on the menu.",
     button: "Claim",
+    descriptionB: "*Drinks are not included",
     list: " must be presented when ordering at <a href=https://www.google.no/maps/place/J%C3%B8nk/@59.9124912,10.7616621,15z/data=!4m2!3m1!1s0x0:0xa8b7a134981b977?sa=X&ved=2ahUKEwiG_qrT0cP3AhWvRfEDHY4MAeIQ_BJ6BAhZEAU/ target=_blank> JØNK</a>",
   },
 ];
@@ -227,6 +228,7 @@ async function showDetail(task, coupon, index) {
         />
         <h2 style="text-align: center">${data.price}</h2>
         <p style="text-align: center">${data.description}</p>
+        <p style="text-align: center">${data.descriptionB}</p>
         ${
           !isPurchased
             ? `<p style="text-align: center"> ${data.list} </p>`
