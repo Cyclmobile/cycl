@@ -129,7 +129,7 @@ video.setAttribute('playsinline', '');
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
                 
-                     if (recycled >= 0.90){
+                       if (recycled >= 0.90){
                    window.location.href="completrecycl.html"
                     return;
                   } else if (Stn > 0.00){
@@ -152,6 +152,9 @@ video.setAttribute('playsinline', '');
                             
                         }, 3000);
                 
+                    } else {
+                      console.log('fall not detected')
+                      return;
                     }
         }
     }
