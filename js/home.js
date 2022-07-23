@@ -107,7 +107,18 @@ const geojson = {
 					type: 'Point',
 					coordinates: [10.787695513253993,59.931212039434655]
 					}
-					}
+					},
+          {
+            type: 'Feature',
+            properties: {
+            message: '1005',
+            iconSize: [50, 50]
+            },
+            geometry: {
+            type: 'Point',
+            coordinates: [10.778079542079354,59.931660958662064]
+            }
+            }
   ],
 };
 
@@ -159,7 +170,8 @@ for (const marker of geojson.features) {
   el.style.width = `${width}px`;
   el.style.height = `${height}px`;
   el.style.backgroundSize = "100%";
-  el.style.zIndex="1"
+  el.style.zIndex="0";
+  // el.style.pointerEvents = "none";
 
   new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
 
@@ -225,6 +237,17 @@ for (const marker of geojson.features) {
               document.getElementById("returnstation").innerHTML = "1004";
               document.getElementById("place").innerHTML = "Circle K";
               document.getElementById("adress").innerHTML = "Økern";
+              var divAlert = document.getElementById("alertdiv");
+              divAlert.style.display = "none";
+              bagcount();
+              return;
+              break;
+
+              case "1005":
+              modal.style.display = "flex";
+              document.getElementById("returnstation").innerHTML = "1005";
+              document.getElementById("place").innerHTML = "Home";
+              document.getElementById("adress").innerHTML = "Rosenhoff";
               var divAlert = document.getElementById("alertdiv");
               divAlert.style.display = "none";
               bagcount();
@@ -380,6 +403,8 @@ redeem.addEventListener("click", function () {
 			},
 			
 			);*/
+
+
 
 
 
