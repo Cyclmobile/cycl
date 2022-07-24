@@ -131,7 +131,7 @@ video.setAttribute('playsinline', '');
                 
                 function Recycle(){
                   if (recycled >= 0.90){
-                    window.location.href="completrecycl.html"
+                    location.href="completrecycl.html"
                     return false;//prevent form submission
                    } else if (Stn > 0.00){
                        RecycleInfo.innerHTML='Please hold the bottle top of the hole'
