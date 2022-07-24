@@ -128,12 +128,17 @@ video.setAttribute('playsinline', '');
                 var DropLight=document.getElementById('DropColor')
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
+
+                let isRecycled;
+
+                if(recycled >= 0.90){
+                  isRecycled=true
+                }else{
+                  isRecycled=false
+                }
                 
                 function Recycle(){
-                  if (recycled >= 0.90){
-                    location.href="completrecycl.html"
-                    return false;//prevent form submission
-                   } else if (Stn > 0.00){
+                  if (Stn > 0.00){
                        RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                        DropLight.style.borderColor='red';
                        return false;//prevent form submission
@@ -147,7 +152,7 @@ video.setAttribute('playsinline', '');
                            return false;//prevent form submission
                      } else if (hold >= 1.00){
                          setTimeout(() => {
-                             RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851 <br> *Take your hand away after drop'
+                             RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
                              DropLight.style.borderColor='green';
                              return false;//prevent form submission
                              
@@ -157,8 +162,18 @@ video.setAttribute('playsinline', '');
                          return false;//prevent form submission
 
                 }
+
+                function recyclestage(){
+                  if (isRecycled === true){
+                    location.href="completrecycl.html"
+                  }else{
+                    Recycle()
+                  }
+                }
+
+                recyclestage()
                     
-                Recycle()
+                
         }
     }
-
+//<br> *Take your hand away after drop
